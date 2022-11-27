@@ -3,8 +3,11 @@ const { hash } = require("bcryptjs");
 
 exports.getUsers = async (req, res) => {
   try {
-    const { rows } = await db.query(`SELECT * FROM users`);
-    console.log(rows);
+    const { rows } = await db.query(`SELECT user_id, user_email FROM users`);
+    return res.status(200).json({
+      success: true,
+      users: rows,
+    });
   } catch (err) {
     console.error(err.message);
   }
@@ -17,17 +20,17 @@ exports.register = async (req, res) => {
     const hashedPassword = await hash(password, saltRounds);
     await db.query(
       "INSERT INTO users (user_email, user_password) VALUES ($1 , $2)",
-      [email, hashedPassword,]
+      [email, hashedPassword]
     );
-    
+
     return res.status(201).json({
       success: true,
-      message: "The registration was successful!"
-    })
+      message: "The registration was successful!",
+    });
   } catch (err) {
     console.error(err.message);
     return res.status(500).json({
       error: err.message,
-    })
+    });
   }
 };
