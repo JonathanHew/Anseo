@@ -1,4 +1,5 @@
 const db = require("../db");
+const { hash } = require("bcryptjs");
 
 exports.getUsers = async (req, res) => {
   try {
@@ -10,9 +11,23 @@ exports.getUsers = async (req, res) => {
 };
 
 exports.register = async (req, res) => {
+  const { email, password } = req.body;
+  const saltRounds = 10;
   try {
-    console.log("Register Validation Passed!"); 
+    const hashedPassword = await hash(password, saltRounds);
+    await db.query(
+      "INSERT INTO users (user_email, user_password) VALUES ($1 , $2)",
+      [email, hashedPassword,]
+    );
+    
+    return res.status(201).json({
+      success: true,
+      message: "The registration was successful!"
+    })
   } catch (err) {
     console.error(err.message);
+    return res.status(500).json({
+      error: err.message,
+    })
   }
 };
