@@ -48,10 +48,10 @@ exports.login = async (req, res) => {
   try {
     const token = await sign(payload, SECRET);
 
-    return res.status(200).cookie('token', token, {httpOnly: true}).json({
+    return res.status(200).cookie("token", token, { httpOnly: true }).json({
       sucess: true,
-      message: "Logged in succesfully!"
-    })
+      message: "Logged in succesfully!",
+    });
   } catch (err) {
     console.error(err.message);
     return res.status(500).json({
@@ -62,12 +62,27 @@ exports.login = async (req, res) => {
 
 exports.protected = async (req, res) => {
   try {
-    const { rows } = await db.query(`SELECT user_id, user_email FROM users`);
     return res.status(200).json({
-      success: true,
-      users: rows,
+      info: "protected info",
     });
   } catch (err) {
     console.error(err.message);
+  }
+};
+
+exports.logout = async (req, res) => {
+  try {
+    return res
+      .status(200)
+      .clearCookie("token", { httpOnly: true })
+      .json({
+        success: true,
+        message: "Logged out successfully!",
+      });
+  } catch (err) {
+    console.error(err.message);
+    return res.status(500).json({
+      error: err.message,
+    });
   }
 };
