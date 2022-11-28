@@ -1,5 +1,6 @@
 const db = require("../db");
 const { hash } = require("bcryptjs");
+const { sign } = require("jsonwebtoken");
 
 exports.getUsers = async (req, res) => {
   try {
@@ -27,6 +28,27 @@ exports.register = async (req, res) => {
       success: true,
       message: "The registration was successful!",
     });
+  } catch (err) {
+    console.error(err.message);
+    return res.status(500).json({
+      error: err.message,
+    });
+  }
+};
+
+exports.login = async (req, res) => {
+  console.log(req.user.user_email);
+  let user = req.user;
+
+  let payload = {
+    id: user.user_id, 
+    email: user.user_email,
+  };
+
+  try {
+    return res.status(200).json({
+      payload,
+    })
   } catch (err) {
     console.error(err.message);
     return res.status(500).json({

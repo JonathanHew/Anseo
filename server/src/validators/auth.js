@@ -32,13 +32,16 @@ const loginFieldsCheck = check("email").custom(async (value, { req }) => {
   }
 
   // check password if email exists
-  const validPassword = await compare(req.body.password, user.rows[0].user_password);
+  const validPassword = await compare(
+    req.body.password,
+    user.rows[0].user_password
+  );
 
-
-  if(!validPassword)
-  {
+  if (!validPassword) {
     throw new Error("Password is incorrect!");
   }
+
+  req.user = user.rows[0];
 });
 
 module.exports = {
