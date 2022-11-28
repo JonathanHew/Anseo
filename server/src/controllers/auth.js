@@ -1,6 +1,7 @@
 const db = require("../db");
 const { hash } = require("bcryptjs");
 const { sign } = require("jsonwebtoken");
+const { SECRET } = require("../constants");
 
 exports.getUsers = async (req, res) => {
   try {
@@ -37,17 +38,19 @@ exports.register = async (req, res) => {
 };
 
 exports.login = async (req, res) => {
-  console.log(req.user.user_email);
   let user = req.user;
 
   let payload = {
-    id: user.user_id, 
+    id: user.user_id,
     email: user.user_email,
   };
 
   try {
-    return res.status(200).json({
-      payload,
+    const token = await sign(payload, SECRET);
+
+    return res.status(200).cookie('token', token, {httpOnly: true}).json({
+      sucess: true,
+      message: "Logged in succesfully!"
     })
   } catch (err) {
     console.error(err.message);
