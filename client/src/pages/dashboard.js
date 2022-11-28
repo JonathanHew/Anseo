@@ -1,8 +1,10 @@
+import Layout from "../components/layout";
+
 const Dashboard = () => {
   return (
-    <div>
+    <Layout>
       <h1>Dashboard</h1>
-    </div>
+    </Layout>
   );
 };
 
