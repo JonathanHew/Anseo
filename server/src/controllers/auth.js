@@ -59,3 +59,15 @@ exports.login = async (req, res) => {
     });
   }
 };
+
+exports.protected = async (req, res) => {
+  try {
+    const { rows } = await db.query(`SELECT user_id, user_email FROM users`);
+    return res.status(200).json({
+      success: true,
+      users: rows,
+    });
+  } catch (err) {
+    console.error(err.message);
+  }
+};
