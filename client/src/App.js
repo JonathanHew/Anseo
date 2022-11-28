@@ -11,14 +11,32 @@ import Dashboard from "./pages/dashboard";
 import Register from "./pages/register";
 import Login from "./pages/login";
 
+const PrivateRoutes = () => {
+  const isAuth = false;
+
+  return <>{isAuth ? <Outlet /> : <Navigate to="/login" />} </>;
+};
+
+const RestrictedRoutes = () => {
+  const isAuth = false;
+
+  return <>{!isAuth ? <Outlet /> : <Navigate to="/dashboard" />} </>;
+};
+
 const App = () => {
   return (
     <BrowserRouter>
       <Routes>
         <Route path="/" element={<Home />}></Route>
-        <Route path="/dashboard" element={<Dashboard />}></Route>
-        <Route path="/register" element={<Register />}></Route>
-        <Route path="/login" element={<Login />}></Route>
+
+        <Route element={<PrivateRoutes />}>
+          <Route path="/dashboard" element={<Dashboard />}></Route>
+        </Route>
+
+        <Route element={<RestrictedRoutes />}>
+          <Route path="/register" element={<Register />}></Route>
+          <Route path="/login" element={<Login />}></Route>
+        </Route>
       </Routes>
     </BrowserRouter>
   );
