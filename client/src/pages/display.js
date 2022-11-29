@@ -4,7 +4,6 @@ import QRCodeSVG from "qrcode.react";
 const Display = () => {
 
     //const url = "http://localhost:8000/api/sign-in";
-    
 
     return (
       <Layout>
@@ -13,7 +12,9 @@ const Display = () => {
             <div class="col-8">
                 <QRCodeSVG value = "http://localhost:8000/api/sign-in" size={256}/>
             </div>
-            <div class="col-4">col-4</div>
+            <div class="col-4">
+              <p>Student Count:</p>
+            </div>
         </div>
       </Layout>
     );
