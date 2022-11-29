@@ -1,7 +1,9 @@
 import { NavLink } from "react-router-dom";
+import {useSelector} from "react-redux"
 
 const NavBar = () => {
-  const isAuth = false;
+  const {isAuth} = useSelector((state) => state.auth)
+
 
   // if isAuth (logged in), render dashboard, if not render login and register options
   return (

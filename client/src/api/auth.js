@@ -1,3 +1,4 @@
+// auth api functions and their routes to communicate with the backend
 import axios from "axios";
 axios.defaults.withCredentials = true;
 
