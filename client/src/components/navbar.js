@@ -1,9 +1,23 @@
 import { NavLink } from "react-router-dom";
-import {useSelector} from "react-redux"
+import { useSelector } from "react-redux";
+import { onLogout } from "../api/auth";
+import { useDispatch } from "react-redux";
+import { unauthenticateUser } from "../redux/slices/authSlice";
 
 const NavBar = () => {
-  const {isAuth} = useSelector((state) => state.auth)
+  const dispatch = useDispatch();
+  const { isAuth } = useSelector((state) => state.auth);
 
+  const logout = async () => {
+    try {
+      await onLogout();
+
+      dispatch(unauthenticateUser());
+      localStorage.removeItem("isAuth");
+    } catch (err) {
+      console.error(err.response);
+    }
+  };
 
   // if isAuth (logged in), render dashboard, if not render login and register options
   return (
@@ -20,6 +34,7 @@ const NavBar = () => {
             <NavLink to="/dashboard" className="mx-3">
               <span>Dashboard</span>
             </NavLink>
+            <a onClick={() => logout()}>Logout</a>
           </div>
         ) : (
           <div>
