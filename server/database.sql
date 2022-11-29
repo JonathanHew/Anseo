@@ -8,8 +8,8 @@ CREATE TABLE users(
 
 --lists table
 CREATE TABLE lists(
-    list_id SERIAL PRIMARY KEY
-    list_name
+    list_id SERIAL PRIMARY KEY,
+    list_name VARCHAR(255) NOT NULL
 );
 
 --signIns table
@@ -23,3 +23,6 @@ CREATE TABLE signIns(
             REFERENCES lists(list_id)
                 ON DELETE CASCADE
 );
+
+INSERT INTO lists (list_id, list_name) VALUES (1, "list1");
+INSERT INTO signIns (signIn_id, signIn_name, signIn_number, list_id) VALUES (1, 'Jonathan', 'C19472842', 1);

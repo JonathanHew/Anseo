@@ -10,6 +10,7 @@ import Home from "./pages/home";
 import Dashboard from "./pages/dashboard";
 import Register from "./pages/register";
 import Login from "./pages/login";
+import SignIn from "./pages/signIn.page"
 import Navbar from "./components/navbar";
 import {userSelector, useSelector} from "react-redux"
 
@@ -33,6 +34,7 @@ const App = () => {
     <BrowserRouter>
       <Routes>
         <Route path="/" element={<Home />}></Route>
+        <Route path="/sign-in" element={<SignIn/>}></Route>
 
         <Route element={<PrivateRoutes />}>
           <Route path="/dashboard" element={<Dashboard />}></Route>
