@@ -6,7 +6,7 @@ const initalState = {
 
 export const authSlice = createSlice({
   name: "auth",
-  initialState,
+  initalState,
   reducers: {
     authenticateUser: (state) => {
         state.isAuth = true;
