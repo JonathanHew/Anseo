@@ -3,6 +3,8 @@ import { useDispatch } from "react-redux";
 import { fetchProtectedInfo, onLogout } from "../api/auth";
 import Layout from "../components/layout";
 import { unauthenticateUser } from "../redux/slices/authSlice";
+import { NavLink } from "react-router-dom";
+
 
 const Dashboard = () => {
   const dispatch = useDispatch();
@@ -45,7 +47,11 @@ const Dashboard = () => {
       <Layout>
         <h1>Dashboard</h1>
         <h2>{protectedData}</h2>
-
+        <label>Your Attendance List:</label>
+          <NavLink to="/display" className="mx-3">
+              <span>view</span>
+          </NavLink>
+        <br></br> 
         <button onClick={() => logout()} className="btn btn-primary">
           Logout
         </button>

@@ -11,6 +11,7 @@ import Dashboard from "./pages/dashboard";
 import Register from "./pages/register";
 import Login from "./pages/login";
 import SignIn from "./pages/signIn.page"
+import Display from "./pages/display";
 import Navbar from "./components/navbar";
 import {userSelector, useSelector} from "react-redux"
 
@@ -38,6 +39,7 @@ const App = () => {
 
         <Route element={<PrivateRoutes />}>
           <Route path="/dashboard" element={<Dashboard />}></Route>
+          <Route path="/display" element={<Display/>}></Route>
         </Route>
 
         <Route element={<RestrictedRoutes />}>
