@@ -24,5 +24,8 @@ CREATE TABLE signIns(
                 ON DELETE CASCADE
 );
 
+
+
+
 INSERT INTO lists (list_id, list_name) VALUES (1, "list1");
 INSERT INTO signIns (signIn_id, signIn_name, signIn_number, list_id) VALUES (1, 'Jonathan', 'C19472842', 1);

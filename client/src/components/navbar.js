@@ -34,7 +34,9 @@ const NavBar = () => {
             <NavLink to="/dashboard" className="mx-3">
               <span>Dashboard</span>
             </NavLink>
-            <a onClick={() => logout()}>Logout</a>
+            <NavLink>
+              <span onClick={() => logout()}>Logout</span>
+            </NavLink>
           </div>
         ) : (
           <div>
