@@ -1,4 +1,4 @@
-// layout component is for com[pnents such as navbar which you want on every page
+// layout component is for components such as navbar which you want on every page
 
 import NavBar from "./navbar";
 

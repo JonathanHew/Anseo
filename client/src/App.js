@@ -12,8 +12,7 @@ import Register from "./pages/register";
 import Login from "./pages/login";
 import SignIn from "./pages/signIn.page"
 import Display from "./pages/display";
-import Navbar from "./components/navbar";
-import {userSelector, useSelector} from "react-redux"
+import { useSelector} from "react-redux"
 
 // if user is not logged in and they enter the dashboard route, they will redirected to login
 const PrivateRoutes = () => {

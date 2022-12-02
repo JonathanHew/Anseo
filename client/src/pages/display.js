@@ -3,8 +3,6 @@ import QRCodeSVG from "qrcode.react";
 
 const Display = () => {
 
-    //const url = "http://localhost:3000/sign-in";
-
     return (
       <Layout>
         <h1>Sign In By Scanning the QR Code!</h1>
