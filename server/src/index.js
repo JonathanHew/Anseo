@@ -17,10 +17,12 @@ app.use(passport.initialize());
 // import routes
 const authRoute = require("./routes/auth");
 const studentRoute = require("./routes/student.routes");
+const lecturerRoute = require("./routes/lecturer.routes");
 
 // intitialize routes
 app.use("/api", authRoute);
 app.use("/api", studentRoute);
+app.use("/api", lecturerRoute);
 
 // start app
 const appStart = () => {
