@@ -15,12 +15,12 @@ app.use(cors({ origin: CLIENT_URL, credentials: true }));
 app.use(passport.initialize());
 
 // import routes
-const authRoutes = require("./routes/auth");
-const signInRoutes = require("./routes/signIn.routes");
+const authRoute = require("./routes/auth");
+const studentRoute = require("./routes/student.routes");
 
 // intitialize routes
-app.use("/api", authRoutes);
-app.use("/api", signInRoutes);
+app.use("/api", authRoute);
+app.use("/api", studentRoute);
 
 // start app
 const appStart = () => {

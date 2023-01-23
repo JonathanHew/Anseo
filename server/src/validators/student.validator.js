@@ -26,5 +26,5 @@ const studentName = check("name")
   .withMessage("Name must be alphabetic.");
 
 module.exports = {
-  signInValidation: [studentNumber, studentExists, studentName],
+  studentValidator: [studentNumber, studentExists, studentName],
 };
