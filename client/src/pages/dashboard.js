@@ -4,8 +4,6 @@ import { fetchProtectedInfo, onLogout } from "../api/auth";
 import Layout from "../components/layout";
 import { unauthenticateUser } from "../redux/slices/authSlice";
 import { NavLink } from "react-router-dom";
-import AddListForm from "../components/AddListForm";
-import { Button, Modal } from "react-bootstrap";
 
 const Dashboard = () => {
   const dispatch = useDispatch();
@@ -57,24 +55,7 @@ const Dashboard = () => {
           <span>view</span>
         </NavLink>
         <br></br>
-        <Button className="OpenListModal" onClick={handleShow}>
-          Create List
-        </Button>
-        
-        <Modal show={show}>
-          <Modal.Header>
-            <Modal.Title>Create New List</Modal.Title>
-          </Modal.Header>
-          <Modal.Body>
-            <AddListForm/>
-          </Modal.Body>
-          <Modal.Footer>
-            <Button variant="secondary" onClick={handleClose}>
-              Close
-            </Button>
-          </Modal.Footer>
-        </Modal>
-      </Layout>
+       </Layout>
     </div>
   );
 };
