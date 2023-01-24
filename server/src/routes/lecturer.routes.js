@@ -1,9 +1,9 @@
 const { Router } = require("express");
-const { createList } = require("../controllers/lecturer.controller");
+const { createSession } = require("../controllers/lecturer.controller");
 const { userAuth } = require("../middlewares/auth-middlware");
-const { listValidator } = require("../validators/lecturer.validator");
+const { sessionValidator } = require("../validators/lecturer.validator");
 const router = Router();
 
-router.post("/create-list", listValidator, userAuth, createList);
+router.post("/create-session", sessionValidator, userAuth, createSession);
 
 module.exports = router;
