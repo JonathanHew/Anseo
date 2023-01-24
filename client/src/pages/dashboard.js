@@ -4,6 +4,7 @@ import { fetchProtectedInfo, onLogout } from "../api/auth";
 import Layout from "../components/layout";
 import { unauthenticateUser } from "../redux/slices/authSlice";
 import { NavLink } from "react-router-dom";
+import AddListForm from "../components/AddListForm";
 
 
 const Dashboard = () => {
