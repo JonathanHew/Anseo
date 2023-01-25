@@ -19,3 +19,16 @@ exports.createSession = async (req, res) => {
     });
   }
 };
+
+exports.getSessions = async (req, res) => {
+  const {user_id} = req.body;
+  try {
+    const { rows } = await db.query(`SELECT * FROM sessions WHERE user_id = $1`, [user_id]);
+    return res.status(200).json({
+      success: true,
+      sessions: rows,
+    });
+  } catch (err) {
+    console.error(err.message);
+  }
+};

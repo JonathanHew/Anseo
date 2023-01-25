@@ -9,11 +9,7 @@ const Dashboard = () => {
   const dispatch = useDispatch();
   const [loading, setLoading] = useState(true);
   const [protectedData, setProtectedData] = useState(null);
-  const [show, setShow] = useState(false);
-
-  const handleShow = () => setShow(true);
-  const handleClose = () => setShow(false);
-
+  
   const logout = async () => {
     try {
       await onLogout();
