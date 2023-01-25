@@ -12,6 +12,7 @@ import Register from "./pages/register";
 import Login from "./pages/login";
 import SignIn from "./pages/signIn.page"
 import Display from "./pages/display";
+import Sessions from "./pages/sessions";
 import { useSelector} from "react-redux"
 
 // if user is not logged in and they enter the dashboard route, they will redirected to login
@@ -39,6 +40,7 @@ const App = () => {
         <Route element={<PrivateRoutes />}>
           <Route path="/dashboard" element={<Dashboard />}></Route>
           <Route path="/display" element={<Display/>}></Route>
+          <Route path="/sessions" element={<Sessions/>}></Route>
         </Route>
 
         <Route element={<RestrictedRoutes />}>
