@@ -4,15 +4,21 @@ import Layout from "../components/layout";
 
 const Sessions = ({ id }) => {
   const [sessions, setSessions] = useState([]);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     (async () => {
       const content = await fetchUserSessions({ id });
       setSessions(content.data.sessions);
+      setLoading(false);
     })();
   }, []);
 
-  return (
+  return loading ? (
+    <Layout>
+      <h1>Loading...</h1>
+    </Layout>
+  ) : (
     <Layout>
       <h1>Sessions Page</h1>
       <p>User ID: {id}</p>
