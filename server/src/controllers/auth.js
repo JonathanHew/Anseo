@@ -84,11 +84,15 @@ exports.logout = async (req, res) => {
   }
 };
 
+//function to get users JWT token from request header, idendity the user in the bDB and return their information
 exports.getUserInfo = async (req, res) => {
-  const { token } = req.body;
+  const token = req.cookies.token;
   try {
     const decoded = verify(token, SECRET);
-    console.log(decoded);
+    return res.status(200).json({
+      success: true,
+      info: decoded,
+    });
   } catch (err) {
     console.error(err.message);
   }

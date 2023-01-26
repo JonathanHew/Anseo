@@ -1,11 +1,14 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Layout from "../components/layout";
 
 const Sessions = () => {
-  const [sessions, setSessions] = useState([]);
+  
+  useEffect(() => {
+    retrieveUser();
+  }, []);
 
-  const getSessions = async () => {
-    //example 
+  const retrieveUser = async () => {
+    //example
   };
   return <Layout>Sessions Page!</Layout>;
 };
