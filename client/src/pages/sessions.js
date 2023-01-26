@@ -8,7 +8,7 @@ const Sessions = () => {
   }, []);
 
   const retrieveUser = async () => {
-    //example
+    
   };
   return <Layout>Sessions Page!</Layout>;
 };
