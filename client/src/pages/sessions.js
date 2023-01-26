@@ -1,15 +1,20 @@
 import { useEffect, useState } from "react";
+import { getUserInfo } from "../api/auth";
 import Layout from "../components/layout";
 
 const Sessions = () => {
-  
-  useEffect(() => {
-    retrieveUser();
-  }, []);
+  const [id, setId] = useState();
 
-  const retrieveUser = async () => {
-    
-  };
+  useEffect(() => {
+    (async () => {
+      const content = await getUserInfo();
+      const userId = content.data.info.id;
+      setId(userId);
+    })();
+  });
+
+  
+
   return <Layout>Sessions Page!</Layout>;
 };
 
