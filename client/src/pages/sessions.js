@@ -10,7 +10,7 @@ const Sessions = ({ id }) => {
       const content = await fetchUserSessions({ id });
       setSessions(content.data.sessions);
     })();
-  });
+  }, []);
 
   return (
     <Layout>
@@ -27,13 +27,22 @@ const Sessions = ({ id }) => {
         </thead>
         <tbody>
           {
+            /*
             <tr>
               <td>Jonathans List</td>
               <td>26/01/2023</td>
               <td>17:00</td>
             </tr>
+            */
+
+            sessions.map((session) => (
+              <tr key={session.session_id}>
+                <td>{session.session_name}</td>
+                <td>{session.session_date}</td>
+                <td>{session.session_time}</td>
+              </tr>
+            ))
           }
-          
         </tbody>
       </table>
     </Layout>
