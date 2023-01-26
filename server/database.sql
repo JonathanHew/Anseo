@@ -2,7 +2,7 @@ CREATE DATABASE anseo_v2;
 CREATE EXTENSION IF NOT EXISTS "uuid-ossp";
 
 DROP TABLE IF EXISTS signIns;
-DROP TABLE IF EXISTS lists;
+DROP TABLE IF EXISTS sessions;
 DROP TABLE IF EXISTS users;
 
 -- users table 
@@ -17,6 +17,8 @@ CREATE TABLE users(
 CREATE TABLE sessions(
     session_id uuid DEFAULT uuid_generate_v4() PRIMARY KEY,
     session_name VARCHAR(255) NOT NULL, 
+    session_date DATE DEFAULT current_date,
+    session_time TIME DEFAULT localtime(0),
     user_id INTEGER NOT NULL,
     CONSTRAINT fk_user
         FOREIGN KEY(user_id)
@@ -29,6 +31,8 @@ CREATE TABLE signIns(
     signIn_id SERIAL PRIMARY KEY,
     signIn_name VARCHAR(255) NOT NULL,
     signIn_number VARCHAR(255) NOT NULL,
+    signIn_date DATE DEFAULT current_date,
+    signIn_time TIME DEFAULT localtime(0),
     session_id uuid,
     CONSTRAINT fk_session
         FOREIGN KEY(session_id)

@@ -13,9 +13,12 @@ const Sessions = () => {
     })();
   });
 
-  
 
-  return <Layout>Sessions Page!</Layout>;
+
+  return <Layout>
+    <h1>Sessions Page</h1>
+    <p>User ID: {id}</p>
+  </Layout>;
 };
 
 export default Sessions;
