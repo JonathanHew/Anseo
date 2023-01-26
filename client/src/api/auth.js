@@ -21,6 +21,6 @@ export async function fetchProtectedInfo(){
     return await axios.get("http://localhost:8000/api/protected");
 }
 
-export async function getUserInfo(){
+export async function fetchUserInfo(){
   return await axios.get("http://localhost:8000/api/get-user-info");
 }
