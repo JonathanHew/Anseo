@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { fetchUserSessions } from "../api/lecturer.api";
 import Layout from "../components/layout";
+import CreateSession from "../components/createSession";
 
 const Sessions = ({ id }) => {
   const [sessions, setSessions] = useState([]);
@@ -23,7 +24,8 @@ const Sessions = ({ id }) => {
       <h1>Sessions Page</h1>
       <p>User ID: {id}</p>
 
-      <table class="table mt-5 text-center">
+      <CreateSession id={id}/>
+      <table className="table mt-5 text-center">
         <thead>
           <tr>
             <th>Name</th>

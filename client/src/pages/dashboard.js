@@ -46,9 +46,9 @@ const Dashboard = () => {
       <Layout>
         <h1>Dashboard</h1>
         <h2>{protectedData}</h2>
-        <label>Your Attendance List:</label>
-        <NavLink to="/display" className="mx-3">
-          <span>view</span>
+        <label>Your Sessions:</label>
+        <NavLink to="/sessions" className="mx-3">
+          <span>Sessions</span>
         </NavLink>
         <br></br>
        </Layout>

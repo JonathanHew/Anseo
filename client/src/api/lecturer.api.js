@@ -7,3 +7,10 @@ export async function fetchUserSessions(user_id) {
       {user_id: user_id}
     );
   }
+
+export async function onCreateSession(session_data) {
+  return await axios.post(
+    "http://localhost:8000/api/create-session",
+    session_data 
+  );
+}

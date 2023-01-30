@@ -1,6 +1,7 @@
 const db = require("../db");
 
 exports.createSession = async (req, res) => {
+  console.log(req.body)
   const { user_id, session_name } = req.body;
   try {
     await db.query(
