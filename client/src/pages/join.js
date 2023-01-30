@@ -1,26 +1,33 @@
 import Layout from "../components/layout";
 import QRCodeSVG from "qrcode.react";
+import QRCode from "react-qr-code";
 import { useParams } from "react-router-dom";
 
 const Join = () => {
-  
-  const {id} = useParams();
+  const { id } = useParams();
+  const url = "http://localhost:3000/sign-in/" + id;
 
-    return (
-      <Layout>
-        <h1>Sign In By Scanning the QR Code!</h1>
-        <div class="row mt-5">
-            <div class="col-8">
-                <QRCodeSVG value = "http://localhost:3000/sign-in" size={256}/>
-            </div>
-            <div class="col-4">
-              <p>Student Count:</p>
-            </div>
-        </div>
-        <p>Session ID is: {id}</p>
-      </Layout>
-    );
-  };
-  
-  export default Join;
-  
+  return (
+    <Layout>
+      <h1>Sign In By Scanning the QR Code!</h1>
+      <div
+        style={{
+          height: "auto",
+          margin: "0 auto",
+          maxWidth: 64,
+          width: "100%",
+        }}
+      >
+        <QRCode
+          size={256}
+          style={{ height: "auto", maxWidth: "100%", width: "100%" }}
+          value={url}
+          viewBox={`0 0 256 256`}
+        />
+      </div>
+      <p>Session ID URL is: {url}</p>
+    </Layout>
+  );
+};
+
+export default Join;
