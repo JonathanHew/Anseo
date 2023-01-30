@@ -2,12 +2,11 @@ import { useState } from "react";
 import { onSignIn } from "../api/signIn.api";
 import Layout from "../components/layout";
 
-// list_id is currently hard coded as there is only 1 list 
 const SignIn = () => {
   const [values, setValues] = useState({
     name: "",
     number: "",
-    list_id: 1,
+    session_id: false,
   });
 
   const [error, setError] = useState(false);

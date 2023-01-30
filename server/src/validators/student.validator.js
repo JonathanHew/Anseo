@@ -4,8 +4,8 @@ const db = require("../db");
 // check if student has already signed into the list
 const studentExists = check("number").custom(async (value, { req }) => {
   const { rows } = await db.query(
-    "SELECT * FROM signIns WHERE signIn_number = $1 AND list_id = $2",
-    [value, req.body.list_id]
+    "SELECT * FROM signIns WHERE signIn_number = $1 AND session_id = $2",
+    [value, req.body.session_id]
   );
 
   if (rows.length) {

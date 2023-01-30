@@ -45,7 +45,7 @@ const Sessions = ({ id }) => {
 
             sessions.map((session) => (
               <tr key={session.session_id}>
-                <td>{session.session_name}</td>
+                <td onClick={() => console.log("Name Clicked!")}>{session.session_name}</td>
                 <td>{session.session_date}</td>
                 <td>{session.session_time}</td>
               </tr>

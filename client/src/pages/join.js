@@ -1,7 +1,7 @@
 import Layout from "../components/layout";
 import QRCodeSVG from "qrcode.react";
 
-const Display = () => {
+const Join = () => {
 
     return (
       <Layout>
@@ -18,5 +18,5 @@ const Display = () => {
     );
   };
   
-  export default Display;
+  export default Join;
   

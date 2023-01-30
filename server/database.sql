@@ -44,4 +44,4 @@ CREATE TABLE signIns(
 
 INSERT INTO users (user_email, user_password) VALUES ('jonathan@gmail.com', 'password');
 INSERT INTO sessions (session_name, user_id) VALUES ('jonathan-list1', 1);
-INSERT INTO signIns (signIn_id, signIn_name, signIn_number, list_id) VALUES (1, 'Jonathan', 'C19472842', '7dfc25b1-fe78-48dc-ad7a-1bacb2c8ba60');
+INSERT INTO signIns (signIn_id, signIn_name, signIn_number, session_id) VALUES (1, 'Jonathan', 'C19472842', '7dfc25b1-fe78-48dc-ad7a-1bacb2c8ba60');
