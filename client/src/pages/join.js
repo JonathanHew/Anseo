@@ -1,7 +1,10 @@
 import Layout from "../components/layout";
 import QRCodeSVG from "qrcode.react";
+import { useParams } from "react-router-dom";
 
 const Join = () => {
+  
+  const {id} = useParams();
 
     return (
       <Layout>
@@ -14,6 +17,7 @@ const Join = () => {
               <p>Student Count:</p>
             </div>
         </div>
+        <p>Session ID is: {id}</p>
       </Layout>
     );
   };
