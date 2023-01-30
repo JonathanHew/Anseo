@@ -1,8 +1,7 @@
 const db = require("../db");
 
 exports.studentSignIn = async (req, res) => {
-  const { name, number } = req.body;
-  const { session_id } = req.query;
+  const { name, number, session_id } = req.body;
 
   try {
     await db.query(

@@ -51,7 +51,7 @@ const App = () => {
     <BrowserRouter>
       <Routes>
         <Route path="/" element={<Home />}></Route>
-        <Route path="/sign-in" element={<SignIn />}></Route>
+        <Route path="/sign-in/:id" element={<SignIn />}></Route>
 
         <Route element={<PrivateRoutes />}>
           <Route path="/dashboard" element={<Dashboard />}></Route>

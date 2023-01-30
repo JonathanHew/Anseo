@@ -1,5 +1,4 @@
 import Layout from "../components/layout";
-import QRCodeSVG from "qrcode.react";
 import QRCode from "react-qr-code";
 import { useParams } from "react-router-dom";
 

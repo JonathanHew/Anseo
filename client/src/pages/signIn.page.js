@@ -1,12 +1,15 @@
 import { useState } from "react";
+import { useParams } from "react-router-dom";
 import { onSignIn } from "../api/signIn.api";
 import Layout from "../components/layout";
 
 const SignIn = () => {
+  const { id } = useParams();
+
   const [values, setValues] = useState({
     name: "",
     number: "",
-    session_id: false,
+    session_id: id,
   });
 
   const [error, setError] = useState(false);
