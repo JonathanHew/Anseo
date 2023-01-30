@@ -2,10 +2,22 @@ import { useEffect, useState } from "react";
 import { fetchUserSessions } from "../api/lecturer.api";
 import Layout from "../components/layout";
 import CreateSession from "../components/createSession";
+import { createSearchParams, NavLink, useNavigate } from "react-router-dom";
 
 const Sessions = ({ id }) => {
+  const navigate = useNavigate();
+
   const [sessions, setSessions] = useState([]);
   const [loading, setLoading] = useState(true);
+
+  const openSession = (clicked_session) => {
+    navigate({
+      pathname: "/join",
+      search: createSearchParams({
+        session_id: clicked_session,
+      }).toString(),
+    });
+  };
 
   useEffect(() => {
     (async () => {
@@ -24,7 +36,7 @@ const Sessions = ({ id }) => {
       <h1>Sessions Page</h1>
       <p>User ID: {id}</p>
 
-      <CreateSession id={id}/>
+      <CreateSession id={id} />
       <table className="table mt-5 text-center">
         <thead>
           <tr>
@@ -45,7 +57,11 @@ const Sessions = ({ id }) => {
 
             sessions.map((session) => (
               <tr key={session.session_id}>
-                <td onClick={() => console.log("Name Clicked!")}>{session.session_name}</td>
+                <td>
+                  <NavLink to="/join">
+                    <span>{session.session_name}</span>
+                  </NavLink>
+                </td>
                 <td>{session.session_date}</td>
                 <td>{session.session_time}</td>
               </tr>
