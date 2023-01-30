@@ -14,7 +14,7 @@ const CreateSession = ({ id }) => {
   const create = async (e) => {
     e.preventDefault();
     try {
-      const { data } = await onCreateSession(values);
+      await onCreateSession(values);
       window.location = "/sessions";
     } catch (err) {
       console.error(err.response.data.errors[0].msg);
