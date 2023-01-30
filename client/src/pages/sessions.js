@@ -58,7 +58,7 @@ const Sessions = ({ id }) => {
             sessions.map((session) => (
               <tr key={session.session_id}>
                 <td>
-                  <NavLink to="/join">
+                  <NavLink to={`/join/${session.session_id}`}>
                     <span>{session.session_name}</span>
                   </NavLink>
                 </td>
