@@ -11,7 +11,7 @@ import Dashboard from "./pages/dashboard";
 import Register from "./pages/register";
 import Login from "./pages/login";
 import SignIn from "./pages/signIn.page";
-import Display from "./pages/display";
+import Join from "./pages/join";
 import Sessions from "./pages/sessions";
 import { useSelector } from "react-redux";
 import { useState, useEffect } from "react";
@@ -55,7 +55,7 @@ const App = () => {
 
         <Route element={<PrivateRoutes />}>
           <Route path="/dashboard" element={<Dashboard />}></Route>
-          <Route path="/display" element={<Display />}></Route>
+          <Route path="/join" element={<Join />}></Route>
           <Route path="/sessions" element={<Sessions id={id}/>}></Route>
         </Route>
 
