@@ -47,7 +47,6 @@ exports.getStudentsBySessionId = async (req, res) => {
     return res.status(200).json({
       success: true,
       students: rows,
-      count: rows.length,
     });
   } catch (err) {
     console.error(err.message);
