@@ -8,18 +8,18 @@ const Join = () => {
 
   return (
     <Layout>
-      <h1>Sign In By Scanning the QR Code!</h1>
+      <h1>Sign in by scanning the QR code!</h1>
       <div
         style={{
           height: "auto",
           margin: "0 auto",
-          maxWidth: 64,
+          maxWidth: 450,
           width: "100%",
         }}
       >
         <QRCode
           size={256}
-          style={{ height: "auto", maxWidth: "100%", width: "100%" }}
+          style={{ height: "auto", maxWidth: "100%", width: "100%"}}
           value={url}
           viewBox={`0 0 256 256`}
         />
