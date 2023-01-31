@@ -10,7 +10,7 @@ import Home from "./pages/home";
 import Dashboard from "./pages/dashboard";
 import Register from "./pages/register";
 import Login from "./pages/login";
-import SignIn from "./pages/signIn.page";
+import SignIn from "./pages/signIn";
 import Join from "./pages/join";
 import Sessions from "./pages/sessions";
 import { useSelector } from "react-redux";
