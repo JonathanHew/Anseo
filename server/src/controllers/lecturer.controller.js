@@ -37,6 +37,7 @@ exports.getSessions = async (req, res) => {
 };
 
 exports.getStudentsBySessionId = async (req, res) => {
+  console.log(req);
   const { session_id } = req.body;
   try {
     const { rows } = await db.query(

@@ -20,6 +20,6 @@ router.post(
 );
 router.get("/get-sessions", userAuth, getSessions);
 
-router.get("/get-students-in-session", userAuth, getStudentsBySessionId);
+router.post("/get-students-in-session", userAuth, getStudentsBySessionId);
 
 module.exports = router;

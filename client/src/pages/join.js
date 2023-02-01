@@ -1,7 +1,8 @@
 import Layout from "../components/layout";
 import QRCode from "react-qr-code";
 import { useParams } from "react-router-dom";
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import { fetchStudentsInSession } from "../api/lecturer.api";
 
 const Join = () => {
   const { id } = useParams();
@@ -11,8 +12,8 @@ const Join = () => {
 
   useEffect(() => {
     (async () => {
-      //const content = await fetchUserSessions({ id });
-      //setSessions(content.data.sessions);
+      const content = await fetchStudentsInSession(id);
+      setStudents(content.data.students);
       //setLoading(false);
     })();
   }, []);
@@ -36,6 +37,7 @@ const Join = () => {
         />
       </div>
       <p>Session ID URL is: {url}</p>
+      <h4>Student Count: {students.length}</h4>
     </Layout>
   );
 };
