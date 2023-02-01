@@ -17,12 +17,12 @@ const Join = () => {
       //setLoading(false);
     })();
 
-    if(active){
+    if (active) {
       let interval = setInterval(async () => {
         const content = await fetchStudentsInSession(id);
         setStudents(content.data.students);
       }, 5000);
-  
+
       return () => {
         clearInterval(interval);
       };
@@ -31,24 +31,25 @@ const Join = () => {
 
   return (
     <Layout>
-      <h1>Sign in by scanning the QR code!</h1>
-      <div
-        style={{
-          height: "auto",
-          margin: "0 auto",
-          maxWidth: 450,
-          width: "100%",
-        }}
-      >
-        <QRCode
-          size={256}
-          style={{ height: "auto", maxWidth: "100%", width: "100%" }}
-          value={url}
-          viewBox={`0 0 256 256`}
-        />
+      <div class="container text-center">
+        <h1>Sign in by scanning the QR code!</h1>
+        <div
+          style={{
+            height: "auto",
+            margin: "4% auto",
+            maxWidth: 450,
+            width: "100%",
+          }}
+        >
+          <QRCode
+            size={256}
+            style={{ height: "auto", maxWidth: "100%", width: "100%" }}
+            value={url}
+            viewBox={`0 0 256 256`}
+          />
+        </div>
+        <h4>Student Count: {students.length}</h4>
       </div>
-      <p>Session ID URL is: {url}</p>
-      <h4>Student Count: {students.length}</h4>
     </Layout>
   );
 };
