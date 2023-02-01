@@ -10,6 +10,7 @@ const Join = () => {
   const [active, setActive] = useState(false);
   const [students, setStudents] = useState([]);
 
+  /*
   useEffect(() => {
     (async () => {
       const content = await fetchStudentsInSession(id);
@@ -17,6 +18,17 @@ const Join = () => {
       //setLoading(false);
     })();
   }, []);
+*/
+
+useEffect(() => {
+	let interval = setInterval(async() => {
+		const content = await fetchStudentsInSession(id);
+    setStudents(content.data.students);
+	}, 5000);
+	return () => {
+		clearInterval(interval);
+	};
+}, []);
 
   return (
     <Layout>
