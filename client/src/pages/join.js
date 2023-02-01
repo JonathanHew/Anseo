@@ -7,28 +7,27 @@ import { fetchStudentsInSession } from "../api/lecturer.api";
 const Join = () => {
   const { id } = useParams();
   const url = "http://localhost:3000/sign-in/" + id;
-  const [active, setActive] = useState(false);
+  const [active, setActive] = useState(true);
   const [students, setStudents] = useState([]);
 
-  /*
   useEffect(() => {
     (async () => {
       const content = await fetchStudentsInSession(id);
       setStudents(content.data.students);
       //setLoading(false);
     })();
-  }, []);
-*/
 
-useEffect(() => {
-	let interval = setInterval(async() => {
-		const content = await fetchStudentsInSession(id);
-    setStudents(content.data.students);
-	}, 5000);
-	return () => {
-		clearInterval(interval);
-	};
-}, []);
+    if(active){
+      let interval = setInterval(async () => {
+        const content = await fetchStudentsInSession(id);
+        setStudents(content.data.students);
+      }, 5000);
+  
+      return () => {
+        clearInterval(interval);
+      };
+    }
+  }, []);
 
   return (
     <Layout>
@@ -43,7 +42,7 @@ useEffect(() => {
       >
         <QRCode
           size={256}
-          style={{ height: "auto", maxWidth: "100%", width: "100%"}}
+          style={{ height: "auto", maxWidth: "100%", width: "100%" }}
           value={url}
           viewBox={`0 0 256 256`}
         />
