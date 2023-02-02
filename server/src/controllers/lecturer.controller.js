@@ -69,3 +69,21 @@ exports.setSessionStatus = async (req, res) => {
     console.error(err.message);
   }
 };
+
+exports.getSessionStatus = async (req, res) => {
+  const { session_id } = req.body;
+  try {
+    const {info} = await db.query(
+      `SELECT session_is_active FROM sessions WHERE session_id = $1`,
+      [session_id]
+    );
+
+    return res.status(200).json({
+      success: true,
+      session_status: info,
+    });
+  } catch (err) {
+    console.error(err.message);
+  }
+}; 
+
