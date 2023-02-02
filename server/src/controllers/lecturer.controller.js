@@ -80,7 +80,7 @@ exports.getSessionStatus = async (req, res) => {
 
     return res.status(200).json({
       success: true,
-      session_status: rows,
+      result: rows,
     });
   } catch (err) {
     console.error(err.message);
