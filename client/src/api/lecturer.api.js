@@ -26,4 +26,9 @@ export async function fetchSessionStatus(id) {
   });
 }
 
+export async function onSetSessionStatus(id) {
+  return await axios.post("http://localhost:8000/api/set-session-status", {
+    session_id: id,
+  });
+}
 
