@@ -7,7 +7,7 @@ import { fetchStudentsInSession } from "../api/lecturer.api";
 const Join = () => {
   const { id } = useParams();
   const url = "http://localhost:3000/sign-in/" + id;
-  const [active, setActive] = useState(false);
+  const [active, setActive] = useState();
   const [students, setStudents] = useState([]);
   const [loading, setLoading] = useState(true);
 
