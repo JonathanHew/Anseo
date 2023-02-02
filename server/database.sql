@@ -19,7 +19,7 @@ CREATE TABLE sessions(
     session_name VARCHAR(255) NOT NULL, 
     session_date DATE DEFAULT current_date,
     session_time TIME DEFAULT localtime(0),
-    session_is_active BOOLEAN DEFAULT true,
+    session_is_active BOOLEAN DEFAULT false,
     user_id INTEGER NOT NULL,
     CONSTRAINT fk_user
         FOREIGN KEY(user_id)
