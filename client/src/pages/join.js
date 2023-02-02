@@ -2,12 +2,12 @@ import Layout from "../components/layout";
 import QRCode from "react-qr-code";
 import { useParams } from "react-router-dom";
 import { useState, useEffect } from "react";
-import { fetchStudentsInSession } from "../api/lecturer.api";
+import { fetchSessionStatus, fetchStudentsInSession } from "../api/lecturer.api";
 
 const Join = () => {
   const { id } = useParams();
   const url = "http://localhost:3000/sign-in/" + id;
-  const [active, setActive] = useState();
+  const [active, setActive] = useState(false);
   const [students, setStudents] = useState([]);
   const [loading, setLoading] = useState(true);
 
@@ -15,6 +15,8 @@ const Join = () => {
     (async () => {
       const content = await fetchStudentsInSession(id);
       setStudents(content.data.students);
+      const content2 = await fetchSessionStatus(id);
+      setActive(content2.data.result[0].session_is_active);
       setLoading(false);
     })();
 
