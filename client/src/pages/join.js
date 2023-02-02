@@ -29,7 +29,46 @@ const Join = () => {
     }
   }, []);
 
-  return (
+  return active ? (
+    <Layout>
+      <h1>Students Signed In</h1>
+      <table className="table mt-5 text-center">
+        <thead>
+          <tr>
+            <th>Student Number</th>
+            <th>Name</th>
+            <th>Date</th>
+            <th>Time</th>
+          </tr>
+        </thead>
+        <tbody>
+          {
+            
+            <tr>
+              <td>C19472842</td>
+              <td>Jonathan</td>
+              <td>02/02/23</td>
+              <td>13:00</td>
+            </tr>
+            
+            /*
+            sessions.map((session) => (
+              <tr key={session.session_id}>
+                <td>
+                  <NavLink to={`/join/${session.session_id}`}>
+                    <span>{session.session_name}</span>
+                  </NavLink>
+                </td>
+                <td>{session.session_date}</td>
+                <td>{session.session_time}</td>
+              </tr>
+            ))
+            */
+          }
+        </tbody>
+      </table>
+    </Layout>
+  ) : (
     <Layout>
       <div class="container text-center">
         <h1>Sign in by scanning the QR code!</h1>
