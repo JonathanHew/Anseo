@@ -2,7 +2,10 @@ import Layout from "../components/layout";
 import QRCode from "react-qr-code";
 import { useParams } from "react-router-dom";
 import { useState, useEffect } from "react";
-import { fetchSessionStatus, fetchStudentsInSession } from "../api/lecturer.api";
+import {
+  fetchSessionStatus,
+  fetchStudentsInSession,
+} from "../api/lecturer.api";
 
 const Join = () => {
   const { id } = useParams();
@@ -40,6 +43,12 @@ const Join = () => {
     <Layout>
       <div class="container text-center">
         <h1>Sign in by scanning the QR code!</h1>
+        <button
+          type="button"
+          className="btn btn-danger"
+        >
+          End Session
+        </button>
         <div
           style={{
             height: "auto",
@@ -61,6 +70,12 @@ const Join = () => {
   ) : (
     <Layout>
       <h1>Students Signed In: {students.length}</h1>
+      <button
+        type="button"
+        className="btn btn-success"
+      >
+        Start Session
+      </button>
       <table className="table mt-5 text-center">
         <thead>
           <tr>
