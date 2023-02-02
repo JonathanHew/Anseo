@@ -26,7 +26,6 @@ const Join = () => {
   }
 
   useEffect(() => {
-    console.log("UseEffect Triggered!!!");
     (async () => {
       const content = await fetchStudentsInSession(id);
       setStudents(content.data.students);
