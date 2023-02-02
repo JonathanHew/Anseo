@@ -56,14 +56,15 @@ exports.getStudentsBySessionId = async (req, res) => {
 exports.setSessionStatus = async (req, res) => {
   const { session_id } = req.body;
   try {
-    await db.query(
-      `UPDATE sessions SET session_is_active = NOT session_is_active WHERE session_id = $1`,
+    const {rows} = await db.query(
+      `UPDATE sessions SET session_is_active = NOT session_is_active WHERE session_id = $1 returning session_is_active`,
       [session_id]
     );
 
     return res.status(200).json({
       success: true,
       message: "The session status was set successfully!",
+      result: rows,
     });
   } catch (err) {
     console.error(err.message);

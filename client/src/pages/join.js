@@ -5,16 +5,28 @@ import { useState, useEffect } from "react";
 import {
   fetchSessionStatus,
   fetchStudentsInSession,
+  onSetSessionStatus,
 } from "../api/lecturer.api";
 
 const Join = () => {
   const { id } = useParams();
   const url = "http://localhost:3000/sign-in/" + id;
-  const [active, setActive] = useState(false);
+  const [active, setActive] = useState();
   const [students, setStudents] = useState([]);
   const [loading, setLoading] = useState(true);
 
+  const sessionToggle = async(e) => {
+    e.preventDefault();
+    try {
+      const content = await onSetSessionStatus(id);
+      setActive(content.data.result[0].session_is_active);
+    } catch (err) {
+      console.error(err.message);
+    }
+  }
+
   useEffect(() => {
+    console.log("UseEffect Triggered!!!");
     (async () => {
       const content = await fetchStudentsInSession(id);
       setStudents(content.data.students);
@@ -46,6 +58,7 @@ const Join = () => {
         <button
           type="button"
           className="btn btn-danger"
+          onClick={(e) => sessionToggle(e)}
         >
           End Session
         </button>
@@ -73,6 +86,7 @@ const Join = () => {
       <button
         type="button"
         className="btn btn-success"
+        onClick={(e) => sessionToggle(e)}
       >
         Start Session
       </button>
