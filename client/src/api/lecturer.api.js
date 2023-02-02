@@ -14,9 +14,16 @@ export async function onCreateSession(session_data) {
   );
 }
 
-
 export async function fetchStudentsInSession(id) {
   return await axios.post("http://localhost:8000/api/get-students-in-session", {
     session_id: id,
   });
 }
+
+export async function fetchSessionStatus(id) {
+  return await axios.post("http://localhost:8000/api/get-session-status", {
+    session_id: id,
+  });
+}
+
+
