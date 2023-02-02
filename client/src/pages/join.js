@@ -45,7 +45,7 @@ const Join = () => {
         clearInterval(interval);
       };
     }
-  }, []);
+  }, [active]);
 
   return loading ? (
     <Layout>
