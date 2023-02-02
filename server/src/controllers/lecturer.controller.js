@@ -53,7 +53,7 @@ exports.getStudentsBySessionId = async (req, res) => {
   }
 };
 
-exports.toggleSessionStatus = async (req, res) => {
+exports.setSessionStatus = async (req, res) => {
   const { session_id } = req.body;
   try {
     await db.query(

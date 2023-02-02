@@ -3,6 +3,7 @@ const {
   createSession,
   getSessions,
   getStudentsBySessionId,
+  setSessionStatus,
 } = require("../controllers/lecturer.controller");
 const { userAuth } = require("../middlewares/auth-middlware");
 const { sessionValidator } = require("../validators/lecturer.validator");
@@ -22,6 +23,6 @@ router.get("/get-sessions", userAuth, getSessions);
 
 router.post("/get-students-in-session", userAuth, getStudentsBySessionId);
 
-
+router.post("/set-session-status", userAuth, setSessionStatus);
 
 module.exports = router;
