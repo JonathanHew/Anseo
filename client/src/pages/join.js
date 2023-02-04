@@ -1,5 +1,4 @@
 import Layout from "../components/layout";
-import QRCode from "react-qr-code";
 import { useParams } from "react-router-dom";
 import { useState, useEffect } from "react";
 import {
@@ -7,10 +6,10 @@ import {
   fetchStudentsInSession,
   onSetSessionStatus,
 } from "../api/lecturer.api";
+import SessionQR from "../components/sessionQR";
 
 const Join = () => {
   const { id } = useParams();
-  const url = "http://localhost:3000/sign-in/" + id;
   const [active, setActive] = useState();
   const [students, setStudents] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -52,32 +51,7 @@ const Join = () => {
     </Layout>
   ) : active ? (
     <Layout>
-      <div class="container text-center">
-        <h1>Sign in by scanning the QR code!</h1>
-        <button
-          type="button"
-          className="btn btn-danger"
-          onClick={(e) => sessionToggle(e)}
-        >
-          End Session
-        </button>
-        <div
-          style={{
-            height: "auto",
-            margin: "4% auto",
-            maxWidth: 450,
-            width: "100%",
-          }}
-        >
-          <QRCode
-            size={256}
-            style={{ height: "auto", maxWidth: "100%", width: "100%" }}
-            value={url}
-            viewBox={`0 0 256 256`}
-          />
-        </div>
-        <h4>Student Count: {students.length}</h4>
-      </div>
+      <SessionQR id={id} students={students} sessionToggle={sessionToggle}/>
     </Layout>
   ) : (
     <Layout>
