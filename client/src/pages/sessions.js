@@ -2,22 +2,12 @@ import { useEffect, useState } from "react";
 import { fetchUserSessions } from "../api/lecturer.api";
 import Layout from "../components/layout";
 import CreateSession from "../components/createSession";
-import { createSearchParams, NavLink, useNavigate } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 
 const Sessions = ({ id }) => {
-  const navigate = useNavigate();
 
   const [sessions, setSessions] = useState([]);
   const [loading, setLoading] = useState(true);
-
-  const openSession = (clicked_session) => {
-    navigate({
-      pathname: "/join",
-      search: createSearchParams({
-        session_id: clicked_session,
-      }).toString(),
-    });
-  };
 
   useEffect(() => {
     (async () => {
