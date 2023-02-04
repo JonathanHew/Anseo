@@ -21,7 +21,7 @@ const Sessions = ({ id }) => {
 
   useEffect(() => {
     (async () => {
-      const content = await fetchUserSessions({ id });
+      const content = await fetchUserSessions();
       setSessions(content.data.sessions);
       setLoading(false);
     })();
