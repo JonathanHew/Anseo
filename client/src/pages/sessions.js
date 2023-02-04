@@ -2,7 +2,6 @@ import { useEffect, useState } from "react";
 import { fetchUserSessions } from "../api/lecturer.api";
 import Layout from "../components/layout";
 import CreateSession from "../components/createSession";
-import { NavLink } from "react-router-dom";
 import SessionList from "../components/sessionList";
 
 const Sessions = ({ id }) => {
