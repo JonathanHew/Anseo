@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { fetchSessionsForStudent } from "../api/lecturer.api";
 import Layout from "../components/layout";
 
 const Search = () => {
@@ -7,10 +8,11 @@ const Search = () => {
   const onSubmitForm = async (e) => {
     e.preventDefault();
     try {
-        //const content = await fetchUserSessions();
-        //setSessions(content.data.sessions);
+      const content = await fetchSessionsForStudent(number);
+      setSessions(content.data.sessions);
+      setNumber("")
     } catch (err) {
-        console.error(err.message);
+      console.error(err.message);
     }
   };
 
@@ -23,7 +25,9 @@ const Search = () => {
           className="form-control"
           required
           value={number}
-          onChange={(e) => setNumber(e.target.value)}
+          onChange={(e) => {
+            setNumber(e.target.value);
+          }}
         />
         <button className="btn btn-success">Search</button>
       </form>
