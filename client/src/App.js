@@ -16,6 +16,7 @@ import Sessions from "./pages/sessions";
 import { useSelector } from "react-redux";
 import { useState, useEffect } from "react";
 import { fetchUserInfo } from "./api/auth";
+import Search from "./pages/search";
 
 // if user is not logged in and they enter the dashboard route, they will redirected to login
 const PrivateRoutes = () => {
@@ -57,6 +58,7 @@ const App = () => {
           <Route path="/dashboard" element={<Dashboard />}></Route>
           <Route path="/join/:id" element={<Join />}></Route>
           <Route path="/sessions" element={<Sessions id={id}/>}></Route>
+          <Route path="/search" element={<Search/>}></Route>
         </Route>
 
         <Route element={<RestrictedRoutes />}>
