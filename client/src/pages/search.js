@@ -6,14 +6,17 @@ import SessionList from "../components/sessionList";
 const Search = () => {
   const [number, setNumber] = useState("");
   const [sessions, setSessions] = useState([]);
+  const [error, setError] = useState("");
   const onSubmitForm = async (e) => {
     e.preventDefault();
+    setError("");
     try {
       const content = await fetchSessionsForStudent(number);
       setSessions(content.data.sessions);
-      setNumber("")
+      setNumber("");
     } catch (err) {
-      console.error(err.message);
+      console.error(err.response.data.errors[0].msg);
+      setError(err.response.data.errors[0].msg);
     }
   };
 
@@ -26,13 +29,13 @@ const Search = () => {
           className="form-control"
           required
           value={number}
-          onChange={(e) => {
-            setNumber(e.target.value);
-          }}
+          onChange={(e) => setNumber(e.target.value)}
+          placeholder="Student number"
         />
         <button className="btn btn-success">Search</button>
       </form>
-      <SessionList sessions={sessions}/>
+      <div style={{ color: "red", margin: "10px 0" }}>{error}</div>
+      <SessionList sessions={sessions} />
     </Layout>
   );
 };
