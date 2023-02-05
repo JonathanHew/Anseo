@@ -8,14 +8,14 @@ const sessionName = check("session_name")
 
 const userId = check("user_id").notEmpty().withMessage("User ID not found!");
 
-const studentNumber = check("number")
+const studentNumber = check("student_number")
   .isLength(9)
   .withMessage("Student number should be 9 charachters long!");
 
-const studentExists = check("student_number").custom(async ( { req }) => {
+const studentExists = check("student_number").custom(async (value) => {
   const { rows } = await db.query(
     "SELECT * FROM signIns WHERE signIn_number = $1",
-    [req.body.student_number]
+    [value]
   );
 
   if (!rows.length) {
