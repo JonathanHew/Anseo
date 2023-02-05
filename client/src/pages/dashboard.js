@@ -46,11 +46,15 @@ const Dashboard = () => {
       <Layout>
         <h1>Dashboard</h1>
         <h2>{protectedData}</h2>
-        <label>Your Sessions:</label>
+        <label>Your sessions:</label>
         <NavLink to="/sessions" className="mx-3">
           <span>Sessions</span>
         </NavLink>
         <br></br>
+        <label>Search for a student:</label>
+        <NavLink to="/search" className="mx-3">
+          <span>Search</span>
+        </NavLink>
        </Layout>
     </div>
   );
