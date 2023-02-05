@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { fetchSessionsForStudent } from "../api/lecturer.api";
 import Layout from "../components/layout";
+import SessionList from "../components/sessionList";
 
 const Search = () => {
   const [number, setNumber] = useState("");
@@ -31,6 +32,7 @@ const Search = () => {
         />
         <button className="btn btn-success">Search</button>
       </form>
+      <SessionList sessions={sessions}/>
     </Layout>
   );
 };

@@ -4,7 +4,8 @@ import { NavLink } from "react-router-dom";
 const SessionList = ({sessions}) => {
   return (
     <Fragment>
-      <table className="table mt-5 text-center">
+      <h4 className="text-center mt-5">Sessions</h4>
+      <table className="table text-center">
         <thead>
           <tr>
             <th>Name</th>
