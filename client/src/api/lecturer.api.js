@@ -31,3 +31,9 @@ export async function onSetSessionStatus(id) {
   });
 }
 
+export async function fetchSessionsForStudent(id) {
+  return await axios.post("http://localhost:8000/api/search", {
+    student_number: id,
+  });
+}
+

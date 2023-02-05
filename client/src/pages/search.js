@@ -2,9 +2,14 @@ import React, { useState } from "react";
 import Layout from "../components/layout";
 
 const Search = () => {
+  const [number, setNumber] = useState("");
   const onSubmitForm = async (e) => {
     e.preventDefault();
-    console.log("Form Submitted!!!");
+    try {
+        console.log("Form Submitted!!!");
+    } catch (err) {
+        console.error(err.message);
+    }
   };
 
   return (
@@ -14,8 +19,9 @@ const Search = () => {
         <input
           type="text"
           className="form-control"
-          //value={description}
-          //onChange={(e) => setDescription(e.target.value)}
+          required
+          value={number}
+          onChange={(e) => setNumber(e.target.value)}
         />
         <button className="btn btn-success">Search</button>
       </form>
