@@ -12,7 +12,7 @@ const studentNumber = check("number")
   .isLength(9)
   .withMessage("Student number should be 9 charachters long!");
 
-const studentExists = check("student_number").custom(async (value, { req }) => {
+const studentExists = check("student_number").custom(async ( { req }) => {
   const { rows } = await db.query(
     "SELECT * FROM signIns WHERE signIn_number = $1",
     [req.body.student_number]
