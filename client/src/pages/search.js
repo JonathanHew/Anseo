@@ -3,10 +3,12 @@ import Layout from "../components/layout";
 
 const Search = () => {
   const [number, setNumber] = useState("");
+  const [sessions, setSessions] = useState([]);
   const onSubmitForm = async (e) => {
     e.preventDefault();
     try {
-        console.log("Form Submitted!!!");
+        //const content = await fetchUserSessions();
+        //setSessions(content.data.sessions);
     } catch (err) {
         console.error(err.message);
     }
