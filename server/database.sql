@@ -5,6 +5,10 @@ DROP TABLE IF EXISTS signIns;
 DROP TABLE IF EXISTS sessions;
 DROP TABLE IF EXISTS users;
 
+DROP FUNCTION IF EXISTS GEN_RANDOM_BYTES;
+DROP FUNCTION IF EXISTS RANDOM_STRING;
+DROP FUNCTION IF EXISTS UNIQUE_RANDOM;
+
 -- users table 
 CREATE TABLE users(
     user_id SERIAL PRIMARY KEY, 
@@ -51,7 +55,6 @@ INSERT INTO signIns (signIn_id, signIn_name, signIn_number, session_id) VALUES (
 create function GEN_RANDOM_BYTES(int) returns bytea as
 '$libdir/pgcrypto', 'pg_random_bytes' language c strict;
 
-
 create function RANDOM_STRING(len int) returns text as $$
 declare
   chars text[] = '{0,1,2,3,4,5,6,7,8,9,A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P,Q,R,S,T,U,V,W,X,Y,Z,a,b,c,d,e,f,g,h,i,j,k,l,m,n,o,p,q,r,s,t,u,v,w,x,y,z}';
@@ -68,7 +71,6 @@ begin
   return result;
 end;
 $$ language plpgsql;
-
 
 -- return random string confirmed to not exist in given tablename.colname
 create function UNIQUE_RANDOM(len int, _table text, _col text) returns text as $$
