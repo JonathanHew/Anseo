@@ -7,6 +7,7 @@ const Search = () => {
   const [number, setNumber] = useState("");
   const [sessions, setSessions] = useState([]);
   const [error, setError] = useState("");
+  const [message, setMessage] = useState("No sessions available");
   const onSubmitForm = async (e) => {
     e.preventDefault();
     setError("");
@@ -14,9 +15,12 @@ const Search = () => {
       const content = await fetchSessionsForStudent(number);
       setSessions(content.data.sessions);
       setNumber("");
+      setMessage("");
     } catch (err) {
       console.error(err.response.data.errors[0].msg);
       setError(err.response.data.errors[0].msg);
+      setSessions([]);
+      setMessage("No sessions available")
     }
   };
 
@@ -36,6 +40,7 @@ const Search = () => {
       </form>
       <div style={{ color: "red", margin: "10px 0" }}>{error}</div>
       <SessionList sessions={sessions} />
+      <p className="text-center mt-1">{message}</p>
     </Layout>
   );
 };
