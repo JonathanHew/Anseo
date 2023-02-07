@@ -32,7 +32,7 @@ const Search = () => {
           type="text"
           className="form-control"
           required
-          value={number}
+          value={number.toUpperCase()}
           onChange={(e) => setNumber(e.target.value)}
           placeholder="Student number"
         />
