@@ -5,7 +5,6 @@ import CreateSession from "../components/createSession";
 import SessionList from "../components/sessionList";
 
 const Sessions = ({ id }) => {
-
   const [sessions, setSessions] = useState([]);
   const [loading, setLoading] = useState(true);
 
@@ -27,7 +26,7 @@ const Sessions = ({ id }) => {
       <p>User ID: {id}</p>
 
       <CreateSession id={id} />
-      <SessionList sessions={sessions}/>  
+      <SessionList sessions={sessions} />
     </Layout>
   );
 };

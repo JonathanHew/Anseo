@@ -1,7 +1,8 @@
 import React, { Fragment } from "react";
 import { NavLink } from "react-router-dom";
 
-const SessionList = ({sessions}) => {
+const SessionList = ({ sessions }) => {
+  
   return (
     <Fragment>
       <h4 className="text-center mt-5">Sessions</h4>

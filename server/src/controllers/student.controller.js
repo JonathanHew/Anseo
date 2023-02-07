@@ -5,7 +5,7 @@ exports.studentSignIn = async (req, res) => {
 
   try {
     await db.query(
-      "INSERT INTO signIns (signIn_name, signIn_number, session_id) VALUES ($1 , $2, $3)",
+      "INSERT INTO signIns (signIn_name, signIn_number, session_id) VALUES ($1 , UPPER($2), $3)",
       [name, number, session_id]
     );
 
