@@ -31,7 +31,18 @@ const pinNumber = check("session_pin")
 .isAlphanumeric()
 .withMessage("PIN Code should only contain letters and numbers!")
 
+const pinExists = check("session_pin").custom(async (value) => {
+  const { rows } = await db.query(
+    "SELECT * FROM sessions WHERE session_pin = $1",
+    [value]
+  );
+
+  if (!rows.length) {
+    throw new Error("PIN does not exist, Please double check and try again!");
+  }
+});
+
 module.exports = {
   studentValidator: [studentNumber, studentExists, studentName],
-  pinValidator: [pinNumber],
+  pinValidator: [pinNumber, pinExists],
 };
