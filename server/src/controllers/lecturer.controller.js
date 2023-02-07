@@ -106,19 +106,3 @@ exports.getSessionsForStudent = async (req, res) => {
   }
 };
 
-exports.getSessionByPin = async (req, res) => {
-  const { session_pin } = req.body;
-  try {
-    const { rows } = await db.query(
-      `SELECT * FROM sessions WHERE session_pin = $1`,
-      [session_pin]
-    );
-
-    return res.status(200).json({
-      success: true,
-      result: rows,
-    });
-  } catch (err) {
-    console.error(err.message);
-  }
-};
