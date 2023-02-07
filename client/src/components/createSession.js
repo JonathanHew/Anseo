@@ -2,10 +2,9 @@ import React, { Fragment, useState } from "react";
 import { onCreateSession } from "../api/lecturer.api";
 
 const CreateSession = ({ id }) => {
-  const user_id = id;
 
   const [values, setValues] = useState({
-    user_id: user_id,
+    user_id: id,
     session_name: "",
   });
 
@@ -27,7 +26,7 @@ const CreateSession = ({ id }) => {
   };
 
   const onClose = () => {
-    setValues({ ...values, user_id: user_id, session_name: "" });
+    setValues({ ...values, user_id: id, session_name: "" });
     setError(false);
   };
 
@@ -75,7 +74,7 @@ const CreateSession = ({ id }) => {
                 ></input>
                 <label htmlFor="floatingInput">Session Name</label>
               </div>
-
+              <p>{id}</p>
               <div style={{ color: "red", margin: "10px 0" }}>{error}</div>
             </div>
             <div className="modal-footer">
