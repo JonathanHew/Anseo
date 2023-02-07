@@ -51,7 +51,7 @@ const SignIn = () => {
             className="form-control"
             id="number"
             name="number"
-            value={values.number}
+            value={values.number.toUpperCase()}
             placeholder="C12345678"
             required
           />
