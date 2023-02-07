@@ -70,11 +70,11 @@ const CreateSession = ({ id }) => {
                   value={values.session_name}
                   onChange={(e) => onChange(e)}
                   name="session_name"
+                  placeholder="Session Name"
                   required
                 ></input>
                 <label htmlFor="floatingInput">Session Name</label>
               </div>
-              <p>{id}</p>
               <div style={{ color: "red", margin: "10px 0" }}>{error}</div>
             </div>
             <div className="modal-footer">
