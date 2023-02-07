@@ -10,7 +10,7 @@ const userId = check("user_id").notEmpty().withMessage("User ID not found!");
 
 const studentNumber = check("student_number")
   .isLength(9)
-  .withMessage("Student number should be 9 charachters long!");
+  .withMessage("Student number should be 9 characters long!");
 
 const studentExists = check("student_number").custom(async (value) => {
   const { rows } = await db.query(
