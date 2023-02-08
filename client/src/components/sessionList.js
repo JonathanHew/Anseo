@@ -10,6 +10,7 @@ const SessionList = ({ sessions }) => {
         <thead>
           <tr>
             <th>Name</th>
+            <th>PIN</th>
             <th>Date</th>
             <th>Time</th>
           </tr>
@@ -31,6 +32,7 @@ const SessionList = ({ sessions }) => {
                     <span>{session.session_name}</span>
                   </NavLink>
                 </td>
+                <td>{session.session_pin}</td>
                 <td>{session.session_date}</td>
                 <td>{session.session_time}</td>
               </tr>
