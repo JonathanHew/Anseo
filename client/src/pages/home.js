@@ -13,8 +13,7 @@ const Home = () => {
       const content = await onPinSubmit(pin);
       const session_id = content.data.result[0].session_id;
       console.log(session_id);
-
-      setPin("");
+      window.location = `/sign-in/${session_id}`;
     } catch (err) {
       console.error(err.response.data.errors[0].msg);
       setError(err.response.data.errors[0].msg);
