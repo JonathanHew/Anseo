@@ -15,6 +15,7 @@ const Join = () => {
   const [students, setStudents] = useState([]);
   const [loading, setLoading] = useState(true);
   const [pin, setPin] = useState("");
+  const [name, setName] = useState("");
 
   const sessionToggle = async(e) => {
     e.preventDefault();
@@ -32,7 +33,8 @@ const Join = () => {
       setStudents(content.data.students);
       const content2 = await fetchSessionInfo(id);
       setActive(content2.data.result[0].session_is_active);
-      setPin(content2.data.result[0].session_pin)
+      setPin(content2.data.result[0].session_pin);
+      setName(content2.data.result[0].session_name);
       setLoading(false);
     })();
 
