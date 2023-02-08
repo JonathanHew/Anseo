@@ -42,7 +42,19 @@ const pinExists = check("session_pin").custom(async (value) => {
   }
 });
 
+
+const sessionStatus = check("session_id").custom(async (value) => {
+  const {rows} = await db.query(
+    "SELECT session_is_active FROM sessions WHERE session_id = $1",
+    [value]
+  );
+
+  if (!rows[0].session_is_active) {
+    throw new Error("Session is no longer active!");
+  }
+});
+
 module.exports = {
-  studentValidator: [studentNumber, studentExists, studentName],
+  studentValidator: [sessionStatus, studentNumber, studentExists, studentName],
   pinValidator: [pinNumber, pinExists],
 };
