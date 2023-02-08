@@ -14,6 +14,7 @@ const Join = () => {
   const [active, setActive] = useState();
   const [students, setStudents] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [pin, setPin] = useState("");
 
   const sessionToggle = async(e) => {
     e.preventDefault();
@@ -31,6 +32,7 @@ const Join = () => {
       setStudents(content.data.students);
       const content2 = await fetchSessionStatus(id);
       setActive(content2.data.result[0].session_is_active);
+      setPin(content2.data.result[0].session_pin)
       setLoading(false);
     })();
 
@@ -52,7 +54,7 @@ const Join = () => {
     </Layout>
   ) : active ? (
     <Layout>
-      <SessionQR id={id} students={students} sessionToggle={sessionToggle}/>
+      <SessionQR id={id} pin={pin} students={students} sessionToggle={sessionToggle}/>
     </Layout>
   ) : (
     <Layout>

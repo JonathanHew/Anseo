@@ -2,7 +2,7 @@ import React, { Fragment } from "react";
 import QRCode from "react-qr-code";
 
 
-const SessionQR = ({ id, students, sessionToggle }) => {
+const SessionQR = ({ id, pin, students, sessionToggle }) => {
   const url = "http://localhost:3000/sign-in/" + id;
   return (
     <Fragment>
@@ -31,6 +31,7 @@ const SessionQR = ({ id, students, sessionToggle }) => {
           />
         </div>
         <h4>Student Count: {students.length}</h4>
+        <h5>PIN: {pin}</h5>
       </div>
     </Fragment>
   );
