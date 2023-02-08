@@ -1,9 +1,10 @@
 import React, { Fragment } from 'react'
 
-const StudentList = ({students, sessionToggle}) => {
+const StudentList = ({name, students, sessionToggle}) => {
   return (
     <Fragment>
-        <h1>Students Signed In: {students.length}</h1>
+      <h1>{name}</h1>
+      <h4>Students Signed In: {students.length}</h4>
       <button
         type="button"
         className="btn btn-success"

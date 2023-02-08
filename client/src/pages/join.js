@@ -60,7 +60,7 @@ const Join = () => {
     </Layout>
   ) : (
     <Layout>
-      <StudentList students={students} sessionToggle={sessionToggle}/>
+      <StudentList name={name} students={students} sessionToggle={sessionToggle}/>
     </Layout>
   );
 };
