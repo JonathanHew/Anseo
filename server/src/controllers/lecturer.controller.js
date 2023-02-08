@@ -75,7 +75,7 @@ exports.getSessionInfo = async (req, res) => {
   const { session_id } = req.body;
   try {
     const { rows } = await db.query(
-      `SELECT session_is_active, session_pin FROM sessions WHERE session_id = $1`,
+      `SELECT session_is_active, session_pin, session_name FROM sessions WHERE session_id = $1`,
       [session_id]
     );
 
