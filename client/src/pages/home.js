@@ -3,6 +3,23 @@ import Layout from "../components/layout";
 
 const Home = () => {
   const [pin, setPin] = useState();
+  const [error, setError] = useState("Error!");
+
+  const onSubmitForm = async (e) => {
+    e.preventDefault();
+    setError("");
+    try {
+      //const content = await fetchSessionsForStudent(number);
+      //setSessions(content.data.sessions);
+      //setNumber("");
+      //setMessage("");
+    } catch (err) {
+      //console.error(err.response.data.errors[0].msg);
+      //setError(err.response.data.errors[0].msg);
+      //setSessions([]);
+      //setMessage("No sessions available")
+    }
+  };
 
   return (
     <Layout>
@@ -20,6 +37,7 @@ const Home = () => {
             required
           />
           <label for="floatingInput">Session PIN</label>
+          <div style={{ color: "red", margin: "10px 0" }}>{error}</div>
           <button type="button" class="btn btn-secondary btn-lg mt-1 w-100">
             Join
           </button>
