@@ -4,7 +4,7 @@ const {
   getSessions,
   getStudentsBySessionId,
   setSessionStatus,
-  getSessionStatus,
+  getSessionInfo,
   getSessionsForStudent
 } = require("../controllers/lecturer.controller");
 const { userAuth } = require("../middlewares/auth-middlware");
@@ -27,7 +27,7 @@ router.post("/get-students-in-session", userAuth, getStudentsBySessionId);
 
 router.post("/set-session-status", userAuth, setSessionStatus);
 
-router.post("/get-session-status", userAuth, getSessionStatus);
+router.post("/get-session-info", userAuth, getSessionInfo);
 
 router.post("/search", userAuth, studentSearchValidator, validationMiddleware, getSessionsForStudent);
 

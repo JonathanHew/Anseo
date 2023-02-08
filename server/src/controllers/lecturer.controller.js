@@ -71,7 +71,7 @@ exports.setSessionStatus = async (req, res) => {
   }
 };
 
-exports.getSessionStatus = async (req, res) => {
+exports.getSessionInfo = async (req, res) => {
   const { session_id } = req.body;
   try {
     const { rows } = await db.query(

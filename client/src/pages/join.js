@@ -2,7 +2,7 @@ import Layout from "../components/layout";
 import { useParams } from "react-router-dom";
 import { useState, useEffect } from "react";
 import {
-  fetchSessionStatus,
+  fetchSessionInfo,
   fetchStudentsInSession,
   onSetSessionStatus,
 } from "../api/lecturer.api";
@@ -30,7 +30,7 @@ const Join = () => {
     (async () => {
       const content = await fetchStudentsInSession(id);
       setStudents(content.data.students);
-      const content2 = await fetchSessionStatus(id);
+      const content2 = await fetchSessionInfo(id);
       setActive(content2.data.result[0].session_is_active);
       setPin(content2.data.result[0].session_pin)
       setLoading(false);
