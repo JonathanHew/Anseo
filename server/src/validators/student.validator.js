@@ -26,10 +26,10 @@ const studentName = check("name")
   .withMessage("Name must be alphabetic.");
 
 const pinNumber = check("session_pin")
-.isLength(6)
-.withMessage("PIN Code Should be 6 characters long!")
-.isAlphanumeric()
-.withMessage("PIN Code should only contain letters and numbers!")
+  .isLength({ min: 6, max: 6 })
+  .withMessage("PIN Code Should be 6 characters long!")
+  .isAlphanumeric()
+  .withMessage("PIN Code should only contain letters and numbers!");
 
 const pinExists = check("session_pin").custom(async (value) => {
   const { rows } = await db.query(
