@@ -37,9 +37,8 @@ const App = () => {
   const [id, setId] = useState();
 
   useEffect(() => {
-    // if user authenticated, get their information 
-    if(isAuth)
-    {
+    // if user authenticated, get their information
+    if (isAuth) {
       (async () => {
         const content = await fetchUserInfo();
         const userId = content.data.info.id;
@@ -57,8 +56,8 @@ const App = () => {
         <Route element={<PrivateRoutes />}>
           <Route path="/dashboard" element={<Dashboard />}></Route>
           <Route path="/join/:id" element={<Join />}></Route>
-          <Route path="/sessions" element={<Sessions id={id}/>}></Route>
-          <Route path="/search" element={<Search/>}></Route>
+          <Route path="/sessions" element={<Sessions id={id} />}></Route>
+          <Route path="/search" element={<Search />}></Route>
         </Route>
 
         <Route element={<RestrictedRoutes />}>
