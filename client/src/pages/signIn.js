@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { onSignIn } from "../api/signIn.api";
 import Layout from "../components/layout";
@@ -18,6 +18,19 @@ const SignIn = () => {
   const onChange = (e) => {
     setValues({ ...values, [e.target.name]: e.target.value });
   };
+
+  useEffect(() => {
+    const geo = navigator.geolocation;
+    if (!geo) {
+      console.log("Geolocation is not supported on your browser!");
+    }
+
+    geo.getCurrentPosition((pos) => {
+      console.log(pos);
+    }, () => {
+      console.log("Unable to getch location!");
+    })
+  }, []);
 
   const onSubmit = async (e) => {
     e.preventDefault();
@@ -74,8 +87,7 @@ const SignIn = () => {
         </div>
 
         <div style={{ color: "red", margin: "10px 0" }}>{error}</div>
-        <div style={{ color: 'green', margin: '10px 0' }}>{success}</div>
-
+        <div style={{ color: "green", margin: "10px 0" }}>{success}</div>
 
         <button type="submit" className="btn btn-primary">
           Submit
