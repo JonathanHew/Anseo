@@ -10,6 +10,8 @@ const SignIn = () => {
     name: "",
     number: "",
     session_id: id,
+    longitude: undefined,
+    latitude: undefined,
   });
 
   const [error, setError] = useState(false);
@@ -23,12 +25,15 @@ const SignIn = () => {
     const geo = navigator.geolocation;
     if (!geo) {
       console.log("Geolocation is not supported on your browser!");
+      setError("Geolocation is not supported on your browser. Please notify your lecturer!")
     }
 
     geo.getCurrentPosition((pos) => {
       console.log(pos);
+      setValues({ ...values, longitude: pos.coords.longitude, latitude: pos.coords.latitude });
     }, () => {
-      console.log("Unable to getch location!");
+      console.log("Unable to fetch location!");
+      setError("Could not fetch location. Please refresh the page and make sure you click allow on the location services popup. If this proceeds please notify your lecturer!")
     })
   }, []);
 
