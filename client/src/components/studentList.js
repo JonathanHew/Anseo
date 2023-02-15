@@ -1,6 +1,7 @@
-import React, { Fragment } from 'react'
+import React, { Fragment, useEffect } from 'react'
 
 const StudentList = ({name, students, sessionToggle}) => {
+
   return (
     <Fragment>
       <h1>{name}</h1>
@@ -19,6 +20,7 @@ const StudentList = ({name, students, sessionToggle}) => {
             <th>Name</th>
             <th>Date</th>
             <th>Time</th>
+            <th>Campus</th>
           </tr>
         </thead>
         <tbody>
@@ -38,6 +40,7 @@ const StudentList = ({name, students, sessionToggle}) => {
                 <td>{student.signin_name}</td>
                 <td>{student.signin_date}</td>
                 <td>{student.signin_time}</td>
+                <td>{student.signin_on_campus.toString()}</td>
               </tr>
             ))
           }
