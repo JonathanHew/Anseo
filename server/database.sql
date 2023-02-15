@@ -120,7 +120,7 @@ INSERT INTO locations (location_name, location_polygon) VALUES (
 );
 
 INSERT INTO locations (location_name, location_polygon) VALUES (
-  'library',
+  'TU Dublin Central Quad',
   ST_SetSRID(
     'POLYGON((
       -6.2824093 53.3567958,
@@ -146,8 +146,6 @@ INSERT INTO locations (location_name, location_polygon) VALUES (
   )
 );
 
-
-select ST_Intersects(
-  (select location_polygon from locations where location_id = 2),
+SELECT ST_Intersects(
+  (SELECT location_polygon FROM locations WHERE location_id = 1),
   ST_SetSRID (ST_Point(-6.2817008, 53.356427):: GEOMETRY, 4326));
-

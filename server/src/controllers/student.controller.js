@@ -37,3 +37,22 @@ exports.getSessionByPin = async (req, res) => {
     console.error(err.message);
   }
 };
+
+exports.checkLocation = async (req,res) => {
+  const {longitude, latitude} = req.body;
+  try {
+    const { rows } = await db.query(
+      `SELECT ST_Intersects(
+        (SELECT location_polygon FROM locations WHERE location_id = 1),
+        ST_SetSRID (ST_Point($1, $2):: GEOMETRY, 4326))`,
+      [longitude, latitude]
+    );
+
+    return res.status(200).json({
+      success: true,
+      result: rows,
+    });
+  } catch (err) {
+    console.error(err.message);
+  }
+}
