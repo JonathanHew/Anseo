@@ -80,6 +80,7 @@ CREATE TABLE signIns(
     signIn_number VARCHAR(255) NOT NULL,
     signIn_date DATE DEFAULT current_date,
     signIn_time TIME DEFAULT localtime(0),
+    signIn_on_campus BOOLEAN NOT NULL,
     session_id uuid,
     CONSTRAINT fk_session
         FOREIGN KEY(session_id)
