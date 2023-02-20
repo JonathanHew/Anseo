@@ -3,6 +3,7 @@ import { fetchUserSessions } from "../api/lecturer.api";
 import Layout from "../components/layout";
 import CreateSession from "../components/createSession";
 import SessionList from "../components/sessionList";
+import CreateModule from "../components/createModule";
 
 const Sessions = ({ id }) => {
   const [sessions, setSessions] = useState([]);
@@ -26,6 +27,9 @@ const Sessions = ({ id }) => {
       <p>User ID: {id}</p>
 
       <CreateSession id={id} />
+
+      <CreateModule id={id} />
+
       <SessionList sessions={sessions} />
     </Layout>
   );
