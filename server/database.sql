@@ -9,6 +9,7 @@ DROP FUNCTION IF EXISTS UNIQUE_RANDOM;
 
 DROP TABLE IF EXISTS signIns;
 DROP TABLE IF EXISTS sessions;
+DROP TABLE IF EXISTS modules;
 DROP TABLE IF EXISTS users;
 DROP TABLE IF EXISTS locations;
 
@@ -58,6 +59,17 @@ CREATE TABLE users(
     created_at DATE DEFAULT current_date
 );
 
+--modules table 
+CREATE TABLE modules (
+  module_id SERIAL PRIMARY KEY,
+  module_name VARCHAR(255) NOT NULL,
+  user_id INTEGER NOT NULL, 
+  CONSTRAINT fk_user
+        FOREIGN KEY(user_id)
+            REFERENCES users(user_id)
+                ON DELETE CASCADE
+);
+
 --sessions table
 CREATE TABLE sessions(
     session_id uuid DEFAULT uuid_generate_v4() PRIMARY KEY,
@@ -67,10 +79,15 @@ CREATE TABLE sessions(
     session_is_active BOOLEAN DEFAULT false,
     user_id INTEGER NOT NULL,
     session_pin VARCHAR(6) DEFAULT UNIQUE_RANDOM(6, 'sessions', 'session_pin'),
+    module_id INTEGER NOT NULL,
     CONSTRAINT fk_user
         FOREIGN KEY(user_id)
-            REFERENCES users(user_id)
-                ON DELETE CASCADE
+        REFERENCES users(user_id)
+        ON DELETE CASCADE,
+    CONSTRAINT fk_module
+        FOREIGN KEY(module_id)
+        REFERENCES modules(module_id)
+        ON DELETE CASCADE
 );
 
 --signIns table
@@ -96,9 +113,9 @@ CREATE TABLE locations (
 );
 
 INSERT INTO users (user_email, user_password) VALUES ('jonathan@gmail.com', 'password');
-INSERT INTO sessions (session_name, session_is_active, user_id) VALUES ('Dev Test2', 'f', 1);
-INSERT INTO signIns (signIn_id, signIn_name, signIn_number, session_id) VALUES (1, 'Jonathan', 'C19472842', '7dfc25b1-fe78-48dc-ad7a-1bacb2c8ba60');
-
+INSERT INTO modules (module_name, user_id) VALUES ('1st Year Maths', 1);
+INSERT INTO sessions (session_name, user_id, module_id) VALUES ('Monday Morning 20/02/23', 1, 1);
+INSERT INTO signIns (signIn_id, signIn_name, signIn_number, signIn_on_campus, session_id) VALUES (1, 'Jonathan', 'C19472842', false,'44c7162d-baef-48fc-9602-3a7443a8eba8');
 INSERT INTO locations (location_name, location_polygon) VALUES (
   'library',
   ST_SetSRID(
