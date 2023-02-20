@@ -4,7 +4,7 @@ const db = require("../db");
 // check name is not empty
 const sessionName = check("session_name")
   .notEmpty()
-  .withMessage("Session name must not be empty");
+  .withMessage("Session name can not be empty!");
 
 const userId = check("user_id").notEmpty().withMessage("User ID not found!");
 
@@ -23,7 +23,12 @@ const studentExists = check("student_number").custom(async (value) => {
   }
 });
 
+const moduleName = check("module_name")
+  .notEmpty()
+  .withMessage("Module name can not be empty!");
+
 module.exports = {
   sessionValidator: [sessionName, userId],
   studentSearchValidator: [studentNumber, studentExists],
+  moduleValidator: [moduleName, userId],
 };

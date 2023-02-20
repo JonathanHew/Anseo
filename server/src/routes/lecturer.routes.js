@@ -9,7 +9,7 @@ const {
   createModule
 } = require("../controllers/lecturer.controller");
 const { userAuth } = require("../middlewares/auth-middlware");
-const { sessionValidator, studentSearchValidator } = require("../validators/lecturer.validator");
+const { sessionValidator, studentSearchValidator, moduleValidator } = require("../validators/lecturer.validator");
 const {
   validationMiddleware,
 } = require("../middlewares/validations-middleware");
@@ -32,6 +32,6 @@ router.post("/get-session-info", userAuth, getSessionInfo);
 
 router.post("/search", userAuth, studentSearchValidator, validationMiddleware, getSessionsForStudent);
 
-router.post("/create-module", userAuth, createModule);
+router.post("/create-module", userAuth, moduleValidator, validationMiddleware, createModule);
 
 module.exports = router;
