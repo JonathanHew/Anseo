@@ -106,3 +106,22 @@ exports.getSessionsForStudent = async (req, res) => {
   }
 };
 
+exports.createModule = async (req, res) => {
+  const { user_id, module_name } = req.body;
+  try {
+    await db.query(
+      "INSERT INTO modules (module_name, user_id) VALUES ($1 , $2)",
+      [module_name, user_id]
+    );
+
+    return res.status(201).json({
+      success: true,
+      message: "The module was created successfully!",
+    });
+  } catch (err) {
+    console.error(err.message);
+    return res.status(500).json({
+      error: err.message,
+    });
+  }
+};

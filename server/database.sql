@@ -115,7 +115,7 @@ CREATE TABLE locations (
 INSERT INTO users (user_email, user_password) VALUES ('jonathan@gmail.com', 'password');
 INSERT INTO modules (module_name, user_id) VALUES ('1st Year Maths', 1);
 INSERT INTO sessions (session_name, user_id, module_id) VALUES ('Monday Morning 20/02/23', 1, 1);
-INSERT INTO signIns (signIn_id, signIn_name, signIn_number, signIn_on_campus, session_id) VALUES (1, 'Jonathan', 'C19472842', false,'44c7162d-baef-48fc-9602-3a7443a8eba8');
+INSERT INTO signIns (signIn_id, signIn_name, signIn_number, signIn_on_campus, session_id) VALUES (1, 'Jonathan', 'C19472842', false,'2deae280-1311-4c3a-a5ee-708f905c0d8a');
 INSERT INTO locations (location_name, location_polygon) VALUES (
   'library',
   ST_SetSRID(
