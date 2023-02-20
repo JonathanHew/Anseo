@@ -14,6 +14,7 @@ const CreateModule = ({ id }) => {
     e.preventDefault();
     try {
       //await onCreateSession(values);
+      console.log("Create module hit!!");
       window.location = "/sessions";
     } catch (err) {
       console.error(err.response.data.errors[0].msg);

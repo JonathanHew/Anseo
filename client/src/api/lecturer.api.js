@@ -37,5 +37,9 @@ export async function fetchSessionsForStudent(id) {
   });
 }
 
-
-
+export async function onCreateModule(module_data) {
+  return await axios.post(
+    "http://localhost:8000/api/create-session",
+    module_data
+  );
+}
