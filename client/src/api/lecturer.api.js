@@ -6,11 +6,12 @@ export async function fetchUserSessions() {
   });
 }
 
-export async function onCreateSession(name, id) {
+export async function onCreateSession(name, id, module) {
   return await axios.post(
     "http://localhost:8000/api/create-session",{
       session_name: name,
       user_id: id,
+      module_id: module,
     }
   );
 }

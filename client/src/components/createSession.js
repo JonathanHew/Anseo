@@ -3,12 +3,13 @@ import { onCreateSession } from "../api/lecturer.api";
 
 const CreateSession = ({ id, modules }) => {
   const [name, setName] = useState("");
+  const [module, setModule] = useState("");
   const [error, setError] = useState(false);
 
   const create = async (e) => {
     e.preventDefault();
     try {
-      await onCreateSession(name, id);
+      await onCreateSession(name, id, module);
       window.location = "/sessions";
     } catch (err) {
       console.error(err.response.data.errors[0].msg);
@@ -18,6 +19,7 @@ const CreateSession = ({ id, modules }) => {
 
   const onClose = () => {
     setName("");
+    setModule("");
     setError(false);
   };
 
@@ -56,8 +58,9 @@ const CreateSession = ({ id, modules }) => {
               <select
                 className="form-select form-control mb-2"
                 aria-label="Default select example"
+                onChange={(e) => setModule(e.target.value)}
               >
-                <option selected>Module</option>
+                <option defaultValue value="-1">Module</option>
                 {modules.map((module) => (
                   <option value={module.module_id}>{module.module_name}</option>
                 ))}
