@@ -1,7 +1,7 @@
 import React, { Fragment, useState } from "react";
 import { onCreateSession } from "../api/lecturer.api";
 
-const CreateSession = ({ id }) => {
+const CreateSession = ({ id, modules }) => {
   const [name, setName] = useState("");
   const [error, setError] = useState(false);
 
@@ -53,6 +53,15 @@ const CreateSession = ({ id }) => {
               ></button>
             </div>
             <div className="modal-body">
+              <select
+                className="form-select form-control mb-2"
+                aria-label="Default select example"
+              >
+                <option selected>Module</option>
+                <option value="1">One</option>
+                <option value="2">Two</option>
+                <option value="3">Three</option>
+              </select>
               <div className="form-floating mb-3">
                 <input
                   type="text"

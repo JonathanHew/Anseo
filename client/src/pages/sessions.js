@@ -29,7 +29,7 @@ const Sessions = ({ id }) => {
       <h1>Sessions Page</h1>
       <p>User ID: {id}</p>
 
-      <CreateSession id={id} />
+      <CreateSession id={id} modules={modules}/>
 
       <CreateModule id={id} />
 
