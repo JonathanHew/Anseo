@@ -47,3 +47,8 @@ export async function onCreateModule(name, id) {
     }
   );
 }
+
+export async function fetchUserModules() {
+  return await axios.get("http://localhost:8000/api/get-modules", {
+  });
+}
