@@ -27,8 +27,14 @@ const moduleName = check("module_name")
   .notEmpty()
   .withMessage("Module name can not be empty!");
 
+const validModule = check("module_id")
+  .notEmpty()
+  .withMessage("Please select a module!")
+  .not().equals("-1")
+  .withMessage("Please select a module!");
+
 module.exports = {
-  sessionValidator: [sessionName, userId],
+  sessionValidator: [validModule, sessionName, userId],
   studentSearchValidator: [studentNumber, studentExists],
   moduleValidator: [moduleName, userId],
 };

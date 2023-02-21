@@ -3,7 +3,7 @@ import { onCreateSession } from "../api/lecturer.api";
 
 const CreateSession = ({ id, modules }) => {
   const [name, setName] = useState("");
-  const [module, setModule] = useState("");
+  const [module, setModule] = useState();
   const [error, setError] = useState(false);
 
   const create = async (e) => {
@@ -19,7 +19,7 @@ const CreateSession = ({ id, modules }) => {
 
   const onClose = () => {
     setName("");
-    setModule("");
+    setModule();
     setError(false);
   };
 
