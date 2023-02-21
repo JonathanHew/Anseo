@@ -125,3 +125,19 @@ exports.createModule = async (req, res) => {
     });
   }
 };
+
+exports.getModules = async (req, res) => {
+  const user_id = req.user.id;
+  try {
+    const { rows } = await db.query(
+      `SELECT * FROM modules WHERE user_id = $1`,
+      [user_id]
+    );
+    return res.status(200).json({
+      success: true,
+      modules: rows,
+    });
+  } catch (err) {
+    console.error(err.message);
+  }
+};

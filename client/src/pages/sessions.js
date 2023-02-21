@@ -11,8 +11,9 @@ const Sessions = ({ id }) => {
 
   useEffect(() => {
     (async () => {
-      const content = await fetchUserSessions();
-      setSessions(content.data.sessions);
+      const sessionContent = await fetchUserSessions();
+      setSessions(sessionContent.data.sessions);
+      //const moduleContent = await fetchModuleContent()
       setLoading(false);
     })();
   }, []);
