@@ -35,6 +35,6 @@ router.post("/search", userAuth, studentSearchValidator, validationMiddleware, g
 
 router.post("/create-module", userAuth, moduleValidator, validationMiddleware, createModule);
 
-router.post("/get-modules", userAuth, getModules);
+router.get("/get-modules", userAuth, getModules);
 
 module.exports = router;
