@@ -6,7 +6,8 @@ const {
   setSessionStatus,
   getSessionInfo,
   getSessionsForStudent,
-  createModule
+  createModule,
+  getModules
 } = require("../controllers/lecturer.controller");
 const { userAuth } = require("../middlewares/auth-middlware");
 const { sessionValidator, studentSearchValidator, moduleValidator } = require("../validators/lecturer.validator");
@@ -33,5 +34,7 @@ router.post("/get-session-info", userAuth, getSessionInfo);
 router.post("/search", userAuth, studentSearchValidator, validationMiddleware, getSessionsForStudent);
 
 router.post("/create-module", userAuth, moduleValidator, validationMiddleware, createModule);
+
+router.post("/get-modules", userAuth, getModules);
 
 module.exports = router;
