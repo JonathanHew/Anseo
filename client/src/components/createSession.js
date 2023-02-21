@@ -58,9 +58,9 @@ const CreateSession = ({ id, modules }) => {
                 aria-label="Default select example"
               >
                 <option selected>Module</option>
-                <option value="1">One</option>
-                <option value="2">Two</option>
-                <option value="3">Three</option>
+                {modules.map((module) => (
+                  <option value={module.module_id}>{module.module_name}</option>
+                ))}
               </select>
               <div className="form-floating mb-3">
                 <input
