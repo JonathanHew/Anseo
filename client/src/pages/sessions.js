@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { fetchUserSessions } from "../api/lecturer.api";
+import { fetchUserModules, fetchUserSessions } from "../api/lecturer.api";
 import Layout from "../components/layout";
 import CreateSession from "../components/createSession";
 import SessionList from "../components/sessionList";
@@ -7,13 +7,15 @@ import CreateModule from "../components/createModule";
 
 const Sessions = ({ id }) => {
   const [sessions, setSessions] = useState([]);
+  const [modules, setModules] = useState([]);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     (async () => {
       const sessionContent = await fetchUserSessions();
       setSessions(sessionContent.data.sessions);
-      //const moduleContent = await fetchModuleContent()
+      const moduleContent = await fetchUserModules();
+      setModules(moduleContent.data.modules);
       setLoading(false);
     })();
   }, []);
