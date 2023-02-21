@@ -24,7 +24,7 @@ exports.getSessions = async (req, res) => {
   const user_id = req.user.id;
   try {
     const { rows } = await db.query(
-      `SELECT * FROM sessions WHERE user_id = $1`,
+      `SELECT session_id, session_name, session_date, session_time, session_is_active, session_pin, module_name FROM sessions JOIN modules ON sessions.module_id = modules.module_id WHERE sessions.user_id = $1`,
       [user_id]
     );
     return res.status(200).json({
