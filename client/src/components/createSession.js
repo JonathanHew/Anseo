@@ -2,18 +2,13 @@ import React, { Fragment, useState } from "react";
 import { onCreateSession } from "../api/lecturer.api";
 
 const CreateSession = ({ id }) => {
-
-  const [values, setValues] = useState({
-    user_id: id,
-    session_name: "",
-  });
-
+  const [name, setName] = useState("");
   const [error, setError] = useState(false);
 
   const create = async (e) => {
     e.preventDefault();
     try {
-      await onCreateSession(values);
+      await onCreateSession(name, id);
       window.location = "/sessions";
     } catch (err) {
       console.error(err.response.data.errors[0].msg);
@@ -21,12 +16,8 @@ const CreateSession = ({ id }) => {
     }
   };
 
-  const onChange = (e) => {
-    setValues({ ...values, [e.target.name]: e.target.value });
-  };
-
   const onClose = () => {
-    setValues({ ...values, user_id: id, session_name: "" });
+    setName("");
     setError(false);
   };
 
@@ -67,8 +58,8 @@ const CreateSession = ({ id }) => {
                   type="text"
                   className="form-control"
                   id="floatingInput"
-                  value={values.session_name}
-                  onChange={(e) => onChange(e)}
+                  value={name}
+                  onChange={(e) => setName(e.target.value)}
                   name="session_name"
                   placeholder="Session Name"
                   required

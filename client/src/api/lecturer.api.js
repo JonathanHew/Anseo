@@ -6,10 +6,12 @@ export async function fetchUserSessions() {
   });
 }
 
-export async function onCreateSession(session_data) {
+export async function onCreateSession(name, id) {
   return await axios.post(
-    "http://localhost:8000/api/create-session",
-    session_data
+    "http://localhost:8000/api/create-session",{
+      session_name: name,
+      user_id: id,
+    }
   );
 }
 
@@ -37,9 +39,11 @@ export async function fetchSessionsForStudent(id) {
   });
 }
 
-export async function onCreateModule(module_data) {
+export async function onCreateModule(name, id) {
   return await axios.post(
-    "http://localhost:8000/api/create-session",
-    module_data
+    "http://localhost:8000/api/create-module",{
+      module_name: name,
+      user_id: id,
+    }
   );
 }
