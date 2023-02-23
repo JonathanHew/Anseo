@@ -7,9 +7,9 @@ DROP FUNCTION IF EXISTS GEN_RANDOM_BYTES;
 DROP FUNCTION IF EXISTS RANDOM_STRING;
 DROP FUNCTION IF EXISTS UNIQUE_RANDOM;
 
-DROP TABLE IF EXISTS signIns;
-DROP TABLE IF EXISTS sessions;
-DROP TABLE IF EXISTS modules;
+DROP TABLE IF EXISTS signIns CASCADE;
+DROP TABLE IF EXISTS sessions CASCADE;
+DROP TABLE IF EXISTS modules CASCADE;
 DROP TABLE IF EXISTS users;
 DROP TABLE IF EXISTS locations;
 
@@ -167,3 +167,5 @@ INSERT INTO locations (location_name, location_polygon) VALUES (
 SELECT ST_Intersects(
   (SELECT location_polygon FROM locations WHERE location_id = 1),
   ST_SetSRID (ST_Point(-6.2817008, 53.356427):: GEOMETRY, 4326));
+
+SELECT DISTINCT module_name, modules.module_id from modules join sessions on modules.module_id = sessions.module_id WHERE session_id IN (SELECT sessions.session_id FROM sessions JOIN signIns ON sessions.session_id = signIns.session_id JOIN modules ON sessions.module_id = modules.module_id WHERE signin_number = 'C19472842' and sessions.user_id = 1);

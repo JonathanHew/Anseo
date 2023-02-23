@@ -141,3 +141,19 @@ exports.getModules = async (req, res) => {
     console.error(err.message);
   }
 };
+
+exports.getModulesForStudent = async(req,res) => {
+  const { user_id, student_number } = req.body;
+  try {
+    const { rows } = await db.query(
+      `SELECT DISTINCT module_name, modules.module_id from modules join sessions on modules.module_id = sessions.module_id WHERE session_id IN (SELECT sessions.session_id FROM sessions JOIN signIns ON sessions.session_id = signIns.session_id JOIN modules ON sessions.module_id = modules.module_id WHERE signin_number = $1 and sessions.user_id = $2);`,
+      [student_number, user_id]
+    );
+    return res.status(200).json({
+      success: true,
+      modules: rows,
+    });
+  } catch (err) {
+    console.error(err.message);
+  }
+}
