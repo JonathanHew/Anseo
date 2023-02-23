@@ -38,6 +38,6 @@ router.post("/create-module", userAuth, moduleValidator, validationMiddleware, c
 
 router.get("/get-modules", userAuth, getModules);
 
-router.post("/get-student-modules", userAuth, getModulesForStudent);
+router.post("/get-student-modules", userAuth, studentSearchValidator, validationMiddleware, getModulesForStudent);
 
 module.exports = router;
