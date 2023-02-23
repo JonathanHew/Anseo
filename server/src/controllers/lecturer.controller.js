@@ -94,7 +94,7 @@ exports.getSessionsForStudent = async (req, res) => {
 
   try {
     const { rows } = await db.query(
-      `SELECT sessions.session_id, session_name, session_date, session_time FROM sessions JOIN signIns ON sessions.session_id = signIns.session_id WHERE signin_number = $1 and user_id = $2`,
+      `SELECT sessions.session_id, session_name, session_date, session_time, session_pin, module_name FROM sessions JOIN signIns ON sessions.session_id = signIns.session_id JOIN modules ON sessions.module_id = modules.module_id WHERE signin_number = $1 and sessions.user_id = $2`,
       [student_number, user_id]
     );
     return res.status(200).json({
