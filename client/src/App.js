@@ -57,7 +57,7 @@ const App = () => {
           <Route path="/dashboard" element={<Dashboard />}></Route>
           <Route path="/join/:id" element={<Join />}></Route>
           <Route path="/sessions" element={<Sessions id={id} />}></Route>
-          <Route path="/search" element={<Search />}></Route>
+          <Route path="/search" element={<Search id={id} />}></Route>
         </Route>
 
         <Route element={<RestrictedRoutes />}>
