@@ -8,7 +8,8 @@ const {
   getSessionsForStudent,
   createModule,
   getModules,
-  getModulesForStudent
+  getModulesForStudent,
+  getSessionsForStudentByModuleID
 } = require("../controllers/lecturer.controller");
 const { userAuth } = require("../middlewares/auth-middlware");
 const { sessionValidator, studentSearchValidator, moduleValidator } = require("../validators/lecturer.validator");
@@ -39,5 +40,7 @@ router.post("/create-module", userAuth, moduleValidator, validationMiddleware, c
 router.get("/get-modules", userAuth, getModules);
 
 router.post("/get-student-modules", userAuth, studentSearchValidator, validationMiddleware, getModulesForStudent);
+
+router.post("get-student-sessions-in-module", userAuth, getSessionsForStudentByModuleID);
 
 module.exports = router;
