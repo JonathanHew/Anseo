@@ -175,7 +175,7 @@ exports.getSignInsForStudentByModuleID = async (req, res) => {
   }
 };
 
-exports.getSessionsForModule = async (req, res) => {
+exports.getSessionsInModule = async (req, res) => {
   const { module_id } = req.body;
 
   try {
