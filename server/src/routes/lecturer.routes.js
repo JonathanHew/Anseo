@@ -41,6 +41,6 @@ router.get("/get-modules", userAuth, getModules);
 
 router.post("/get-student-modules", userAuth, studentSearchValidator, validationMiddleware, getModulesForStudent);
 
-router.post("get-student-sessions-in-module", userAuth, getSessionsForStudentByModuleID);
+router.post("/get-student-sessions-in-module", userAuth, getSessionsForStudentByModuleID);
 
 module.exports = router;
