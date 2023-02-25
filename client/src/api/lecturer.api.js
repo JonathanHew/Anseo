@@ -55,12 +55,12 @@ export async function fetchModulesForStudent(number, id) {
   });
 }
 
-export async function fetchSessionsForStudentInModule(
+export async function fetchSignInsForStudentInModule(
   student_number,
   module_id
 ) {
   return await axios.post(
-    "http://localhost:8000/api/get-student-sessions-in-module",
+    "http://localhost:8000/api/get-student-signins-for-module",
     {
       student_number: student_number,
       module_id: module_id,

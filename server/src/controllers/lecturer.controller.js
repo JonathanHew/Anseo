@@ -146,7 +146,7 @@ exports.getModulesForStudent = async(req,res) => {
   const { user_id, student_number } = req.body;
   try {
     const { rows } = await db.query(
-      `SELECT DISTINCT module_name, modules.module_id from modules join sessions on modules.module_id = sessions.module_id WHERE session_id IN (SELECT sessions.session_id FROM sessions JOIN signIns ON sessions.session_id = signIns.session_id JOIN modules ON sessions.module_id = modules.module_id WHERE signin_number = $1 and sessions.user_id = $2);`,
+      `SELECT DISTINCT module_name, modules.module_id from modules join sessions on modules.module_id = sessions.module_id WHERE session_id IN (SELECT sessions.session_id FROM sessions JOIN signIns ON sessions.session_id = signIns.session_id JOIN modules ON sessions.module_id = modules.module_id WHERE signin_number = $1 and sessions.user_id = $2)`,
       [student_number, user_id]
     );
     return res.status(200).json({
@@ -158,18 +158,17 @@ exports.getModulesForStudent = async(req,res) => {
   }
 }
 
-exports.getSessionsForStudentByModuleID = async (req, res) => {
-  const user_id = req.user.id;
+exports.getSignInsForStudentByModuleID = async (req, res) => {
   const { student_number, module_id } = req.body;
 
   try {
     const { rows } = await db.query(
-      `SELECT sessions.session_id, session_name, session_date, session_time, session_pin, module_name FROM sessions JOIN signIns ON sessions.session_id = signIns.session_id JOIN modules ON sessions.module_id = modules.module_id WHERE signin_number = $1 AND sessions.user_id = $2 AND sessions.module_id = $3`,
-      [student_number, user_id, module_id]
+      `SELECT signIn_date, signIn_time, signIn_on_campus, session_name FROM signIns JOIN sessions ON signIns.session_id = sessions.session_id WHERE signin_number = $1 AND sessions.module_id = $2`,
+      [student_number, module_id]
     );
     return res.status(200).json({
       success: true,
-      sessions: rows,
+      signins: rows,
     });
   } catch (err) {
     console.error(err.message);

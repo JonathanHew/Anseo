@@ -169,3 +169,5 @@ SELECT ST_Intersects(
   ST_SetSRID (ST_Point(-6.2817008, 53.356427):: GEOMETRY, 4326));
 
 SELECT DISTINCT module_name, modules.module_id from modules join sessions on modules.module_id = sessions.module_id WHERE session_id IN (SELECT sessions.session_id FROM sessions JOIN signIns ON sessions.session_id = signIns.session_id JOIN modules ON sessions.module_id = modules.module_id WHERE signin_number = 'C19472842' and sessions.user_id = 1);
+
+select signIn_date, signIn_time, signIn_on_campus, session_name from signIns Join sessions ON signIns.session_id = sessions.session_id WHERE signin_number = 'C19472842' AND sessions.module_id = 1;

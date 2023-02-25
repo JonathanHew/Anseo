@@ -9,7 +9,7 @@ const {
   createModule,
   getModules,
   getModulesForStudent,
-  getSessionsForStudentByModuleID
+  getSignInsForStudentByModuleID
 } = require("../controllers/lecturer.controller");
 const { userAuth } = require("../middlewares/auth-middlware");
 const { sessionValidator, studentSearchValidator, moduleValidator } = require("../validators/lecturer.validator");
@@ -41,6 +41,6 @@ router.get("/get-modules", userAuth, getModules);
 
 router.post("/get-student-modules", userAuth, studentSearchValidator, validationMiddleware, getModulesForStudent);
 
-router.post("/get-student-sessions-in-module", userAuth, getSessionsForStudentByModuleID);
+router.post("/get-student-signins-for-module", userAuth, getSignInsForStudentByModuleID);
 
 module.exports = router;
