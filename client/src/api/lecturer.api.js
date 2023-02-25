@@ -69,7 +69,7 @@ export async function fetchSignInsForStudentInModule(
 }
 
 export async function fetchSessionsForModule(module_id) {
-  return await axios.post("http://localhost:8000/api/get-session-in-module", {
+  return await axios.post("http://localhost:8000/api/get-sessions-in-module", {
     module_id: module_id
   });
 }

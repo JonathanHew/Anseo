@@ -1,20 +1,28 @@
 import React, { useEffect, useState } from "react";
 import { NavLink, useParams } from "react-router-dom";
-import { fetchSignInsForStudentInModule } from "../api/lecturer.api";
+import {
+  fetchSessionsForModule,
+  fetchSignInsForStudentInModule,
+} from "../api/lecturer.api";
 import Layout from "../components/layout";
 
 const StudentReport = () => {
   const { student_number, module_id } = useParams();
   const [signins, setSignins] = useState([]);
+  const [sessions, setSessions] = useState([]);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     (async () => {
-      const sessionContent = await fetchSignInsForStudentInModule(
+      const signinContent = await fetchSignInsForStudentInModule(
         student_number,
         module_id
       );
-      setSignins(sessionContent.data.signins);
+
+      
+      const sessionContent = await fetchSessionsForModule(module_id);
+      setSignins(signinContent.data.signins);
+      setSessions(sessionContent.data.sessions);
       setLoading(false);
     })();
   }, []);
