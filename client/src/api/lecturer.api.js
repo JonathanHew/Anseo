@@ -54,3 +54,16 @@ export async function fetchModulesForStudent(number, id) {
     user_id: id,
   });
 }
+
+export async function fetchSessionsForStudentForModule(
+  student_number,
+  module_id
+) {
+  return await axios.post(
+    "http://localhost:8000/api/get-student-sessions-in-module",
+    {
+      student_number: student_number,
+      module_id: module_id,
+    }
+  );
+}
