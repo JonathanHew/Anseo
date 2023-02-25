@@ -163,7 +163,7 @@ exports.getSignInsForStudentByModuleID = async (req, res) => {
 
   try {
     const { rows } = await db.query(
-      `SELECT signIn_date, signIn_time, signIn_on_campus, session_name FROM signIns JOIN sessions ON signIns.session_id = sessions.session_id WHERE signin_number = $1 AND sessions.module_id = $2`,
+      `SELECT signin_id, signin_date, signin_time, signin_on_campus, session_name, signIns.session_id FROM signIns JOIN sessions ON signIns.session_id = sessions.session_id WHERE signin_number = $1 AND sessions.module_id = $2`,
       [student_number, module_id]
     );
     return res.status(200).json({
@@ -174,3 +174,4 @@ exports.getSignInsForStudentByModuleID = async (req, res) => {
     console.error(err.message);
   }
 };
+
