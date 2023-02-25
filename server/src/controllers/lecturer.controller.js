@@ -1,7 +1,7 @@
 const db = require("../db");
 
 exports.createSession = async (req, res) => {
-  const { user_id, session_name, module_id} = req.body;
+  const { user_id, session_name, module_id } = req.body;
   try {
     await db.query(
       "INSERT INTO sessions (session_name, user_id, module_id) VALUES ($1 , $2, $3)",
@@ -142,7 +142,7 @@ exports.getModules = async (req, res) => {
   }
 };
 
-exports.getModulesForStudent = async(req,res) => {
+exports.getModulesForStudent = async (req, res) => {
   const { user_id, student_number } = req.body;
   try {
     const { rows } = await db.query(
@@ -156,7 +156,7 @@ exports.getModulesForStudent = async(req,res) => {
   } catch (err) {
     console.error(err.message);
   }
-}
+};
 
 exports.getSignInsForStudentByModuleID = async (req, res) => {
   const { student_number, module_id } = req.body;
@@ -175,3 +175,19 @@ exports.getSignInsForStudentByModuleID = async (req, res) => {
   }
 };
 
+exports.getSessionsForModule = async (req, res) => {
+  const { module_id } = req.body;
+
+  try {
+    const { rows } = await db.query(
+      `SELECT * from sessions where module_id = $1`,
+      [module_id]
+    );
+    return res.status(200).json({
+      success: true,
+      sessions: rows,
+    });
+  } catch (err) {
+    console.error(err.message);
+  }
+};
