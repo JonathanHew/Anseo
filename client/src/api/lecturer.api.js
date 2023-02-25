@@ -55,7 +55,7 @@ export async function fetchModulesForStudent(number, id) {
   });
 }
 
-export async function fetchSessionsForStudentForModule(
+export async function fetchSessionsForStudentInModule(
   student_number,
   module_id
 ) {
