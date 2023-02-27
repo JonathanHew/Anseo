@@ -203,14 +203,14 @@ exports.getStudentModuleReportData = async (req, res) => {
     );
 
     const signinData = await db.query(
-      `SELECT count(*) AS signin_count FROM signIns JOIN sessions ON signIns.session_id = sessions.session_id WHERE signin_number = $1 AND sessions.module_id = $2`,
+      `SELECT COUNT(*) AS signin_count FROM signIns JOIN sessions ON signIns.session_id = sessions.session_id WHERE signin_number = $1 AND sessions.module_id = $2`,
       [student_number, module_id]
     );
 
     return res.status(200).json({
       success: true,
-      attendedCount: sessionData.rows[0].session_count,
-      missedSessions:
+      attendedCount: parseInt(sessionData.rows[0].session_count),
+      missedCount:
         sessionData.rows[0].session_count - signinData.rows[0].signin_count,
     });
   } catch (err) {
