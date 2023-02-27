@@ -73,14 +73,6 @@ const StudentReport = () => {
         </thead>
         <tbody>
           {
-            /*
-            <tr>
-              <td>Jonathans List</td>
-              <td>26/01/2023</td>
-              <td>17:00</td>
-            </tr>
-            */
-
             signins.map((signin) => (
               <tr key={signin.signin_id}>
                 <td>
