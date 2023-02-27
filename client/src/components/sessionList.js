@@ -1,8 +1,8 @@
 import React, { Fragment } from "react";
 import { NavLink } from "react-router-dom";
+import { format, parseISO } from "date-fns";
 
 const SessionList = ({ sessions }) => {
-  
   return (
     <Fragment>
       <h4 className="text-center mt-5">Sessions</h4>
@@ -34,7 +34,7 @@ const SessionList = ({ sessions }) => {
                   </NavLink>
                 </td>
                 <td>{session.session_pin}</td>
-                <td>{session.session_date}</td>
+                <td>{format(parseISO(session.session_date), 'dd/MM/yyyy')}</td>
                 <td>{session.session_time}</td>
                 <td>{session.module_name}</td>
               </tr>
