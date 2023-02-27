@@ -183,9 +183,35 @@ exports.getSessionsInModule = async (req, res) => {
       `SELECT * from sessions where module_id = $1`,
       [module_id]
     );
+
     return res.status(200).json({
       success: true,
       sessions: rows,
+    });
+  } catch (err) {
+    console.error(err.message);
+  }
+};
+
+exports.getStudentModuleReportData = async (req, res) => {
+  const { module_id, student_number } = req.body;
+
+  try {
+    const sessionData = await db.query(
+      `SELECT COUNT(*) AS session_count FROM sessions WHERE module_id = $1`,
+      [module_id]
+    );
+
+    const signinData = await db.query(
+      `SELECT count(*) AS signin_count FROM signIns JOIN sessions ON signIns.session_id = sessions.session_id WHERE signin_number = $1 AND sessions.module_id = $2`,
+      [student_number, module_id]
+    );
+
+    return res.status(200).json({
+      success: true,
+      attendedCount: sessionData.rows[0].session_count,
+      missedSessions:
+        sessionData.rows[0].session_count - signinData.rows[0].signin_count,
     });
   } catch (err) {
     console.error(err.message);
