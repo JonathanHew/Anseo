@@ -7,6 +7,7 @@ import {
 } from "../api/lecturer.api";
 import Layout from "../components/layout";
 import PieChart from "../components/pieChart";
+import { format, parseISO } from "date-fns";
 
 const StudentReport = () => {
   const { student_number, module_id } = useParams();
@@ -87,7 +88,7 @@ const StudentReport = () => {
                     <span>{signin.session_name}</span>
                   </NavLink>
                 </td>
-                <td>{signin.signin_date}</td>
+                <td>{format(parseISO(signin.signin_date), 'dd/MM/yyyy')}</td>
                 <td>{signin.signin_time}</td>
                 <td>{signin.signin_on_campus.toString()}</td>
               </tr>
