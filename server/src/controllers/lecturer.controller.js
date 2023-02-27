@@ -209,7 +209,7 @@ exports.getStudentModuleReportData = async (req, res) => {
 
     return res.status(200).json({
       success: true,
-      attendedCount: parseInt(sessionData.rows[0].session_count),
+      attendedCount: parseInt(signinData.rows[0].signin_count),
       missedCount:
         sessionData.rows[0].session_count - signinData.rows[0].signin_count,
     });

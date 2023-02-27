@@ -3,6 +3,7 @@ import { NavLink, useParams } from "react-router-dom";
 import {
   fetchSessionsForModule,
   fetchSignInsForStudentInModule,
+  fetchStudentModuleReportData,
 } from "../api/lecturer.api";
 import Layout from "../components/layout";
 import PieChart from "../components/pieChart";
@@ -20,24 +21,35 @@ const StudentReport = () => {
         student_number,
         module_id
       );
+      setSignins(signinContent.data.signins);
 
       const sessionContent = await fetchSessionsForModule(module_id);
-      setSignins(signinContent.data.signins);
       setSessions(sessionContent.data.sessions);
 
-      setPiedata({ 
-        labels: ["Attended", "Not Attended"],
-        datasets: [
-          {
-            label: "Number",
-            data: [signins.length, sessions.length - signins.length],
-            backgroundColor: ["green", "red"],
-            borderColor: "black",
-            borderWidth: 1,
-          },
-        ],
-      });
-      console.log(piedata);
+      await fetchStudentModuleReportData(
+        student_number,
+        module_id
+      ).then((res) => {
+        console.log(res);
+        setPiedata({
+          labels: ["Attended", "Not Attended"],
+          datasets: [
+            {
+              label: "Number",
+              data: [
+                res.data.attendedCount,
+                res.data.missedCount,
+              ],
+              backgroundColor: ["#87bc45", "#ea5545"],
+              borderColor: "black",
+              borderWidth: 1,
+            },
+          ],
+        })
+      }
+        
+      );
+
       setLoading(false);
     })();
   }, []);

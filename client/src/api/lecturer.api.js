@@ -75,7 +75,7 @@ export async function fetchSessionsForModule(module_id) {
 }
 
 export async function fetchStudentModuleReportData(student_number, module_id) {
-  return await axios.post("http://localhost:8000/api/get-sessions-in-module", {
+  return await axios.post("http://localhost:8000/api/get-student-module-report-data", {
     student_number: student_number,
     module_id: module_id,
   }
