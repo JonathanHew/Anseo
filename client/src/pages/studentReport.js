@@ -9,6 +9,7 @@ import Layout from "../components/layout";
 import PieChart from "../components/pieChart";
 import { format, parseISO } from "date-fns";
 import LineChart from "../components/lineChart";
+import DoughnutChart from "../components/DoughnutChart";
 
 const StudentReport = () => {
   const { student_number, module_id } = useParams();
@@ -83,7 +84,7 @@ const StudentReport = () => {
         <div class="row">
           <div class="col-md-5">
             <h4>Attendance Pie Chart</h4>
-            <PieChart chartData={piedata}></PieChart>
+            <DoughnutChart chartData={piedata}></DoughnutChart>
           </div>
           <div class="col-md-7 mt-5">
             <h4>Attendance Line Chart</h4>
