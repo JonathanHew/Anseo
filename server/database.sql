@@ -172,4 +172,3 @@ SELECT DISTINCT module_name, modules.module_id from modules join sessions on mod
 
 select signIn_date, signIn_time, signIn_on_campus, session_name from signIns Join sessions ON signIns.session_id = sessions.session_id WHERE signin_number = 'C19472842' AND sessions.module_id = 1;
 
-select * from sessions where 

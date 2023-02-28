@@ -193,7 +193,7 @@ exports.getSessionsInModule = async (req, res) => {
   }
 };
 
-exports.getStudentModuleReportData = async (req, res) => {
+exports.getStudentModuleReportPieData = async (req, res) => {
   const { module_id, student_number } = req.body;
 
   try {
@@ -217,3 +217,28 @@ exports.getStudentModuleReportData = async (req, res) => {
     console.error(err.message);
   }
 };
+
+exports.getStudentModulesReportLineData = async (req, res) => {
+  const { module_id, student_number } = req.body;
+
+  try {
+    const sessionData = await db.query(
+      `SELECT session_id, session_name, session_date FROM sessions WHERE module_id = $1`,
+      [module_id]
+    );
+
+    const signinData = await db.query(
+      `SELECT session_id, session_name, session_date FROM signIns JOIN sessions ON signIns.session_id = sessions.session_id WHERE signin_number = $1 AND sessions.module_id = $2`,
+      [student_number, module_id]
+    );
+
+    console.log(sessionData);
+
+    return res.status(200).json({
+      success: true,
+      sessions: "Test"
+    });
+  } catch (err) {
+    console.error(err.message);
+  }
+}

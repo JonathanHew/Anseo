@@ -3,7 +3,7 @@ import { NavLink, useParams } from "react-router-dom";
 import {
   fetchSessionsForModule,
   fetchSignInsForStudentInModule,
-  fetchStudentModuleReportData,
+  fetchStudentModuleReportPieData,
 } from "../api/lecturer.api";
 import Layout from "../components/layout";
 import PieChart from "../components/pieChart";
@@ -27,7 +27,7 @@ const StudentReport = () => {
       const sessionContent = await fetchSessionsForModule(module_id);
       setSessions(sessionContent.data.sessions);
 
-      await fetchStudentModuleReportData(
+      await fetchStudentModuleReportPieData(
         student_number,
         module_id
       ).then((res) => {
