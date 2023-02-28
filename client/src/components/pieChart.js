@@ -4,7 +4,7 @@ import { Chart as ChartJS } from "chart.js/auto";
 
 const PieChart = ({ chartData }) => {
   return (
-    <div style={{ width: "700px" }}>
+    <div style={{}}>
       <Pie data={chartData} />
     </div>
   );

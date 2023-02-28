@@ -9,6 +9,7 @@ import {
 import Layout from "../components/layout";
 import PieChart from "../components/pieChart";
 import { format, parseISO } from "date-fns";
+import LineChart from "../components/lineChart";
 
 const StudentReport = () => {
   const { student_number, module_id } = useParams();
@@ -17,7 +18,7 @@ const StudentReport = () => {
   const [loading, setLoading] = useState(true);
   const [piedata, setPiedata] = useState({});
   const [linedata, setLinedata] = useState({});
-  
+
   const [lineoptions, setLineoptions] = useState({
     scales: {
       y: {
@@ -26,7 +27,7 @@ const StudentReport = () => {
         },
       },
     },
-  })
+  });
 
   useEffect(() => {
     (async () => {
@@ -48,8 +49,6 @@ const StudentReport = () => {
                 label: "Number",
                 data: [res.data.attendedCount, res.data.missedCount],
                 backgroundColor: ["#87bc45", "#ea5545"],
-                borderColor: "black",
-                borderWidth: 1,
               },
             ],
           });
@@ -60,17 +59,19 @@ const StudentReport = () => {
         (res) => {
           console.log(res);
           setLinedata({
-            labels: res.map((session) => format(parseISO(session.session_date), 'dd/MM/yyyy')),
+            labels: res.data.sessions.map((session) =>
+              format(parseISO(session.session_date), "dd/MM/yyyy")
+            ),
             datasets: [
               {
-                label: "Attended",
-                data: res.map((session) => session.attended),
-                backgroundColor: ["white"],
-                borderColor: "black",
+                label: "Attendance",
+                data: res.data.sessions.map((session) => session.attended),
+                backgroundColor: ["blue"],
+                borderColor: "blue",
                 borderWidth: 2,
               },
             ],
-          })
+          });
         }
       );
 
@@ -83,7 +84,18 @@ const StudentReport = () => {
     </Layout>
   ) : (
     <Layout>
-      <PieChart chartData={piedata}></PieChart>
+      <div class="container text-center" style={{}}>
+        <div class="row">
+          <div class="col-md-5">
+            <h4>Attendance Pie Chart</h4>
+            <PieChart chartData={piedata}></PieChart>
+          </div>
+          <div class="col-md-7 mt-5">
+            <h4>Attendance Line Chart</h4>
+            <LineChart chartData={linedata} options={lineoptions}></LineChart>
+          </div>
+        </div>
+      </div>
       <h4 className="text-center mt-5">Sign Ins</h4>
       <table className="table text-center">
         <thead>
