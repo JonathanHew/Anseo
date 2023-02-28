@@ -223,22 +223,37 @@ exports.getStudentModulesReportLineData = async (req, res) => {
 
   try {
     const sessionData = await db.query(
-      `SELECT session_id, session_name, session_date FROM sessions WHERE module_id = $1`,
+      `SELECT session_id, session_name, session_date FROM sessions WHERE module_id = $1 ORDER BY session_date ASC `,
       [module_id]
     );
 
+    let sessions = sessionData.rows;
+
     const signinData = await db.query(
-      `SELECT session_id, session_name, session_date FROM signIns JOIN sessions ON signIns.session_id = sessions.session_id WHERE signin_number = $1 AND sessions.module_id = $2`,
+      `SELECT signins.session_id, session_name, session_date FROM signIns JOIN sessions ON signIns.session_id = sessions.session_id WHERE signin_number = $1 AND sessions.module_id = $2 ORDER BY session_date ASC`,
       [student_number, module_id]
     );
 
-    console.log(sessionData);
+    let signins = signinData.rows;
+    
+    sessions.forEach(session => {
+      signins.forEach(signin => {
+        if(session.session_id.includes(signin.session_id)) {
+          session.attended = 1;
+        }
+        else {
+          if(session.attended !== 1) {
+            session.attended = 0;
+          }
+        }
+      });
+    });
 
     return res.status(200).json({
       success: true,
-      sessions: "Test"
+      sessions: sessions,
     });
   } catch (err) {
     console.error(err.message);
   }
-}
+};
