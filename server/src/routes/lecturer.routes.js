@@ -11,7 +11,8 @@ const {
   getModulesForStudent,
   getSignInsForStudentByModuleID,
   getSessionsInModule,
-  getStudentModuleReportPieData
+  getStudentModuleReportPieData,
+  getStudentModuleReportLineData
 } = require("../controllers/lecturer.controller");
 const { userAuth } = require("../middlewares/auth-middlware");
 const { sessionValidator, studentSearchValidator, moduleValidator } = require("../validators/lecturer.validator");
@@ -48,5 +49,7 @@ router.post("/get-student-signins-for-module", userAuth, getSignInsForStudentByM
 router.post("/get-sessions-in-module", userAuth, getSessionsInModule);
 
 router.post("/get-student-module-pie-data", userAuth, getStudentModuleReportPieData);
+
+router.post("/get-student-module-line-data", userAuth, getStudentModuleReportLineData)
 
 module.exports = router;
