@@ -3,6 +3,7 @@ import { NavLink, useParams } from "react-router-dom";
 import {
   fetchSessionsForModule,
   fetchSignInsForStudentInModule,
+  fetchStudentModuleReportLineData,
   fetchStudentModuleReportPieData,
 } from "../api/lecturer.api";
 import Layout from "../components/layout";
@@ -15,6 +16,17 @@ const StudentReport = () => {
   const [sessions, setSessions] = useState([]);
   const [loading, setLoading] = useState(true);
   const [piedata, setPiedata] = useState({});
+  const [linedata, setLinedata] = useState({});
+  
+  const [lineoptions, setLineoptions] = useState({
+    scales: {
+      y: {
+        ticks: {
+          display: false,
+        },
+      },
+    },
+  })
 
   useEffect(() => {
     (async () => {
@@ -27,28 +39,39 @@ const StudentReport = () => {
       const sessionContent = await fetchSessionsForModule(module_id);
       setSessions(sessionContent.data.sessions);
 
-      await fetchStudentModuleReportPieData(
-        student_number,
-        module_id
-      ).then((res) => {
-        console.log(res);
-        setPiedata({
-          labels: ["Attended", "Not Attended"],
-          datasets: [
-            {
-              label: "Number",
-              data: [
-                res.data.attendedCount,
-                res.data.missedCount,
-              ],
-              backgroundColor: ["#87bc45", "#ea5545"],
-              borderColor: "black",
-              borderWidth: 1,
-            },
-          ],
-        })
-      }
-        
+      await fetchStudentModuleReportPieData(student_number, module_id).then(
+        (res) => {
+          setPiedata({
+            labels: ["Attended", "Not Attended"],
+            datasets: [
+              {
+                label: "Number",
+                data: [res.data.attendedCount, res.data.missedCount],
+                backgroundColor: ["#87bc45", "#ea5545"],
+                borderColor: "black",
+                borderWidth: 1,
+              },
+            ],
+          });
+        }
+      );
+
+      await fetchStudentModuleReportLineData(student_number, module_id).then(
+        (res) => {
+          console.log(res);
+          setLinedata({
+            labels: res.map((session) => format(parseISO(session.session_date), 'dd/MM/yyyy')),
+            datasets: [
+              {
+                label: "Attended",
+                data: res.map((session) => session.attended),
+                backgroundColor: ["white"],
+                borderColor: "black",
+                borderWidth: 2,
+              },
+            ],
+          })
+        }
       );
 
       setLoading(false);
@@ -72,20 +95,18 @@ const StudentReport = () => {
           </tr>
         </thead>
         <tbody>
-          {
-            signins.map((signin) => (
-              <tr key={signin.signin_id}>
-                <td>
-                  <NavLink to={`/join/${signin.session_id}`}>
-                    <span>{signin.session_name}</span>
-                  </NavLink>
-                </td>
-                <td>{format(parseISO(signin.signin_date), 'dd/MM/yyyy')}</td>
-                <td>{signin.signin_time}</td>
-                <td>{signin.signin_on_campus.toString()}</td>
-              </tr>
-            ))
-          }
+          {signins.map((signin) => (
+            <tr key={signin.signin_id}>
+              <td>
+                <NavLink to={`/join/${signin.session_id}`}>
+                  <span>{signin.session_name}</span>
+                </NavLink>
+              </td>
+              <td>{format(parseISO(signin.signin_date), "dd/MM/yyyy")}</td>
+              <td>{signin.signin_time}</td>
+              <td>{signin.signin_on_campus.toString()}</td>
+            </tr>
+          ))}
         </tbody>
       </table>
     </Layout>
