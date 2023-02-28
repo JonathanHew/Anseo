@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { NavLink, useParams } from "react-router-dom";
 import {
-  fetchSessionsForModule,
   fetchSignInsForStudentInModule,
   fetchStudentModuleReportLineData,
   fetchStudentModuleReportPieData,
@@ -14,7 +13,6 @@ import LineChart from "../components/lineChart";
 const StudentReport = () => {
   const { student_number, module_id } = useParams();
   const [signins, setSignins] = useState([]);
-  const [sessions, setSessions] = useState([]);
   const [loading, setLoading] = useState(true);
   const [piedata, setPiedata] = useState({});
   const [linedata, setLinedata] = useState({});
@@ -36,9 +34,6 @@ const StudentReport = () => {
         module_id
       );
       setSignins(signinContent.data.signins);
-
-      const sessionContent = await fetchSessionsForModule(module_id);
-      setSessions(sessionContent.data.sessions);
 
       await fetchStudentModuleReportPieData(student_number, module_id).then(
         (res) => {
