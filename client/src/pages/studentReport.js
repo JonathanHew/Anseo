@@ -62,8 +62,8 @@ const StudentReport = () => {
               {
                 label: "Attendance",
                 data: res.data.sessions.map((session) => session.attended),
-                backgroundColor: ["blue"],
-                borderColor: "blue",
+                backgroundColor: ["#87bc45",],
+                borderColor: "#ea5545",
                 borderWidth: 2,
               },
             ],
