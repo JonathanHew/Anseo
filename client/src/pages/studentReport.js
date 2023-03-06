@@ -53,7 +53,6 @@ const StudentReport = () => {
 
       await fetchStudentModuleReportLineData(student_number, module_id).then(
         (res) => {
-          console.log(res);
           setLinedata({
             labels: res.data.sessions.map((session) =>
               format(parseISO(session.session_date), "dd/MM/yyyy")
