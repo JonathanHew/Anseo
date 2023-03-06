@@ -19,6 +19,7 @@ import { fetchUserInfo } from "./api/auth";
 import Search from "./pages/search";
 import StudentReport from "./pages/studentReport";
 import Modules from "./pages/modules";
+import ModuleReport from "./pages/moduleReport";
 
 // if user is not logged in and they enter the dashboard route, they will redirected to login
 const PrivateRoutes = () => {
@@ -62,6 +63,7 @@ const App = () => {
           <Route path="/search" element={<Search id={id} />}></Route>
           <Route path="/student-report/:student_number/:module_id" element={<StudentReport/>}></Route>
           <Route path="/modules" element={<Modules/>}></Route>
+          <Route path="/module-report/:module_id" element={<ModuleReport/>}></Route>
         </Route>
 
         <Route element={<RestrictedRoutes />}>
