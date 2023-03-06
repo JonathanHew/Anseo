@@ -105,3 +105,9 @@ export async function fetchModuleReportLineData(module_id) {
     module_id: module_id,
   });
 }
+
+export async function fetchModuleReportBarData(module_id) {
+  return await axios.post("http://localhost:8000/api/get-module-bar-data", {
+    module_id: module_id,
+  });
+}
