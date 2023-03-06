@@ -23,7 +23,7 @@ const Modules = () => {
       <h2 className="text-center mt-5 mb-4">Your Modules</h2>
       <div class="list-group">
         {modules.map((module) => (
-          <NavLink to={`/modules`}>
+          <NavLink to={`/module-report/${module.module_id}`}>
             <button
               key={module.module_id}
               type="button"
