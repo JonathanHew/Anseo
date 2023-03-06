@@ -70,20 +70,38 @@ export async function fetchSignInsForStudentInModule(
 
 export async function fetchSessionsForModule(module_id) {
   return await axios.post("http://localhost:8000/api/get-sessions-in-module", {
-    module_id: module_id
+    module_id: module_id,
   });
 }
 
-export async function fetchStudentModuleReportPieData(student_number, module_id) {
-  return await axios.post("http://localhost:8000/api/get-student-module-pie-data", {
-    student_number: student_number,
-    module_id: module_id,
-  }
-)}
+export async function fetchStudentModuleReportPieData(
+  student_number,
+  module_id
+) {
+  return await axios.post(
+    "http://localhost:8000/api/get-student-module-pie-data",
+    {
+      student_number: student_number,
+      module_id: module_id,
+    }
+  );
+}
 
-export async function fetchStudentModuleReportLineData(student_number, module_id) {
-  return await axios.post("http://localhost:8000/api/get-student-module-line-data", {
-    student_number: student_number,
+export async function fetchStudentModuleReportLineData(
+  student_number,
+  module_id
+) {
+  return await axios.post(
+    "http://localhost:8000/api/get-student-module-line-data",
+    {
+      student_number: student_number,
+      module_id: module_id,
+    }
+  );
+}
+
+export async function fetchModuleReportLineData(module_id) {
+  return await axios.post("http://localhost:8000/api/get-module-line-data", {
     module_id: module_id,
-  }
-)}
+  });
+}
