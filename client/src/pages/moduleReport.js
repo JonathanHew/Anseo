@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { NavLink, useParams } from "react-router-dom";
 import {
   fetchModuleReportBarData,
   fetchModuleReportLineData,
@@ -7,6 +7,7 @@ import {
 import BarChart from "../components/barChart";
 import Layout from "../components/layout";
 import LineChart from "../components/lineChart";
+import { format, parseISO } from "date-fns";
 
 const ModuleReport = () => {
   const { module_id } = useParams();
@@ -39,7 +40,17 @@ const ModuleReport = () => {
             {
               label: "Sessions",
               data: Object.values(res.data.counts),
-              backgroundColor: ["#fd7f6f", "#7eb0d5", "#b2e061", "#bd7ebe", "#ffb55a", "#ffee65", "#beb9db", "#fdcce5", "#8bd3c7"],
+              backgroundColor: [
+                "#fd7f6f",
+                "#7eb0d5",
+                "#b2e061",
+                "#bd7ebe",
+                "#ffb55a",
+                "#ffee65",
+                "#beb9db",
+                "#fdcce5",
+                "#8bd3c7",
+              ],
               borderColor: "black",
               borderWidth: 1,
             },
@@ -68,6 +79,29 @@ const ModuleReport = () => {
           </div>
         </div>
       </div>
+      <h4 className="text-center mt-5">Sessions</h4>
+      <table className="table text-center">
+        <thead>
+          <tr>
+            <th>Session</th>
+            <th>Date</th>
+            <th>Count</th>
+          </tr>
+        </thead>
+        <tbody>
+          {sessions.map((session) => (
+            <tr key={session.session_id}>
+              <td>
+                <NavLink to={`/join/${session.session_id}`}>
+                  <span>{session.session_name}</span>
+                </NavLink>
+              </td>
+              <td>{format(parseISO(session.session_date), "dd/MM/yyyy")}</td>
+              <td>{session.count}</td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
     </Layout>
   );
 };
