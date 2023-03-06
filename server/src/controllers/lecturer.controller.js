@@ -130,7 +130,7 @@ exports.getModules = async (req, res) => {
   const user_id = req.user.id;
   try {
     const { rows } = await db.query(
-      `SELECT * FROM modules WHERE user_id = $1`,
+      `SELECT * FROM modules WHERE user_id = $1 ORDER BY module_name ASC`,
       [user_id]
     );
     return res.status(200).json({

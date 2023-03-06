@@ -55,6 +55,11 @@ const Dashboard = () => {
         <NavLink to="/search" className="mx-3">
           <span>Search</span>
         </NavLink>
+        <br></br>
+        <label>Select a module:</label>
+        <NavLink to="/modules" className="mx-3">
+          <span>Select</span>
+        </NavLink>
        </Layout>
     </div>
   );
