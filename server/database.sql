@@ -174,4 +174,4 @@ select signIn_date, signIn_time, signIn_on_campus, session_name from signIns Joi
 
 select session_name, count(signIn_number) from signins join sessions on signins.session_id = sessions.session_id join modules on sessions.module_id = modules.module_id where sessions.module_id = 1 group by session_name, sessions.session_date ORDER BY sessions.session_date ASC;
 
-select session_name, session_date, count(signin_number) from sessions left join signins on sessions.session_id = signins.session_id join modules on sessions.module_id = modules.module_id where sessions.module_id = 1 group by session_name, session_date ORDER BY sessions.session_date ASC;
+select sessions.session_id, session_name, session_date, count(signin_number) from sessions left join signins on sessions.session_id = signins.session_id join modules on sessions.module_id = modules.module_id where sessions.module_id = 1 group by session_name, session_date, sessions.session_id ORDER BY sessions.session_date ASC;
