@@ -56,6 +56,6 @@ router.post("/get-student-module-line-data", userAuth, getStudentModulesReportLi
 
 router.post("/get-module-line-data", userAuth, getModuleReportLineData);
 
-router.post("get-module-bar-data", userAuth, getModuleReportBarData);
+router.post("/get-module-bar-data", userAuth, getModuleReportBarData);
 
 module.exports = router;
