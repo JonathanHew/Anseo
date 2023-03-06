@@ -39,7 +39,7 @@ const ModuleReport = () => {
             {
               label: "Sessions",
               data: Object.values(res.data.counts),
-              backgroundColor: ["red", "yellow", "orange", "green", "blue"],
+              backgroundColor: ["#fd7f6f", "#7eb0d5", "#b2e061", "#bd7ebe", "#ffb55a", "#ffee65", "#beb9db", "#fdcce5", "#8bd3c7"],
               borderColor: "black",
               borderWidth: 1,
             },
@@ -56,8 +56,18 @@ const ModuleReport = () => {
     </Layout>
   ) : (
     <Layout>
-      <BarChart chartData={bardata}></BarChart>
-      <LineChart chartData={linedata}></LineChart>
+      <div class="container text-center mt-5" style={{}}>
+        <div class="row">
+          <div class="col-md-6">
+            <h4>Module Attendance Bar Chart</h4>
+            <BarChart chartData={bardata}></BarChart>
+          </div>
+          <div class="col-md-6">
+            <h4>Module Attendance Line Chart</h4>
+            <LineChart chartData={linedata}></LineChart>
+          </div>
+        </div>
+      </div>
     </Layout>
   );
 };
