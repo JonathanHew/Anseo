@@ -274,3 +274,28 @@ exports.getModuleReportLineData = async (req, res) => {
     console.error(err.message);
   }
 };
+
+exports.getModuleReportBarData = async (req, res) => {
+  const { module_id } = req.body;
+  let hashmap = {};
+
+  try {
+    const { rows } = await db.query(
+      `SELECT count(signin_number) FROM sessions LEFT JOIN signins ON sessions.session_id = signins.session_id JOIN modules ON sessions.module_id = modules.module_id WHERE sessions.module_id = $1 GROUP BY session_name, session_date, sessions.session_id ORDER BY sessions.session_date ASC`,
+      [module_id]
+    );
+
+    rows.forEach(session => {
+      hashmap[session.count] = (hashmap[session.count]+1) || 1 ;
+    });
+
+    return res.status(200).json({
+      success: true,
+      counts: hashmap,
+    });
+  } catch (err) {
+    console.error(err.message);
+  }
+};
+
+

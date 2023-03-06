@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { fetchModuleReportLineData } from "../api/lecturer.api";
+import BarChart from "../components/barChart";
 import Layout from "../components/layout";
 import LineChart from "../components/lineChart";
 
@@ -36,6 +37,7 @@ const ModuleReport = () => {
     </Layout>
   ) : (
     <Layout>
+      <BarChart chartData={linedata}></BarChart>
       <LineChart chartData={linedata}></LineChart>
     </Layout>
   );
