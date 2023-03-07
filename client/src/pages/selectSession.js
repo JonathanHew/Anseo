@@ -33,7 +33,7 @@ const SelectSession = () => {
           {sessions.map((session) => (
             <tr key={session.session_id}>
               <td>
-                <NavLink to={`/join/${session.session_id}`}>
+                <NavLink to={`/session-report/${session.session_id}`}>
                   <span>{session.session_name}</span>
                 </NavLink>
               </td>
