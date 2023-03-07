@@ -51,12 +51,12 @@ const Dashboard = () => {
           <span>Sessions</span>
         </NavLink>
         <br></br>
-        <label>Search for a student:</label>
+        <label>Student Report:</label>
         <NavLink to="/search" className="mx-3">
           <span>Search</span>
         </NavLink>
         <br></br>
-        <label>Select a module:</label>
+        <label>Module Report:</label>
         <NavLink to="/modules" className="mx-3">
           <span>Select</span>
         </NavLink>
