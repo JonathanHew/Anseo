@@ -1,4 +1,7 @@
-import React, { useState } from "react";
+import { format, parseISO } from "date-fns";
+import React, { useEffect, useState } from "react";
+import { NavLink } from "react-router-dom";
+import { fetchUserSessions } from "../api/lecturer.api";
 import Layout from "../components/layout";
 
 const SelectSession = () => {
@@ -15,7 +18,7 @@ const SelectSession = () => {
 
   return (
     <Layout>
-      <h4 className="text-center mt-5">Select a Session</h4>
+      <h4 className="text-center mt-5">Select Session</h4>
       <table className="table text-center">
         <thead>
           <tr>
