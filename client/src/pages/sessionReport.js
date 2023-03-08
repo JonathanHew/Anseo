@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import { fetchStudentsInSession } from "../api/lecturer.api";
+import { fetcchSessionReportChartData } from "../api/lecturer.api";
 import Layout from "../components/layout";
 import PieChart from "../components/pieChart";
 
@@ -13,14 +13,14 @@ const SessionReport = () => {
 
   useEffect(() => {
     (async () => {
-      await fetchStudentsInSession(session_id).then((res) => {
+      await fetcchSessionReportChartData(session_id).then((res) => {
         setSignins(res.data.signins);
 
         setPiedata({
           labels: ["On Campus", "Off Campus"],
           datasets: [
             {
-              label: "Result",
+              label: "Students",
               data: [res.data.onCampus, res.data.offCampus],
               backgroundColor: ["#87bc45", "#ea5545"],
             },
