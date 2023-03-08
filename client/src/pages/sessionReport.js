@@ -2,16 +2,30 @@ import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { fetchStudentsInSession } from "../api/lecturer.api";
 import Layout from "../components/layout";
+import PieChart from "../components/pieChart";
 
 const SessionReport = () => {
-  const [students, setStudents] = useState([]);
-  const [loading, setLoading] = useState(true);
   const { session_id } = useParams();
+
+  const [signins, setSignins] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [piedata, setPiedata] = useState({});
 
   useEffect(() => {
     (async () => {
       await fetchStudentsInSession(session_id).then((res) => {
-        setStudents(res.data.students);
+        setSignins(res.data.signins);
+
+        setPiedata({
+          labels: ["On Campus", "Off Campus"],
+          datasets: [
+            {
+              label: "Result",
+              data: [res.data.onCampus, res.data.offCampus],
+              backgroundColor: ["#87bc45", "#ea5545"],
+            },
+          ],
+        });
       });
 
       setLoading(false);
@@ -20,7 +34,9 @@ const SessionReport = () => {
   return loading ? (
     <Layout>Loading ...</Layout>
   ) : (
-    <Layout>Session Report</Layout>
+    <Layout>
+      <PieChart chartData={piedata} />
+    </Layout>
   );
 };
 
