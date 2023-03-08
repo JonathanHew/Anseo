@@ -285,8 +285,8 @@ exports.getModuleReportBarData = async (req, res) => {
       [module_id]
     );
 
-    rows.forEach(session => {
-      hashmap[session.count] = (hashmap[session.count]+1) || 1 ;
+    rows.forEach((session) => {
+      hashmap[session.count] = hashmap[session.count] + 1 || 1;
     });
 
     return res.status(200).json({
@@ -298,4 +298,29 @@ exports.getModuleReportBarData = async (req, res) => {
   }
 };
 
+exports.getSessionReportData = async (req, res) => {
+  const { session_id } = req.body;
+  let campusCount = 0;
 
+  try {
+    const { rows } = await db.query(
+      `SELECT * FROM signins where session_id = $1 ORDER BY signin_time ASC`,
+      [session_id]
+    );
+
+    rows.forEach((signin) => {
+      if (signin.signin_on_campus === true) {
+        campusCount++;
+      }
+    });
+
+    return res.status(200).json({
+      success: true,
+      signins: rows,
+      onCampus: campusCount,
+      offCampus: rows.length - campusCount,
+    });
+  } catch (err) {
+    console.error(err.message);
+  }
+};
