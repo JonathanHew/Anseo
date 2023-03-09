@@ -17,6 +17,22 @@ const ModuleReport = () => {
   const [linedata, setLinedata] = useState([]);
   const [bardata, setBardata] = useState([]);
   const [module, setModule] = useState("");
+  const [baroptions, setBaroptions] = useState({
+    scales: {
+      x: {
+        title: {
+          display: true,
+          text: '# of Students'
+        }
+      },
+      y: {
+        title: {
+          display: true,
+          text: '# of Sessions'
+        }
+      }
+    }    
+  });
 
   useEffect(() => {
     (async () => {
@@ -76,11 +92,11 @@ const ModuleReport = () => {
       <div class="container text-center mt-5" style={{}}>
         <div class="row">
           <div class="col-md-6">
-            <h4>Module Attendance Bar Chart</h4>
-            <BarChart chartData={bardata}></BarChart>
+            <h4>Students in Sessions</h4>
+            <BarChart chartData={bardata} options={baroptions}></BarChart>
           </div>
           <div class="col-md-6">
-            <h4>Module Attendance Line Chart</h4>
+            <h4>Session History</h4>
             <LineChart chartData={linedata}></LineChart>
           </div>
         </div>
