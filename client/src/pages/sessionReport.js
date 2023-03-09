@@ -50,7 +50,7 @@ const SessionReport = () => {
                 <div class="card-body">
                   <h5 class="card-title">Attendance</h5>
                   <p class="card-text" style={{"fontSize": "50px"}}>
-                    4
+                    {signins.length}
                   </p>
                 </div>
               </div>
