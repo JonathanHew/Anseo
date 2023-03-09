@@ -36,11 +36,6 @@ const Dashboard = () => {
         <CreateModule />
 
         <SessionList sessions={sessions} />
-
-        <label>Your sessions:</label>
-        <NavLink to="/sessions" className="mx-3">
-          <span>Sessions</span>
-        </NavLink>
         <br></br>
         <label>Student Report:</label>
         <NavLink to="/search" className="mx-3">
