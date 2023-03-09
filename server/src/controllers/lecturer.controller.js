@@ -343,7 +343,7 @@ exports.getModuleInfo = async (req, res) => {
 
   try {
     const { rows } = await db.query(
-      'SELECT module_name FROM modules WHERE module_id = $1'
+      `SELECT module_name FROM modules WHERE module_id = $1`,
       [module_id]
     );
 
