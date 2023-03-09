@@ -39,11 +39,33 @@ const SessionReport = () => {
     <Layout>
       <div class="container text-center" style={{}}>
         <div class="row">
-          <div class="col-md-6">
+          <div class="col-md-5">
             <h4>Attendance Pie Chart</h4>
             <DoughnutChart chartData={piedata}></DoughnutChart>
           </div>
-          <div class="col-md-6 mt-5"></div>
+          <div class="col-md-7 mt-5 container text-center">
+            <h4 class="mb-5">Session Summary</h4>
+            <div className="row">
+              <div class="card w-75 m-auto">
+                <div class="card-body">
+                  <h5 class="card-title">Attendance</h5>
+                  <p class="card-text" style={{"fontSize": "50px"}}>
+                    4
+                  </p>
+                </div>
+              </div>
+            </div>
+            <div class="row mt-5">
+              <div class="card w-75 m-auto">
+                <div class="card-body">
+                  <h5 class="card-title">On Campus</h5>
+                  <p class="card-text" style={{"fontSize": "50px"}}>
+                    33%
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </Layout>
