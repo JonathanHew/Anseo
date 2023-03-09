@@ -5,10 +5,9 @@ export async function fetchUserSessions() {
   return await axios.get("http://localhost:8000/api/get-sessions", {});
 }
 
-export async function onCreateSession(name, id, module) {
+export async function onCreateSession(name, module) {
   return await axios.post("http://localhost:8000/api/create-session", {
     session_name: name,
-    user_id: id,
     module_id: module,
   });
 }
@@ -37,10 +36,9 @@ export async function fetchSessionsForStudent(id) {
   });
 }
 
-export async function onCreateModule(name, id) {
+export async function onCreateModule(name) {
   return await axios.post("http://localhost:8000/api/create-module", {
     module_name: name,
-    user_id: id,
   });
 }
 
@@ -48,10 +46,9 @@ export async function fetchUserModules() {
   return await axios.get("http://localhost:8000/api/get-modules", {});
 }
 
-export async function fetchModulesForStudent(number, id) {
+export async function fetchModulesForStudent(number) {
   return await axios.post("http://localhost:8000/api/get-student-modules", {
     student_number: number,
-    user_id: id,
   });
 }
 
@@ -111,7 +108,6 @@ export async function fetchModuleReportBarData(module_id) {
     module_id: module_id,
   });
 }
-
 
 export async function fetcchSessionReportChartData(session_id) {
   return await axios.post("http://localhost:8000/api/get-session-charts-data", {
