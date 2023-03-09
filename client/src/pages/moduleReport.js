@@ -21,7 +21,7 @@ const ModuleReport = () => {
       await fetchModuleReportLineData(module_id).then((res) => {
         setSessions(res.data.sessions);
         setLinedata({
-          labels: res.data.sessions.map((session) => session.session_name),
+          labels: res.data.sessions.map((session) => format(parseISO(session.session_date), "dd/MM/yyyy")),
           datasets: [
             {
               label: ["Attendance"],

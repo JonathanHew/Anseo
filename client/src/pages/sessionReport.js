@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from "react";
+import { Doughnut } from "react-chartjs-2";
 import { useParams } from "react-router-dom";
 import { fetcchSessionReportChartData } from "../api/lecturer.api";
+import DoughnutChart from "../components/DoughnutChart";
 import Layout from "../components/layout";
 import PieChart from "../components/pieChart";
 
@@ -35,7 +37,15 @@ const SessionReport = () => {
     <Layout>Loading ...</Layout>
   ) : (
     <Layout>
-      <PieChart chartData={piedata} />
+      <div class="container text-center" style={{}}>
+        <div class="row">
+          <div class="col-md-6">
+            <h4>Attendance Pie Chart</h4>
+            <DoughnutChart chartData={piedata}></DoughnutChart>
+          </div>
+          <div class="col-md-6 mt-5"></div>
+        </div>
+      </div>
     </Layout>
   );
 };
