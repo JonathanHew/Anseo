@@ -17,6 +17,7 @@ const StudentReport = () => {
   const [loading, setLoading] = useState(true);
   const [piedata, setPiedata] = useState({});
   const [linedata, setLinedata] = useState({});
+  const [counts, setCounts] = useState({ attended: 0, notAttended: 0 });
 
   const [lineoptions, setLineoptions] = useState({
     scales: {
@@ -48,6 +49,11 @@ const StudentReport = () => {
               },
             ],
           });
+
+          setCounts({
+            attended: res.data.attendedCount,
+            notAttended: res.data.attendedCount + res.data.missedCount,
+          });
         }
       );
 
@@ -61,7 +67,7 @@ const StudentReport = () => {
               {
                 label: "Attendance",
                 data: res.data.sessions.map((session) => session.attended),
-                backgroundColor: ["#87bc45",],
+                backgroundColor: ["#87bc45"],
                 borderColor: "#ea5545",
                 borderWidth: 2,
               },
@@ -79,14 +85,38 @@ const StudentReport = () => {
     </Layout>
   ) : (
     <Layout>
+      <h1 className="text-center mt-2">{student_number} Student Report</h1>
+
+      <div class="row text-center mt-5">
+        <div class="col-sm-6">
+          <div class="card">
+            <div class="card-body">
+              <h5 class="card-title">Attendance</h5>
+              <p class="card-text" style={{ fontSize: "50px" }}>
+                {counts.attended}/{counts.notAttended}
+              </p>
+            </div>
+          </div>
+        </div>
+        <div class="col-sm-6">
+          <div class="card">
+            <div class="card-body">
+              <h5 class="card-title">On Campus</h5>
+              <p class="card-text" style={{ fontSize: "50px" }}>
+                0%
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+
       <div class="container text-center" style={{}}>
+        <h3 className="mt-5">Attendance History</h3>
         <div class="row">
           <div class="col-md-5">
-            <h4>Attendance Pie Chart</h4>
             <DoughnutChart chartData={piedata}></DoughnutChart>
           </div>
           <div class="col-md-7 mt-5">
-            <h4>Attendance Line Chart</h4>
             <LineChart chartData={linedata} options={lineoptions}></LineChart>
           </div>
         </div>
