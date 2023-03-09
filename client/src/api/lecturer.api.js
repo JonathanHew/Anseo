@@ -114,3 +114,4 @@ export async function fetcchSessionReportChartData(session_id) {
     session_id: session_id,
   });
 }
+

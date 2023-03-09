@@ -337,3 +337,21 @@ exports.getSessionReportData = async (req, res) => {
     console.error(err.message);
   }
 };
+
+exports.getModuleInfo = async (req, res) => {
+  const { module_id } = req.body;
+
+  try {
+    const { rows } = await db.query(
+      'SELECT module_name FROM modules WHERE module_id = $1'
+      [module_id]
+    );
+
+    return res.status(200).json({
+      success: true,
+      sessions: rows,
+    });
+  } catch (err) {
+    console.error(err.message);
+  }
+};
