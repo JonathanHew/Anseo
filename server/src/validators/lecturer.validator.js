@@ -34,7 +34,7 @@ const validModule = check("module_id")
   .withMessage("Please select a module!");
 
 module.exports = {
-  sessionValidator: [validModule, sessionName, userId],
+  sessionValidator: [validModule, sessionName],
   studentSearchValidator: [studentNumber, studentExists],
-  moduleValidator: [moduleName, userId],
+  moduleValidator: [moduleName],
 };

@@ -29,8 +29,6 @@ const Dashboard = () => {
     <div>
       <Layout>
         <h1>Dashboard</h1>
-
-        <h1>Sessions Page</h1>
         <p>Welcome: TESTUSER</p>
 
         <CreateSession modules={modules} />
