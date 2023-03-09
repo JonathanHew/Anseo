@@ -1,10 +1,9 @@
+import { format, parseISO } from "date-fns";
 import React, { useEffect, useState } from "react";
-import { Doughnut } from "react-chartjs-2";
 import { useParams } from "react-router-dom";
 import { fetcchSessionReportChartData } from "../api/lecturer.api";
 import DoughnutChart from "../components/DoughnutChart";
 import Layout from "../components/layout";
-import PieChart from "../components/pieChart";
 
 const SessionReport = () => {
   const { session_id } = useParams();
@@ -77,6 +76,40 @@ const SessionReport = () => {
           </div>
         </div>
       </div>
+      <h4 className="text-center mt-5">Signed In Students</h4>
+      <table className="table mt-3 text-center">
+        <thead>
+          <tr>
+            <th>Student Number</th>
+            <th>Name</th>
+            <th>Date</th>
+            <th>Time</th>
+            <th>Campus</th>
+          </tr>
+        </thead>
+        <tbody>
+          {
+            /*
+           <tr>
+             <td>C19472842</td>
+             <td>Jonathan</td>
+             <td>02/02/23</td>
+             <td>13:00</td>
+           </tr>
+           */
+
+            signins.map((signin) => (
+              <tr key={signin.signin_id}>
+                <td>{signin.signin_number}</td>
+                <td>{signin.signin_name}</td>
+                <td>{format(parseISO(signin.signin_date), "dd/MM/yyyy")}</td>
+                <td>{signin.signin_time}</td>
+                <td>{signin.signin_on_campus.toString()}</td>
+              </tr>
+            ))
+          }
+        </tbody>
+      </table>
     </Layout>
   );
 };

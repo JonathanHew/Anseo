@@ -1,40 +1,24 @@
 import { useEffect, useState } from "react";
-import { useDispatch } from "react-redux";
-import { fetchProtectedInfo, onLogout } from "../api/auth";
 import Layout from "../components/layout";
-import { unauthenticateUser } from "../redux/slices/authSlice";
 import { NavLink } from "react-router-dom";
+import { fetchUserModules, fetchUserSessions } from "../api/lecturer.api";
+import CreateSession from "../components/createSession";
+import CreateModule from "../components/createModule";
+import SessionList from "../components/sessionList";
 
 const Dashboard = () => {
-  const dispatch = useDispatch();
   const [loading, setLoading] = useState(true);
-  const [protectedData, setProtectedData] = useState(null);
-  
-  const logout = async () => {
-    try {
-      await onLogout();
-
-      dispatch(unauthenticateUser());
-      localStorage.removeItem("isAuth");
-    } catch (err) {
-      console.error(err.response);
-    }
-  };
-
-  const protectedInfo = async () => {
-    try {
-      const { data } = await fetchProtectedInfo();
-
-      setProtectedData(data.info);
-
-      setLoading(false);
-    } catch (error) {
-      logout();
-    }
-  };
+  const [sessions, setSessions] = useState([]);
+  const [modules, setModules] = useState([]);
 
   useEffect(() => {
-    protectedInfo();
+    (async () => {
+      const sessionContent = await fetchUserSessions();
+      setSessions(sessionContent.data.sessions);
+      const moduleContent = await fetchUserModules();
+      setModules(moduleContent.data.modules);
+      setLoading(false);
+    })();
   }, []);
 
   return loading ? (
@@ -45,7 +29,16 @@ const Dashboard = () => {
     <div>
       <Layout>
         <h1>Dashboard</h1>
-        <h2>{protectedData}</h2>
+
+        <h1>Sessions Page</h1>
+        <p>User ID: {id}</p>
+
+        <CreateSession id={id} modules={modules} />
+
+        <CreateModule id={id} />
+
+        <SessionList sessions={sessions} />
+
         <label>Your sessions:</label>
         <NavLink to="/sessions" className="mx-3">
           <span>Sessions</span>
@@ -60,7 +53,12 @@ const Dashboard = () => {
         <NavLink to="/modules" className="mx-3">
           <span>Select</span>
         </NavLink>
-       </Layout>
+        <br></br>
+        <label>Session Report:</label>
+        <NavLink to="/select-session" className="mx-3">
+          <span>Select</span>
+        </NavLink>
+      </Layout>
     </div>
   );
 };
