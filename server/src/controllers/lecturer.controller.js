@@ -1,7 +1,8 @@
 const db = require("../db");
 
 exports.createSession = async (req, res) => {
-  const { user_id, session_name, module_id } = req.body;
+  const user_id = req.user.id;
+  const { session_name, module_id } = req.body;
   try {
     await db.query(
       "INSERT INTO sessions (session_name, user_id, module_id) VALUES ($1 , $2, $3)",
@@ -107,7 +108,8 @@ exports.getSessionsForStudent = async (req, res) => {
 };
 
 exports.createModule = async (req, res) => {
-  const { user_id, module_name } = req.body;
+  const user_id = req.user.id;
+  const { module_name } = req.body;
   try {
     await db.query(
       "INSERT INTO modules (module_name, user_id) VALUES ($1 , $2)",
@@ -143,7 +145,8 @@ exports.getModules = async (req, res) => {
 };
 
 exports.getModulesForStudent = async (req, res) => {
-  const { user_id, student_number } = req.body;
+  const user_id = req.user.id;
+  const { student_number } = req.body;
   try {
     const { rows } = await db.query(
       `SELECT DISTINCT module_name, modules.module_id from modules join sessions on modules.module_id = sessions.module_id WHERE session_id IN (SELECT sessions.session_id FROM sessions JOIN signIns ON sessions.session_id = signIns.session_id JOIN modules ON sessions.module_id = modules.module_id WHERE signin_number = $1 and sessions.user_id = $2)`,
