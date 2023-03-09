@@ -12,11 +12,20 @@ const SessionReport = () => {
   const [signins, setSignins] = useState([]);
   const [loading, setLoading] = useState(true);
   const [piedata, setPiedata] = useState({});
+  const [percent, setPercent] = useState();
 
   useEffect(() => {
     (async () => {
       await fetcchSessionReportChartData(session_id).then((res) => {
         setSignins(res.data.signins);
+
+        if (res.data.signins.length == 0) {
+          setPercent(0);
+        } else {
+          setPercent(
+            Math.round((res.data.onCampus / res.data.signins.length) * 100)
+          );
+        }
 
         setPiedata({
           labels: ["On Campus", "Off Campus"],
@@ -49,7 +58,7 @@ const SessionReport = () => {
               <div class="card w-75 m-auto">
                 <div class="card-body">
                   <h5 class="card-title">Attendance</h5>
-                  <p class="card-text" style={{"fontSize": "50px"}}>
+                  <p class="card-text" style={{ fontSize: "50px" }}>
                     {signins.length}
                   </p>
                 </div>
@@ -59,8 +68,8 @@ const SessionReport = () => {
               <div class="card w-75 m-auto">
                 <div class="card-body">
                   <h5 class="card-title">On Campus</h5>
-                  <p class="card-text" style={{"fontSize": "50px"}}>
-                    33%
+                  <p class="card-text" style={{ fontSize: "50px" }}>
+                    {percent}%
                   </p>
                 </div>
               </div>
