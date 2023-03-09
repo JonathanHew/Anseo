@@ -1,7 +1,7 @@
 import { format, parseISO } from "date-fns";
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import { fetcchSessionReportChartData } from "../api/lecturer.api";
+import { fetchSessionReportChartData } from "../api/lecturer.api";
 import DoughnutChart from "../components/DoughnutChart";
 import Layout from "../components/layout";
 
@@ -15,7 +15,7 @@ const SessionReport = () => {
 
   useEffect(() => {
     (async () => {
-      await fetcchSessionReportChartData(session_id).then((res) => {
+      await fetchSessionReportChartData(session_id).then((res) => {
         setSignins(res.data.signins);
 
         if (res.data.signins.length == 0) {

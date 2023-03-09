@@ -109,9 +109,14 @@ export async function fetchModuleReportBarData(module_id) {
   });
 }
 
-export async function fetcchSessionReportChartData(session_id) {
+export async function fetchSessionReportChartData(session_id) {
   return await axios.post("http://localhost:8000/api/get-session-charts-data", {
     session_id: session_id,
   });
 }
 
+export async function fetchModuleInfo(module_id) {
+  return await axios.post("http://localhost:8000/api/get-module-info", {
+    module_id: module_id,
+  });
+}
