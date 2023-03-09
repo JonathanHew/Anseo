@@ -10,7 +10,7 @@ const CreateSession = ({ modules }) => {
     e.preventDefault();
     try {
       await onCreateSession(name, module);
-      window.location = "/sessions";
+      window.location = "/dashboard";
     } catch (err) {
       console.error(err.response.data.errors[0].msg);
       setError(err.response.data.errors[0].msg);

@@ -17,7 +17,12 @@ const StudentReport = () => {
   const [loading, setLoading] = useState(true);
   const [piedata, setPiedata] = useState({});
   const [linedata, setLinedata] = useState({});
-  const [counts, setCounts] = useState({ attended: 0, notAttended: 0 });
+  const [percent, setPercent] = useState();
+  const [counts, setCounts] = useState({
+    attended: 0,
+    notAttended: 0,
+    total: 0,
+  });
 
   const [lineoptions, setLineoptions] = useState({
     scales: {
@@ -36,6 +41,14 @@ const StudentReport = () => {
         module_id
       );
       setSignins(signinContent.data.signins);
+      console.log(signinContent.data.signins.length);
+      console.log(signinContent.data.campusCount);
+      setPercent(
+        Math.round(
+          (signinContent.data.campusCount / signinContent.data.signins.length) *
+            100
+        )
+      );
 
       await fetchStudentModuleReportPieData(student_number, module_id).then(
         (res) => {
@@ -52,7 +65,8 @@ const StudentReport = () => {
 
           setCounts({
             attended: res.data.attendedCount,
-            notAttended: res.data.attendedCount + res.data.missedCount,
+            notAttended: res.data.missedCount,
+            total: res.data.attendedCount + res.data.missedCount,
           });
         }
       );
@@ -93,7 +107,7 @@ const StudentReport = () => {
             <div class="card-body">
               <h5 class="card-title">Attendance</h5>
               <p class="card-text" style={{ fontSize: "50px" }}>
-                {counts.attended}/{counts.notAttended}
+                {counts.attended}/{counts.total}
               </p>
             </div>
           </div>
@@ -103,7 +117,7 @@ const StudentReport = () => {
             <div class="card-body">
               <h5 class="card-title">On Campus</h5>
               <p class="card-text" style={{ fontSize: "50px" }}>
-                0%
+                {percent}%
               </p>
             </div>
           </div>

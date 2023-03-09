@@ -169,9 +169,19 @@ exports.getSignInsForStudentByModuleID = async (req, res) => {
       `SELECT signin_id, signin_date, signin_time, signin_on_campus, session_name, signIns.session_id FROM signIns JOIN sessions ON signIns.session_id = sessions.session_id WHERE signin_number = $1 AND sessions.module_id = $2 ORDER BY signin_date DESC`,
       [student_number, module_id]
     );
+
+    let count = 0;
+
+    rows.forEach((signin) => {
+      if (signin.signin_on_campus === true) {
+        count++;
+      }
+    });
+
     return res.status(200).json({
       success: true,
       signins: rows,
+      campusCount: count
     });
   } catch (err) {
     console.error(err.message);
