@@ -15,7 +15,8 @@ const {
   getStudentModulesReportLineData,
   getModuleReportLineData,
   getModuleReportBarData,
-  getSessionReportData
+  getSessionReportData,
+  getModuleInfo
 } = require("../controllers/lecturer.controller");
 const { userAuth } = require("../middlewares/auth-middlware");
 const { sessionValidator, studentSearchValidator, moduleValidator } = require("../validators/lecturer.validator");
@@ -60,5 +61,7 @@ router.post("/get-module-line-data", userAuth, getModuleReportLineData);
 router.post("/get-module-bar-data", userAuth, getModuleReportBarData);
 
 router.post("/get-session-charts-data", userAuth, getSessionReportData);
+
+router.post("/get-module-info", userAuth, getModuleInfo);
 
 module.exports = router;
