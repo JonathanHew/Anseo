@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
+import { fetchSessionInfo } from "../api/lecturer.api";
 import { onSignIn } from "../api/signIn.api";
 import Layout from "../components/layout";
 
@@ -14,27 +15,46 @@ const SignIn = () => {
     latitude: undefined,
   });
 
+  const [session, setSession] = useState("");
   const [error, setError] = useState(false);
   const [success, setSuccess] = useState(false);
+  const [loading, setLoading] = useState(true);
 
   const onChange = (e) => {
     setValues({ ...values, [e.target.name]: e.target.value });
   };
 
   useEffect(() => {
+    (async () => {
+      const sessionInfo = await fetchSessionInfo(id);
+      setSession(sessionInfo.data.result[0].session_name);
+      setLoading(false);
+    })();
+
     const geo = navigator.geolocation;
     if (!geo) {
       console.log("Geolocation is not supported on your browser!");
-      setError("Geolocation is not supported on your browser. Please notify your lecturer!")
+      setError(
+        "Geolocation is not supported on your browser. Please notify your lecturer!"
+      );
     }
 
-    geo.getCurrentPosition((pos) => {
-      console.log(pos);
-      setValues({ ...values, longitude: pos.coords.longitude, latitude: pos.coords.latitude });
-    }, () => {
-      console.log("Unable to fetch location!");
-      setError("Could not fetch location. Please refresh the page and make sure you click allow on the location services popup. If this proceeds please notify your lecturer!")
-    })
+    geo.getCurrentPosition(
+      (pos) => {
+        console.log(pos);
+        setValues({
+          ...values,
+          longitude: pos.coords.longitude,
+          latitude: pos.coords.latitude,
+        });
+      },
+      () => {
+        console.log("Unable to fetch location!");
+        setError(
+          "Could not fetch location. Please refresh the page and make sure you click allow on the location services popup. If this proceeds please notify your lecturer!"
+        );
+      }
+    );
   }, []);
 
   const onSubmit = async (e) => {
@@ -54,11 +74,12 @@ const SignIn = () => {
     }
   };
 
-  return (
+  return loading ? (
+    <Layout>Loading...</Layout>
+  ) : (
     <Layout>
+      <h1 className="text-center">Sign Into {session}</h1>
       <form onSubmit={(e) => onSubmit(e)} className="container mt-3">
-        <h1>Sign Into Class</h1>
-
         <div className="mb-3">
           <label htmlFor="number" className="form-label">
             Student Number
