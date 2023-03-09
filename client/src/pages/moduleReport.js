@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { NavLink, useParams } from "react-router-dom";
 import {
+  fetchModuleInfo,
   fetchModuleReportBarData,
   fetchModuleReportLineData,
 } from "../api/lecturer.api";
@@ -15,6 +16,7 @@ const ModuleReport = () => {
   const [loading, setLoading] = useState(true);
   const [linedata, setLinedata] = useState([]);
   const [bardata, setBardata] = useState([]);
+  const [module, setModule] = useState("");
 
   useEffect(() => {
     (async () => {
@@ -32,8 +34,11 @@ const ModuleReport = () => {
         });
       });
 
+      await fetchModuleInfo(module_id).then((res) => {
+        setModule(res.data.sessions[0].module_name);
+      });
+
       await fetchModuleReportBarData(module_id).then((res) => {
-        //console.log(Object.keys(res.data.counts)); ['0', '1', '2', '4']
         setBardata({
           labels: Object.keys(res.data.counts),
           datasets: [
@@ -67,6 +72,7 @@ const ModuleReport = () => {
     </Layout>
   ) : (
     <Layout>
+      <h1 className="text-center">{module} Report</h1>
       <div class="container text-center mt-5" style={{}}>
         <div class="row">
           <div class="col-md-6">

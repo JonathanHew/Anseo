@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { NavLink, useParams } from "react-router-dom";
 import {
+  fetchModuleInfo,
   fetchSignInsForStudentInModule,
   fetchStudentModuleReportLineData,
   fetchStudentModuleReportPieData,
@@ -18,6 +19,7 @@ const StudentReport = () => {
   const [piedata, setPiedata] = useState({});
   const [linedata, setLinedata] = useState({});
   const [percent, setPercent] = useState();
+  const [module, setModule] = useState("");
   const [counts, setCounts] = useState({
     attended: 0,
     notAttended: 0,
@@ -41,14 +43,16 @@ const StudentReport = () => {
         module_id
       );
       setSignins(signinContent.data.signins);
-      console.log(signinContent.data.signins.length);
-      console.log(signinContent.data.campusCount);
       setPercent(
         Math.round(
           (signinContent.data.campusCount / signinContent.data.signins.length) *
             100
         )
       );
+
+      await fetchModuleInfo(module_id).then((res) => {
+        setModule(res.data.sessions[0].module_name);
+      });
 
       await fetchStudentModuleReportPieData(student_number, module_id).then(
         (res) => {
@@ -99,7 +103,9 @@ const StudentReport = () => {
     </Layout>
   ) : (
     <Layout>
-      <h1 className="text-center mt-2">{student_number} Student Report</h1>
+      <h1 className="text-center mt-2">
+        {student_number} Report For {module}
+      </h1>
 
       <div class="row text-center mt-5">
         <div class="col-sm-6">
