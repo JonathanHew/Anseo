@@ -31,11 +31,11 @@ const Dashboard = () => {
         <h1>Dashboard</h1>
 
         <h1>Sessions Page</h1>
-        <p>User ID: {id}</p>
+        <p>Welcome: TESTUSER</p>
 
-        <CreateSession id={id} modules={modules} />
+        <CreateSession modules={modules} />
 
-        <CreateModule id={id} />
+        <CreateModule />
 
         <SessionList sessions={sessions} />
 

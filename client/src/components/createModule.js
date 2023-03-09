@@ -1,14 +1,14 @@
 import React, { Fragment, useState } from "react";
 import { onCreateModule } from "../api/lecturer.api";
 
-const CreateModule = ({ id }) => {
+const CreateModule = () => {
   const [name, setName] = useState("");
   const [error, setError] = useState(false);
 
   const create = async (e) => {
     e.preventDefault();
     try {
-      await onCreateModule(name, id);
+      await onCreateModule(name);
       window.location = "/sessions";
     } catch (err) {
       console.error(err.response.data.errors[0].msg);

@@ -1,7 +1,7 @@
 import React, { Fragment, useState } from "react";
 import { onCreateSession } from "../api/lecturer.api";
 
-const CreateSession = ({ id, modules }) => {
+const CreateSession = ({ modules }) => {
   const [name, setName] = useState("");
   const [module, setModule] = useState();
   const [error, setError] = useState(false);
@@ -9,7 +9,7 @@ const CreateSession = ({ id, modules }) => {
   const create = async (e) => {
     e.preventDefault();
     try {
-      await onCreateSession(name, id, module);
+      await onCreateSession(name, module);
       window.location = "/sessions";
     } catch (err) {
       console.error(err.response.data.errors[0].msg);
