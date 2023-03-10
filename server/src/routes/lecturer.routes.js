@@ -16,7 +16,8 @@ const {
   getModuleReportLineData,
   getModuleReportBarData,
   getSessionReportData,
-  getModuleInfo
+  getModuleInfo,
+  deleteSignIn
 } = require("../controllers/lecturer.controller");
 const { userAuth } = require("../middlewares/auth-middlware");
 const { sessionValidator, studentSearchValidator, moduleValidator } = require("../validators/lecturer.validator");
@@ -63,5 +64,7 @@ router.post("/get-module-bar-data", userAuth, getModuleReportBarData);
 router.post("/get-session-charts-data", userAuth, getSessionReportData);
 
 router.post("/get-module-info", userAuth, getModuleInfo);
+
+router.delete("/delete-signin/:signin_id", userAuth, deleteSignIn);
 
 module.exports = router;
