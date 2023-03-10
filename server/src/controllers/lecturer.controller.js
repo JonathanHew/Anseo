@@ -355,3 +355,21 @@ exports.getModuleInfo = async (req, res) => {
     console.error(err.message);
   }
 };
+
+exports.deleteSignIn = async (req,res) => {
+  const { signin_id } = req.params;
+
+  try {
+    await db.query(
+      `DELETE FROM signIns WHERE signIn_id = $1`,
+      [signin_id]
+    );
+
+    return res.status(200).json({
+      success: true,
+      message: "Sign in has been deleted!",
+    });
+  } catch (err) {
+    console.error(err.message);
+  }
+}
