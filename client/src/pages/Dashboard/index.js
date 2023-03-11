@@ -38,12 +38,12 @@ const Dashboard = () => {
         <SessionList sessions={sessions} />
         <br></br>
         <label>Student Report:</label>
-        <NavLink to="/search" className="mx-3">
+        <NavLink to="/select-student" className="mx-3">
           <span>Search</span>
         </NavLink>
         <br></br>
         <label>Module Report:</label>
-        <NavLink to="/modules" className="mx-3">
+        <NavLink to="/select-module" className="mx-3">
           <span>Select</span>
         </NavLink>
         <br></br>
