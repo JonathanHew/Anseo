@@ -1,9 +1,9 @@
 import { format, parseISO } from "date-fns";
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import { fetchSessionReportChartData } from "../api/lecturer.api";
-import DoughnutChart from "../components/DoughnutChart";
-import Layout from "../components/layout";
+import { fetchSessionReportChartData } from "../../api/lecturer.api";
+import DoughnutChart from "../../components/DoughnutChart";
+import Layout from "../../components/Layout";
 
 const SessionReport = () => {
   const { session_id } = useParams();

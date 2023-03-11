@@ -1,10 +1,10 @@
 import { useEffect, useState } from "react";
-import Layout from "../components/layout";
+import Layout from "../../components/Layout";
 import { NavLink } from "react-router-dom";
-import { fetchUserModules, fetchUserSessions } from "../api/lecturer.api";
-import CreateSession from "../components/createSession";
-import CreateModule from "../components/createModule";
-import SessionList from "../components/sessionList";
+import { fetchUserModules, fetchUserSessions } from "../../api/lecturer.api";
+import CreateSession from "../../components/CreateSession";
+import CreateModule from "../../components/CreateModule";
+import SessionList from "../../components/SessionList";
 
 const Dashboard = () => {
   const [loading, setLoading] = useState(true);

@@ -1,8 +1,8 @@
 import React, { Fragment, useEffect } from "react";
 import { format, parseISO } from "date-fns";
-import DeleteSignin from "./deleteSignin";
+import DeleteSignin from "../DeleteSignin";
 
-const StudentList = ({ name, students, sessionToggle }) => {
+const SigninList = ({ name, students, sessionToggle }) => {
   return (
     <Fragment>
       <div className="text-center">
@@ -55,4 +55,4 @@ const StudentList = ({ name, students, sessionToggle }) => {
   );
 };
 
-export default StudentList;
+export default SigninList;

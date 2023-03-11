@@ -1,8 +1,8 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import { fetchSessionInfo } from "../api/lecturer.api";
-import { onSignIn } from "../api/signIn.api";
-import Layout from "../components/layout";
+import { fetchSessionInfo } from "../../api/lecturer.api";
+import { onSignIn } from "../../api/signIn.api";
+import Layout from "../../components/Layout";
 
 const SignIn = () => {
   const { id } = useParams();

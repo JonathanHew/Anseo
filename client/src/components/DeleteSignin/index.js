@@ -1,5 +1,5 @@
 import React, { Fragment } from "react";
-import { deleteSignIn } from "../api/lecturer.api";
+import { deleteSignIn } from "../../api/lecturer.api";
 
 const DeleteSignin = ({ signin_id }) => {
   const deleteSignin = async (e) => {

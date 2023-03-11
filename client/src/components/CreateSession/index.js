@@ -1,5 +1,5 @@
 import React, { Fragment, useState } from "react";
-import { onCreateSession } from "../api/lecturer.api";
+import { onCreateSession } from "../../api/lecturer.api";
 
 const CreateSession = ({ modules }) => {
   const [name, setName] = useState("");

@@ -5,12 +5,12 @@ import {
   fetchSignInsForStudentInModule,
   fetchStudentModuleReportLineData,
   fetchStudentModuleReportPieData,
-} from "../api/lecturer.api";
-import Layout from "../components/layout";
-import PieChart from "../components/pieChart";
+} from "../../api/lecturer.api";
+import Layout from "../../components/Layout";
+import PieChart from "../../components/PieChart";
 import { format, parseISO } from "date-fns";
-import LineChart from "../components/lineChart";
-import DoughnutChart from "../components/DoughnutChart";
+import LineChart from "../../components/LineChart";
+import DoughnutChart from "../../components/DoughnutChart";
 
 const StudentReport = () => {
   const { student_number, module_id } = useParams();

@@ -1,15 +1,15 @@
-import Layout from "../components/layout";
+import Layout from "../../components/Layout";
 import { useParams } from "react-router-dom";
 import { useState, useEffect } from "react";
 import {
   fetchSessionInfo,
   fetchStudentsInSession,
   onSetSessionStatus,
-} from "../api/lecturer.api";
-import SessionQR from "../components/sessionQR";
-import StudentList from "../components/studentList";
+} from "../../api/lecturer.api";
+import QRcode from "../../components/QRcode";
+import StudentList from "../../components/SigninList";
 
-const Join = () => {
+const Session = () => {
   const { id } = useParams();
   const [active, setActive] = useState();
   const [students, setStudents] = useState([]);
@@ -56,7 +56,7 @@ const Join = () => {
     </Layout>
   ) : active ? (
     <Layout>
-      <SessionQR id={id} pin={pin} students={students} sessionToggle={sessionToggle}/>
+      <QRcode id={id} pin={pin} students={students} sessionToggle={sessionToggle}/>
     </Layout>
   ) : (
     <Layout>
@@ -65,4 +65,4 @@ const Join = () => {
   );
 };
 
-export default Join;
+export default Session;

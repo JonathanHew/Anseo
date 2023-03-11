@@ -1,5 +1,5 @@
 import React, { Fragment, useState } from "react";
-import { onCreateModule } from "../api/lecturer.api";
+import { onCreateModule } from "../../api/lecturer.api";
 
 const CreateModule = () => {
   const [name, setName] = useState("");

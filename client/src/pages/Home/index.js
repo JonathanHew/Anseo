@@ -1,6 +1,6 @@
 import { useState } from "react";
-import { onPinSubmit } from "../api/signIn.api";
-import Layout from "../components/layout";
+import { onPinSubmit } from "../../api/signIn.api";
+import Layout from "../../components/Layout";
 
 const Home = () => {
   const [pin, setPin] = useState("");

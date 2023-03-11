@@ -1,8 +1,8 @@
 import { format, parseISO } from "date-fns";
 import React, { useEffect, useState } from "react";
 import { NavLink } from "react-router-dom";
-import { fetchUserSessions } from "../api/lecturer.api";
-import Layout from "../components/layout";
+import { fetchUserSessions } from "../../api/lecturer.api";
+import Layout from "../../components/Layout";
 
 const SelectSession = () => {
   const [sessions, setSessions] = useState([]);

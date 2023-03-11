@@ -1,6 +1,6 @@
 // layout component is for components such as navbar which you want on every page
 
-import NavBar from "./navbar";
+import NavBar from "../NavBar";
 
 const Layout = ({ children }) => {
   return (

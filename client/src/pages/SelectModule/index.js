@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from "react";
 import { NavLink } from "react-router-dom";
-import { fetchUserModules } from "../api/lecturer.api";
-import Layout from "../components/layout";
+import { fetchUserModules } from "../../api/lecturer.api";
+import Layout from "../../components/Layout";
 
-const Modules = () => {
+const SelectModule = () => {
   const [modules, setModules] = useState([]);
   const [loading, setLoading] = useState(true);
 
@@ -38,4 +38,4 @@ const Modules = () => {
   );
 };
 
-export default Modules;
+export default SelectModule;

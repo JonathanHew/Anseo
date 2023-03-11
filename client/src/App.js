@@ -6,21 +6,22 @@ import {
   Outlet,
 } from "react-router-dom";
 
-import Home from "./pages/home";
-import Dashboard from "./pages/dashboard";
-import Register from "./pages/register";
-import Login from "./pages/login";
-import SignIn from "./pages/signIn";
-import Join from "./pages/join";
+import Home from "./pages/Home"
+import Dashboard from "./pages/Dashboard";
+import Register from "./pages/Register";
+import Login from "./pages/Login";
+import SignIn from "./pages/SignIn";
+import Session from "./pages/Session";
+import SelectStudent from "./pages/SelectStudent";
+import StudentReport from "./pages/StudentReport";
+import SelectModule from "./pages/SelectModule";
+import ModuleReport from "./pages/ModuleReport";
+import SelectSession from "./pages/SelectSession";
+import SessionReport from "./pages/SessionReport";
+
 import { useSelector } from "react-redux";
 import { useState, useEffect } from "react";
 import { fetchUserInfo } from "./api/auth";
-import Search from "./pages/search";
-import StudentReport from "./pages/studentReport";
-import Modules from "./pages/modules";
-import ModuleReport from "./pages/moduleReport";
-import SelectSession from "./pages/selectSession";
-import SessionReport from "./pages/sessionReport";
 
 // if user is not logged in and they enter the dashboard route, they will redirected to login
 const PrivateRoutes = () => {
@@ -59,10 +60,10 @@ const App = () => {
 
         <Route element={<PrivateRoutes />}>
           <Route path="/dashboard" element={<Dashboard />}></Route>
-          <Route path="/join/:id" element={<Join />}></Route>
-          <Route path="/search" element={<Search id={id} />}></Route>
+          <Route path="/session/:id" element={<Session />}></Route>
+          <Route path="/select-student" element={<SelectStudent id={id} />}></Route>
           <Route path="/student-report/:student_number/:module_id" element={<StudentReport/>}></Route>
-          <Route path="/modules" element={<Modules/>}></Route>
+          <Route path="/select-module" element={<SelectModule/>}></Route>
           <Route path="/module-report/:module_id" element={<ModuleReport/>}></Route>
           <Route path="/select-session" element={<SelectSession/>}></Route>
           <Route path="/session-report/:session_id" element={<SessionReport/>}></Route>

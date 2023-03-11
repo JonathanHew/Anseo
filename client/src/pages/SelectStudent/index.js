@@ -2,12 +2,12 @@ import React, { useState } from "react";
 import {
   fetchSessionsForStudent,
   fetchModulesForStudent,
-} from "../api/lecturer.api";
-import Layout from "../components/layout";
-import ModuleList from "../components/moduleList";
-import SessionList from "../components/sessionList";
+} from "../../api/lecturer.api";
+import Layout from "../../components/Layout";
+import ModuleList from "../../components/ModuleList";
+import SessionList from "../../components/SessionList";
 
-const Search = ({ id }) => {
+const SelectStudent = ({ id }) => {
   const [number, setNumber] = useState("");
   const [studentNumber, setStudentNumber] = useState("");
   const [sessions, setSessions] = useState([]);
@@ -64,4 +64,4 @@ const Search = ({ id }) => {
   );
 };
 
-export default Search;
+export default SelectStudent;

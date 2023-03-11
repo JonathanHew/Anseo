@@ -1,8 +1,8 @@
 import { NavLink } from "react-router-dom";
 import { useSelector } from "react-redux";
-import { onLogout } from "../api/auth";
+import { onLogout } from "../../api/auth";
 import { useDispatch } from "react-redux";
-import { unauthenticateUser } from "../redux/slices/authSlice";
+import { unauthenticateUser } from "../../redux/slices/authSlice";
 
 const NavBar = () => {
   const dispatch = useDispatch();

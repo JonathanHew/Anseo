@@ -1,8 +1,8 @@
 import { useState } from "react";
-import { onLogin } from "../api/auth";
-import Layout from "../components/layout";
+import { onLogin } from "../../api/auth";
+import Layout from "../../components/Layout";
 import {useDispatch} from "react-redux"
-import { authenticateUser } from "../redux/slices/authSlice"; 
+import { authenticateUser } from "../../redux/slices/authSlice"; 
 
 const Login = () => {
   const [values, setValues] = useState({

@@ -4,10 +4,10 @@ import {
   fetchModuleInfo,
   fetchModuleReportBarData,
   fetchModuleReportLineData,
-} from "../api/lecturer.api";
-import BarChart from "../components/barChart";
-import Layout from "../components/layout";
-import LineChart from "../components/lineChart";
+} from "../../api/lecturer.api";
+import BarChart from "../../components/BarChart";
+import Layout from "../../components/Layout";
+import LineChart from "../../components/LineChart";
 import { format, parseISO } from "date-fns";
 
 const ModuleReport = () => {
