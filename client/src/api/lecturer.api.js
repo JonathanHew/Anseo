@@ -123,6 +123,6 @@ export async function fetchModuleInfo(module_id) {
 
 export async function deleteSignIn(signin_id) {
   return await axios.delete(
-    `http://localhost:8000/api/get-module-info/${signin_id}`
+    `http://localhost:8000/api/delete-signin/${signin_id}`
   );
 }

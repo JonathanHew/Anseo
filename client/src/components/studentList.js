@@ -1,5 +1,6 @@
 import React, { Fragment, useEffect } from "react";
 import { format, parseISO } from "date-fns";
+import DeleteSignin from "./deleteSignin";
 
 const StudentList = ({ name, students, sessionToggle }) => {
   return (
@@ -22,6 +23,7 @@ const StudentList = ({ name, students, sessionToggle }) => {
               <th>Date</th>
               <th>Time</th>
               <th>Campus</th>
+              <th> </th>
             </tr>
           </thead>
           <tbody>
@@ -42,6 +44,7 @@ const StudentList = ({ name, students, sessionToggle }) => {
                   <td>{format(parseISO(student.signin_date), "dd/MM/yyyy")}</td>
                   <td>{student.signin_time}</td>
                   <td>{student.signin_on_campus.toString()}</td>
+                  <td><DeleteSignin signin_id={student.signin_id}/></td>
                 </tr>
               ))
             }

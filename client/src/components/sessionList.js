@@ -37,6 +37,7 @@ const SessionList = ({ sessions }) => {
                 <td>{format(parseISO(session.session_date), 'dd/MM/yyyy')}</td>
                 <td>{session.session_time}</td>
                 <td>{session.module_name}</td>
+              
               </tr>
             ))
           }

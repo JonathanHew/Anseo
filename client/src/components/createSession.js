@@ -10,7 +10,7 @@ const CreateSession = ({ modules }) => {
     e.preventDefault();
     try {
       await onCreateSession(name, module);
-      window.location = "/dashboard";
+      window.location.reload();
     } catch (err) {
       console.error(err.response.data.errors[0].msg);
       setError(err.response.data.errors[0].msg);
@@ -60,7 +60,9 @@ const CreateSession = ({ modules }) => {
                 aria-label="Default select example"
                 onChange={(e) => setModule(e.target.value)}
               >
-                <option defaultValue value="-1">Module</option>
+                <option defaultValue value="-1">
+                  Module
+                </option>
                 {modules.map((module) => (
                   <option value={module.module_id}>{module.module_name}</option>
                 ))}
