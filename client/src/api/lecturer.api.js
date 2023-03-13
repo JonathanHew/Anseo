@@ -126,3 +126,9 @@ export async function deleteSignIn(signin_id) {
     `http://localhost:8000/api/delete-signin/${signin_id}`
   );
 }
+
+export async function fetchDashboardData() {
+  return await axios.get(
+    `http://localhost:8000/api/get-dashboard-data/`
+  );
+}
