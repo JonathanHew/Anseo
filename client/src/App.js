@@ -22,6 +22,7 @@ import SessionReport from "./pages/SessionReport";
 import { useSelector } from "react-redux";
 import { useState, useEffect } from "react";
 import { fetchUserInfo } from "./api/auth";
+import SelectReport from "./pages/SelectReport";
 
 // if user is not logged in and they enter the dashboard route, they will redirected to login
 const PrivateRoutes = () => {
@@ -67,6 +68,7 @@ const App = () => {
           <Route path="/module-report/:module_id" element={<ModuleReport/>}></Route>
           <Route path="/select-session" element={<SelectSession/>}></Route>
           <Route path="/session-report/:session_id" element={<SessionReport/>}></Route>
+          <Route path="/select-report" element={<SelectReport/>}></Route>
         </Route>
 
         <Route element={<RestrictedRoutes />}>
