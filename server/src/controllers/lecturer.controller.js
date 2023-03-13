@@ -181,7 +181,7 @@ exports.getSignInsForStudentByModuleID = async (req, res) => {
     return res.status(200).json({
       success: true,
       signins: rows,
-      campusCount: count
+      campusCount: count,
     });
   } catch (err) {
     console.error(err.message);
@@ -356,14 +356,11 @@ exports.getModuleInfo = async (req, res) => {
   }
 };
 
-exports.deleteSignIn = async (req,res) => {
+exports.deleteSignIn = async (req, res) => {
   const { signin_id } = req.params;
 
   try {
-    await db.query(
-      `DELETE FROM signIns WHERE signIn_id = $1`,
-      [signin_id]
-    );
+    await db.query(`DELETE FROM signIns WHERE signIn_id = $1`, [signin_id]);
 
     return res.status(200).json({
       success: true,
@@ -372,4 +369,40 @@ exports.deleteSignIn = async (req,res) => {
   } catch (err) {
     console.error(err.message);
   }
-}
+};
+
+exports.getDashboardData = async (req, res) => {
+  const user_id = req.user.id;
+
+  try {
+    const activeSessions = await db.query(
+      `SELECT COUNT(*) FROM sessions WHERE user_id = $1 and session_is_active = true`,
+      [user_id]
+    );
+
+    const studentCount = await db.query(
+      `SELECT COUNT(DISTINCT signin_number) FROM signins JOIN sessions ON signins.session_id = sessions.session_id WHERE sessions.user_id = $1`,
+      [user_id]
+    );
+
+    const signinCount = await db.query(
+      `SELECT count(*) FROM signins JOIN sessions ON signins.session_id = sessions.session_id WHERE sessions.user_id = $1`,
+      [user_id]
+    );
+
+    const moduleCount = await db.query(
+      `SELECT count(*) FROM modules WHERE user_id = $1`,
+      [user_id]
+    );
+
+    return res.status(200).json({
+      success: true,
+      activeSessions: activeSessions,
+      studentCount: studentCount,
+      signinCount: signinCount,
+      moduleCount: moduleCount,
+    });
+  } catch (err) {
+    console.error(err.message);
+  }
+};
