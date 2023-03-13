@@ -40,7 +40,7 @@ router.post("/get-students-in-session", userAuth, getStudentsBySessionId);
 
 router.post("/set-session-status", userAuth, setSessionStatus);
 
-router.post("/get-session-info", userAuth, getSessionInfo);
+router.post("/get-session-info", getSessionInfo);
 
 router.post("/search", userAuth, studentSearchValidator, validationMiddleware, getSessionsForStudent);
 

@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { NavLink } from "react-router-dom";
 import { fetchUserModules } from "../../api/lecturer.api";
 import Layout from "../../components/Layout";
-import "./style.css";
+import "../styles.css";
 
 const SelectModule = () => {
   const [modules, setModules] = useState([]);
@@ -28,7 +28,8 @@ const SelectModule = () => {
             <button
               key={module.module_id}
               type="button"
-              class="list-group-item list-group-item-action"
+              className="list-group-item list-group-item-action"
+              id="module-item"
             >
               {module.module_name}
             </button>

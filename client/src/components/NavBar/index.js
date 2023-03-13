@@ -35,7 +35,7 @@ const NavBar = () => {
                 Dashboard
               </button>
             </NavLink>
-            <NavLink to="/">
+            <NavLink to="/select-report">
               <button className="btn btn-outline-info me-5">Reports</button>
             </NavLink>
             <NavLink>

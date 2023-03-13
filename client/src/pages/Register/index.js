@@ -1,8 +1,7 @@
 import { useState } from "react";
 import { onRegistration } from "../../api/auth";
 import Layout from "../../components/Layout";
-import "./style.css"
-
+import "../styles.css"
 const Register = () => {
   const [values, setValues] = useState({
     email: "",
@@ -83,7 +82,7 @@ const Register = () => {
               <button
                 type="submit"
                 className="btn btn-primary mt-3 mb-3"
-                id="form-btn"
+                id="register-btn"
               >
                 Register
               </button>

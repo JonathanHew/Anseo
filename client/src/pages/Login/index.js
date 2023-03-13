@@ -3,7 +3,7 @@ import { onLogin } from "../../api/auth";
 import Layout from "../../components/Layout";
 import { useDispatch } from "react-redux";
 import { authenticateUser } from "../../redux/slices/authSlice";
-import "./style.css";
+import "../styles.css";
 
 const Login = () => {
   const [values, setValues] = useState({
@@ -91,7 +91,7 @@ const Login = () => {
               <button
                 type="submit"
                 className="btn btn-primary mt-1 mb-3"
-                id="form-btn"
+                id="login-btn"
               >
                 Login
               </button>

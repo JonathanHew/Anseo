@@ -1,27 +1,30 @@
 import { useEffect, useState } from "react";
 import Layout from "../../components/Layout";
 import { NavLink } from "react-router-dom";
-import { fetchDashboardData, fetchUserModules, fetchUserSessions } from "../../api/lecturer.api";
+import {
+  fetchDashboardData,
+  fetchUserModules,
+  fetchUserSessions,
+} from "../../api/lecturer.api";
 import CreateSession from "../../components/CreateSession";
 import CreateModule from "../../components/CreateModule";
 import SessionList from "../../components/SessionList";
-import "./style.css";
+import "../styles.css";
+
 import {
   faChartLine,
   faUsersViewfinder,
-  faGraduationCap
+  faGraduationCap,
 } from "@fortawesome/free-solid-svg-icons";
 
-import {
-  faCalendarCheck
-} from "@fortawesome/free-regular-svg-icons";
+import { faCalendarCheck } from "@fortawesome/free-regular-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 const Dashboard = () => {
   const [loading, setLoading] = useState(true);
   const [sessions, setSessions] = useState([]);
   const [modules, setModules] = useState([]);
-  const [activeCount, setActiveCount ] = useState(0);
+  const [activeCount, setActiveCount] = useState(0);
   const [studentCount, setStudentCount] = useState(0);
   const [moduleCount, setModuleCount] = useState(0);
   const [signinCount, setSigninCount] = useState(0);
@@ -59,7 +62,10 @@ const Dashboard = () => {
                   <div id="block">
                     <FontAwesomeIcon icon={faChartLine} size="3x" />
 
-                    <span className="card-text ms-1" style={{ fontSize: "50px" }}>
+                    <span
+                      className="card-text ms-1"
+                      style={{ fontSize: "50px" }}
+                    >
                       {activeCount}
                     </span>
                   </div>
@@ -73,7 +79,10 @@ const Dashboard = () => {
                   <div id="block">
                     <FontAwesomeIcon icon={faGraduationCap} size="3x" />
 
-                    <span className="card-text ms-1" style={{ fontSize: "50px" }}>
+                    <span
+                      className="card-text ms-1"
+                      style={{ fontSize: "50px" }}
+                    >
                       {studentCount}
                     </span>
                   </div>
@@ -89,7 +98,10 @@ const Dashboard = () => {
                   <div id="block">
                     <FontAwesomeIcon icon={faUsersViewfinder} size="3x" />
 
-                    <span className="card-text ms-1" style={{ fontSize: "50px" }}>
+                    <span
+                      className="card-text ms-1"
+                      style={{ fontSize: "50px" }}
+                    >
                       {moduleCount}
                     </span>
                   </div>
@@ -103,7 +115,10 @@ const Dashboard = () => {
                   <div id="block">
                     <FontAwesomeIcon icon={faCalendarCheck} size="3x" />
 
-                    <span className="card-text ms-1" style={{ fontSize: "50px" }}>
+                    <span
+                      className="card-text ms-1"
+                      style={{ fontSize: "50px" }}
+                    >
                       {signinCount}
                     </span>
                   </div>
@@ -113,7 +128,7 @@ const Dashboard = () => {
           </div>
         </div>
 
-        <div class="card w-100 m-auto mt-5">
+        <div class="card w-100 m-auto mt-5 mb-5">
           <div class="card-body">
             <div className="container">
               <div className="row">
@@ -128,21 +143,6 @@ const Dashboard = () => {
             </div>
 
             <SessionList sessions={sessions} />
-
-            <label>Student Report:</label>
-            <NavLink to="/select-student" className="mx-3">
-              <span>Search</span>
-            </NavLink>
-            <br></br>
-            <label>Module Report:</label>
-            <NavLink to="/select-module" className="mx-3">
-              <span>Select</span>
-            </NavLink>
-            <br></br>
-            <label>Session Report:</label>
-            <NavLink to="/select-session" className="mx-3">
-              <span>Select</span>
-            </NavLink>
           </div>
         </div>
       </Layout>
