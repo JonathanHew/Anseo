@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import Layout from "../../components/Layout";
 import { NavLink } from "react-router-dom";
-import { fetchUserModules, fetchUserSessions } from "../../api/lecturer.api";
+import { fetchDashboardData, fetchUserModules, fetchUserSessions } from "../../api/lecturer.api";
 import CreateSession from "../../components/CreateSession";
 import CreateModule from "../../components/CreateModule";
 import SessionList from "../../components/SessionList";
@@ -21,6 +21,10 @@ const Dashboard = () => {
   const [loading, setLoading] = useState(true);
   const [sessions, setSessions] = useState([]);
   const [modules, setModules] = useState([]);
+  const [activeCount, setActiveCount ] = useState(0);
+  const [studentCount, setStudentCount] = useState(0);
+  const [moduleCount, setModuleCount] = useState(0);
+  const [signinCount, setSigninCount] = useState(0);
 
   useEffect(() => {
     (async () => {
@@ -28,6 +32,12 @@ const Dashboard = () => {
       setSessions(sessionContent.data.sessions);
       const moduleContent = await fetchUserModules();
       setModules(moduleContent.data.modules);
+      const dashboardContent = await fetchDashboardData();
+      setActiveCount(dashboardContent.data.activeSessions);
+      setStudentCount(dashboardContent.data.studentCount);
+      setModuleCount(dashboardContent.data.moduleCount);
+      setSigninCount(dashboardContent.data.signinCount);
+
       setLoading(false);
     })();
   }, []);
@@ -49,8 +59,8 @@ const Dashboard = () => {
                   <div id="block">
                     <FontAwesomeIcon icon={faChartLine} size="3x" />
 
-                    <span className="card-text" style={{ fontSize: "50px" }}>
-                      1
+                    <span className="card-text ms-1" style={{ fontSize: "50px" }}>
+                      {activeCount}
                     </span>
                   </div>
                 </div>
@@ -63,8 +73,8 @@ const Dashboard = () => {
                   <div id="block">
                     <FontAwesomeIcon icon={faGraduationCap} size="3x" />
 
-                    <span className="card-text" style={{ fontSize: "50px" }}>
-                      37
+                    <span className="card-text ms-1" style={{ fontSize: "50px" }}>
+                      {studentCount}
                     </span>
                   </div>
                 </div>
@@ -79,8 +89,8 @@ const Dashboard = () => {
                   <div id="block">
                     <FontAwesomeIcon icon={faUsersViewfinder} size="3x" />
 
-                    <span className="card-text" style={{ fontSize: "50px" }}>
-                      5
+                    <span className="card-text ms-1" style={{ fontSize: "50px" }}>
+                      {moduleCount}
                     </span>
                   </div>
                 </div>
@@ -93,8 +103,8 @@ const Dashboard = () => {
                   <div id="block">
                     <FontAwesomeIcon icon={faCalendarCheck} size="3x" />
 
-                    <span className="card-text" style={{ fontSize: "50px" }}>
-                      1123
+                    <span className="card-text ms-1" style={{ fontSize: "50px" }}>
+                      {signinCount}
                     </span>
                   </div>
                 </div>

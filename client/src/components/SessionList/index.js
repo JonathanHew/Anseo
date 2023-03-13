@@ -25,7 +25,15 @@ const SessionList = ({ sessions }) => {
                     <span>{session.session_name}</span>
                   </NavLink>
                 </td>
-                <td>{session.session_is_active.toString()}</td>
+                <td>
+                  {session.session_is_active ? (
+                    <span class="badge rounded-pill text-bg-success">
+                      Active
+                    </span>
+                  ) : (
+                    <span class="badge rounded-pill text-bg-light">Inactive</span>
+                  )}
+                </td>
                 <td>{format(parseISO(session.session_date), "dd/MM/yyyy")}</td>
                 <td>{session.session_time}</td>
                 <td>{session.module_name}</td>

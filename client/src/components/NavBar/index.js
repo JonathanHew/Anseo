@@ -31,7 +31,9 @@ const NavBar = () => {
         {isAuth ? (
           <div>
             <NavLink to="/dashboard">
-              <button className="btn btn-outline-primary me-2">Dashboard</button>
+              <button className="btn btn-outline-primary me-2">
+                Dashboard
+              </button>
             </NavLink>
             <NavLink to="/">
               <button className="btn btn-outline-info me-5">Reports</button>
@@ -46,28 +48,18 @@ const NavBar = () => {
             </NavLink>
           </div>
         ) : (
-          <div className="container">
-            <div>
-              <NavLink to="/" style={{ textDecoration: "none" }}>
-                <span className="navbar-brand mb-0">Anseo!</span>
-              </NavLink>
-            </div>
-            <div>
-              <NavLink to="/login">
-                <button
-                  type="button"
-                  class="btn btn-outline-primary me-2 btn-sm"
-                >
-                  Login
-                </button>
-              </NavLink>
+          <div>
+            <NavLink to="/login">
+              <button type="button" class="btn btn-outline-primary me-2 btn-sm">
+                Login
+              </button>
+            </NavLink>
 
-              <NavLink to="/register" className="mx-1">
-                <button type="button" class="btn btn-primary btn-sm">
-                  Sign-up
-                </button>
-              </NavLink>
-            </div>
+            <NavLink to="/register" className="mx-1">
+              <button type="button" class="btn btn-primary btn-sm">
+                Sign-up
+              </button>
+            </NavLink>
           </div>
         )}
       </div>

@@ -397,10 +397,10 @@ exports.getDashboardData = async (req, res) => {
 
     return res.status(200).json({
       success: true,
-      activeSessions: activeSessions,
-      studentCount: studentCount,
-      signinCount: signinCount,
-      moduleCount: moduleCount,
+      activeSessions: activeSessions.rows[0].count,
+      studentCount: studentCount.rows[0].count,
+      signinCount: signinCount.rows[0].count,
+      moduleCount: moduleCount.rows[0].count,
     });
   } catch (err) {
     console.error(err.message);
