@@ -25,7 +25,7 @@ const CreateModule = () => {
     <Fragment>
       <button
         type="button"
-        className="btn btn-primary ms-2"
+        className="btn btn-outline-success ms-2"
         data-bs-toggle="modal"
         data-bs-target="#moduleModal"
       >

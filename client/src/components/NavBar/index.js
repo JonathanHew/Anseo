@@ -21,37 +21,57 @@ const NavBar = () => {
 
   // if isAuth (logged in), render dashboard, if not render login and register options
   return (
-    <div className="navbar navbar-light bg-light d-flex flex-wrap align-items-center justify-content-center justify-content-md-between py-3 mb-4 border-bottom">
+    <nav className="navbar navbar-light bg-light">
       <div className="container">
         <div>
-          <NavLink to="/" style={{ textDecoration: "none" }}>
-            <span className="navbar-brand mb-0 h1">Anseo!</span>
+          <NavLink to="/">
+            <span className="navbar-brand mb-0 h1">Attendify!</span>
           </NavLink>
         </div>
-
         {isAuth ? (
           <div>
+            <NavLink to="/dashboard">
+              <button className="btn btn-outline-primary me-2">Dashboard</button>
+            </NavLink>
+            <NavLink to="/">
+              <button className="btn btn-outline-info me-5">Reports</button>
+            </NavLink>
             <NavLink>
-              <button className="btn btn-outline-secondary btn-sm" onClick={() => logout()}>Logout</button>
+              <button
+                className="btn btn-outline-secondary btn-sm ms-3"
+                onClick={() => logout()}
+              >
+                Logout
+              </button>
             </NavLink>
           </div>
         ) : (
-          <div>
-            <NavLink to="/login">
-              <button type="button" class="btn btn-outline-primary me-2 btn-sm">
-                Login
-              </button>
-            </NavLink>
+          <div className="container">
+            <div>
+              <NavLink to="/" style={{ textDecoration: "none" }}>
+                <span className="navbar-brand mb-0">Anseo!</span>
+              </NavLink>
+            </div>
+            <div>
+              <NavLink to="/login">
+                <button
+                  type="button"
+                  class="btn btn-outline-primary me-2 btn-sm"
+                >
+                  Login
+                </button>
+              </NavLink>
 
-            <NavLink to="/register" className="mx-1">
-              <button type="button" class="btn btn-primary btn-sm">
-                Sign-up
-              </button>
-            </NavLink>
+              <NavLink to="/register" className="mx-1">
+                <button type="button" class="btn btn-primary btn-sm">
+                  Sign-up
+                </button>
+              </NavLink>
+            </div>
           </div>
         )}
       </div>
-    </div>
+    </nav>
   );
 };
 

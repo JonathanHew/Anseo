@@ -1,48 +1,39 @@
-import React, { Fragment } from "react";
+import React, { Fragment, useEffect } from "react";
 import { NavLink } from "react-router-dom";
 import { format, parseISO } from "date-fns";
+import "./style.css";
 
 const SessionList = ({ sessions }) => {
   return (
     <Fragment>
-      <h4 className="text-center mt-5">Sessions</h4>
-      <table className="table text-center">
-        <thead>
-          <tr>
-            <th>Name</th>
-            <th>PIN</th>
-            <th>Date</th>
-            <th>Time</th>
-            <th>Module</th>
-          </tr>
-        </thead>
-        <tbody>
-          {
-            /*
+      <div className="table-responsive">
+        <table className="table text-center" id="sessionTable">
+          <thead>
             <tr>
-              <td>Jonathans List</td>
-              <td>26/01/2023</td>
-              <td>17:00</td>
+              <th>Name</th>
+              <th>Status</th>
+              <th>Date</th>
+              <th>Time</th>
+              <th>Module</th>
             </tr>
-            */
-
-            sessions.map((session) => (
+          </thead>
+          <tbody className="table-group-divider">
+            {sessions.map((session) => (
               <tr key={session.session_id}>
                 <td>
                   <NavLink to={`/session/${session.session_id}`}>
                     <span>{session.session_name}</span>
                   </NavLink>
                 </td>
-                <td>{session.session_pin}</td>
-                <td>{format(parseISO(session.session_date), 'dd/MM/yyyy')}</td>
+                <td>{session.session_is_active.toString()}</td>
+                <td>{format(parseISO(session.session_date), "dd/MM/yyyy")}</td>
                 <td>{session.session_time}</td>
                 <td>{session.module_name}</td>
-              
               </tr>
-            ))
-          }
-        </tbody>
-      </table>
+            ))}
+          </tbody>
+        </table>
+      </div>
     </Fragment>
   );
 };

@@ -27,7 +27,6 @@ const SelectStudent = ({ id }) => {
       setModules(content2.data.modules);
 
       setStudentNumber(number);
-      setNumber("");
       setMessage("");
       setMessage2("");
     } catch (err) {
@@ -58,6 +57,7 @@ const SelectStudent = ({ id }) => {
       <div style={{ color: "red", margin: "10px 0" }}>{error}</div>
       <ModuleList modules={modules} studentNumber={studentNumber}/>
       <p className="text-center mt-1">{message2}</p>
+      <h4 className="text-center mt-5">Student Sessions</h4>
       <SessionList sessions={sessions} />
       <p className="text-center mt-1">{message}</p>
     </Layout>
