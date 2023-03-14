@@ -8,20 +8,9 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
-const SigninList = ({ name, students, sessionToggle }) => {
+const SigninList = ({ students }) => {
   return (
     <Fragment>
-      <div className="text-center">
-        <h1 className="mt-5">{name}</h1>
-        <h4>Students Signed In: {students.length}</h4>
-        <button
-          type="button"
-          className="btn btn-success mt-1"
-          onClick={(e) => sessionToggle(e)}
-        >
-          Start Session
-        </button>
-      </div>
       <div className="card mt-5">
         <div className="card-body">
           <h2 className="text-center">Students</h2>

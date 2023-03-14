@@ -60,20 +60,43 @@ const Session = () => {
     </Layout>
   ) : active ? (
     <Layout>
-      <QRcode
-        id={id}
-        pin={pin}
-        students={students}
-        sessionToggle={sessionToggle}
-      />
+      <div class="container text-center">
+        <h1 className="mt-4">Sign in by scanning the QR code!</h1>
+        <button
+          type="button"
+          className="btn btn-danger"
+          onClick={(e) => sessionToggle(e)}
+        >
+          End Session
+        </button>
+        <div
+          style={{
+            height: "auto",
+            margin: "4% auto",
+            maxWidth: 450,
+            width: "100%",
+          }}
+        >
+          <QRcode id={id} />
+        </div>
+        <h4>Student Count: {students.length}</h4>
+        <h5>PIN: {pin}</h5>
+      </div>
     </Layout>
   ) : (
     <Layout>
-      <SigninList
-        name={name}
-        students={students}
-        sessionToggle={sessionToggle}
-      />
+      <div className="text-center">
+        <h1 className="mt-5">{name}</h1>
+        <h4>Students Signed In: {students.length}</h4>
+        <button
+          type="button"
+          className="btn btn-success mt-1"
+          onClick={(e) => sessionToggle(e)}
+        >
+          Start Session
+        </button>
+      </div>
+      <SigninList students={students} />
     </Layout>
   );
 };
