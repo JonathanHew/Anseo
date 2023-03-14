@@ -8,12 +8,12 @@ import L from "leaflet";
 import "../../App.css";
 
 const SignIn = () => {
-  const { id } = useParams();
+  const { session_id } = useParams();
 
   const [values, setValues] = useState({
     name: "",
     number: "",
-    session_id: id,
+    session_id: session_id,
     longitude: undefined,
     latitude: undefined,
   });
@@ -57,7 +57,7 @@ const SignIn = () => {
 
   useEffect(() => {
     (async () => {
-      const sessionInfo = await fetchSessionInfo(id);
+      const sessionInfo = await fetchSessionInfo(session_id);
       setSession(sessionInfo.data.result[0].session_name);
       setLoading(false);
     })();

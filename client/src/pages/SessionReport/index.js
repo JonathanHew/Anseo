@@ -1,9 +1,17 @@
 import { format, parseISO } from "date-fns";
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import { fetchSessionReportChartData } from "../../api/lecturer.api";
+import {
+  fetchSessionInfo,
+  fetchSessionReportChartData,
+} from "../../api/lecturer.api";
 import DoughnutChart from "../../components/DoughnutChart";
 import Layout from "../../components/Layout";
+import {
+  faBuildingCircleCheck,
+  faGraduationCap,
+} from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 const SessionReport = () => {
   const { session_id } = useParams();
@@ -12,6 +20,7 @@ const SessionReport = () => {
   const [loading, setLoading] = useState(true);
   const [piedata, setPiedata] = useState({});
   const [percent, setPercent] = useState();
+  const [name, setName] = useState("");
 
   useEffect(() => {
     (async () => {
@@ -38,6 +47,10 @@ const SessionReport = () => {
         });
       });
 
+      await fetchSessionInfo(session_id).then((res) => {
+        setName(res.data.result[0].session_name);
+      });
+
       setLoading(false);
     })();
   }, []);
@@ -45,11 +58,16 @@ const SessionReport = () => {
     <Layout>Loading ...</Layout>
   ) : (
     <Layout>
-      <div class="container text-center" style={{}}>
+      <h1 className="text-center mt-5">{name} Session Report</h1>
+      <div class="container text-center mt-4" style={{}}>
         <div class="row">
           <div class="col-md-5">
-            <h4>Attendance Pie Chart</h4>
-            <DoughnutChart chartData={piedata}></DoughnutChart>
+            <div className="card">
+              <div className="card-body">
+                <h4>Attendance Pie Chart</h4>
+                <DoughnutChart chartData={piedata}></DoughnutChart>
+              </div>
+            </div>
           </div>
           <div class="col-md-7 mt-5 container text-center">
             <h4 class="mb-5">Session Summary</h4>
@@ -57,9 +75,16 @@ const SessionReport = () => {
               <div class="card w-75 m-auto">
                 <div class="card-body">
                   <h5 class="card-title">Attendance</h5>
-                  <p class="card-text" style={{ fontSize: "50px" }}>
-                    {signins.length}
-                  </p>
+                  <div id="block">
+                    <FontAwesomeIcon icon={faGraduationCap} size="3x" />
+
+                    <span
+                      className="card-text ms-1"
+                      style={{ fontSize: "50px" }}
+                    >
+                      {signins.length}
+                    </span>
+                  </div>
                 </div>
               </div>
             </div>
@@ -67,9 +92,16 @@ const SessionReport = () => {
               <div class="card w-75 m-auto">
                 <div class="card-body">
                   <h5 class="card-title">On Campus</h5>
-                  <p class="card-text" style={{ fontSize: "50px" }}>
-                    {percent}%
-                  </p>
+                  <div id="block">
+                    <FontAwesomeIcon icon={faBuildingCircleCheck} size="3x" />
+
+                    <span
+                      className="card-text ms-1"
+                      style={{ fontSize: "50px" }}
+                    >
+                      {percent}
+                    </span>
+                  </div>
                 </div>
               </div>
             </div>
@@ -88,17 +120,15 @@ const SessionReport = () => {
           </tr>
         </thead>
         <tbody>
-          {
-            signins.map((signin) => (
-              <tr key={signin.signin_id}>
-                <td>{signin.signin_number}</td>
-                <td>{signin.signin_name}</td>
-                <td>{format(parseISO(signin.signin_date), "dd/MM/yyyy")}</td>
-                <td>{signin.signin_time}</td>
-                <td>{signin.signin_on_campus.toString()}</td>
-              </tr>
-            ))
-          }
+          {signins.map((signin) => (
+            <tr key={signin.signin_id}>
+              <td>{signin.signin_number}</td>
+              <td>{signin.signin_name}</td>
+              <td>{format(parseISO(signin.signin_date), "dd/MM/yyyy")}</td>
+              <td>{signin.signin_time}</td>
+              <td>{signin.signin_on_campus.toString()}</td>
+            </tr>
+          ))}
         </tbody>
       </table>
     </Layout>
