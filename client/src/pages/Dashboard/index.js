@@ -9,8 +9,7 @@ import {
 import CreateSession from "../../components/CreateSession";
 import CreateModule from "../../components/CreateModule";
 import SessionList from "../../components/SessionList";
-import "../styles.css";
-
+import "../../App.css"
 import {
   faChartLine,
   faUsersViewfinder,

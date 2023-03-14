@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { NavLink } from "react-router-dom";
 import { fetchUserModules } from "../../api/lecturer.api";
 import Layout from "../../components/Layout";
-import "../styles.css";
+import "../../App.css"
 
 const SelectModule = () => {
   const [modules, setModules] = useState([]);

@@ -1,6 +1,6 @@
 import React from "react";
 import Layout from "../../components/Layout";
-import "../styles.css";
+import "../../App.css"
 import {
   faUser,
   faPersonChalkboard,

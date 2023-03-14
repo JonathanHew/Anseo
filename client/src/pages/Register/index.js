@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { onRegistration } from "../../api/auth";
 import Layout from "../../components/Layout";
-import "../styles.css"
+import "../../App.css"
 const Register = () => {
   const [values, setValues] = useState({
     email: "",

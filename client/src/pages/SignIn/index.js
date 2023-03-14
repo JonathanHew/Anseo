@@ -5,7 +5,7 @@ import { onSignIn } from "../../api/signIn.api";
 import Layout from "../../components/Layout";
 import { TileLayer, MapContainer, Polygon } from "react-leaflet";
 import L from "leaflet";
-import "../styles.css"
+import "../../App.css";
 
 const SignIn = () => {
   const { id } = useParams();

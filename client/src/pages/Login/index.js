@@ -3,7 +3,7 @@ import { onLogin } from "../../api/auth";
 import Layout from "../../components/Layout";
 import { useDispatch } from "react-redux";
 import { authenticateUser } from "../../redux/slices/authSlice";
-import "../styles.css";
+import "../../App.css"
 
 const Login = () => {
   const [values, setValues] = useState({
