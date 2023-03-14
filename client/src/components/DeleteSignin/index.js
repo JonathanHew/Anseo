@@ -4,6 +4,7 @@ import { faTrashCan } from "@fortawesome/free-regular-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 const DeleteSignin = ({ signin_id }) => {
+  
   const deleteSignin = async (e) => {
     e.preventDefault();
     try {
@@ -17,7 +18,7 @@ const DeleteSignin = ({ signin_id }) => {
     <Fragment>
       <FontAwesomeIcon
         icon={faTrashCan}
-        onClick={deleteSignIn()}
+        onClick={deleteSignin}
         className="hover-cursor"
       ></FontAwesomeIcon>
     </Fragment>

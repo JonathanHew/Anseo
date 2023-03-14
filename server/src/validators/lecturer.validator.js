@@ -12,7 +12,7 @@ const sessionID = check("session_id")
 
 const sessionExists = check("session_id").custom(async (value) => {
   const { rows } = await db.query(
-    "SELECT * FROM sessions WHERE signIn_number = $1",
+    "SELECT * FROM sessions WHERE session_id = $1",
     [value]
   );
 
