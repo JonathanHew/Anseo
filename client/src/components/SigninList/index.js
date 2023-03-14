@@ -2,7 +2,8 @@ import React, { Fragment, useEffect } from "react";
 import { format, parseISO } from "date-fns";
 import DeleteSignin from "../DeleteSignin";
 import "../../App.css";
-
+import { faCircleCheck, faCircleXmark } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 const SigninList = ({ name, students, sessionToggle }) => {
   return (
@@ -51,7 +52,13 @@ const SigninList = ({ name, students, sessionToggle }) => {
                       {format(parseISO(student.signin_date), "dd/MM/yyyy")}
                     </td>
                     <td>{student.signin_time}</td>
-                    <td>{student.signin_on_campus.toString()}</td>
+                    <td>
+                      {student.signin_on_campus ? (
+                        <FontAwesomeIcon icon={faCircleCheck} className="color-green"/>
+                      ) : (
+                        <FontAwesomeIcon icon={faCircleXmark} className="color-red"/>
+                      )}
+                    </td>
                     <td>
                       <DeleteSignin signin_id={student.signin_id} />
                     </td>

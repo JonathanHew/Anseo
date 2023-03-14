@@ -150,3 +150,11 @@ thead {
 .hover-cursor:hover {
   cursor: pointer;
 }
+
+.color-green {
+  color: green;
+}
+
+.color-red {
+  color: red;
+}
