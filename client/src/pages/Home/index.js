@@ -21,7 +21,7 @@ const Home = () => {
   };
 
   return (
-    <Layout>
+    <div className="container">
       <h1>Home</h1>
       <p>Welcome to Anseo!</p>
       <div className="container text-center" style={{ width: "35%" }}>
@@ -38,13 +38,11 @@ const Home = () => {
             />
             <label for="floatingInput">Session PIN</label>
             <div style={{ color: "red", margin: "10px 0" }}>{error}</div>
-            <button class="btn btn-secondary btn-lg mt-1 w-100">
-              Join
-            </button>
+            <button class="btn btn-secondary btn-lg mt-1 w-100">Join</button>
           </div>
         </form>
       </div>
-    </Layout>
+    </div>
   );
 };
 

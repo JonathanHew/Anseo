@@ -83,3 +83,12 @@ thead {
   width: 100%;
   margin: auto;
 }
+
+#signin-btn {
+  display: block;
+  width: 100%;
+  padding: 10px 28px;
+  font-size: 16px;
+  cursor: pointer;
+  text-align: center;
+}

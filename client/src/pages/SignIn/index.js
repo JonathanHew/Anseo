@@ -5,6 +5,7 @@ import { onSignIn } from "../../api/signIn.api";
 import Layout from "../../components/Layout";
 import { TileLayer, MapContainer, Polygon } from "react-leaflet";
 import L from "leaflet";
+import "../styles.css"
 
 const SignIn = () => {
   const { id } = useParams();
@@ -34,18 +35,18 @@ const SignIn = () => {
     [53.3563492, -6.2819935],
     [53.3562724, -6.2812506],
     [53.3562403, -6.2812533],
-    [53.3562451, -6.2813230],
+    [53.3562451, -6.281323],
     [53.3559282, -6.2814196],
     [53.3559586, -6.2818112],
     [53.3558289, -6.2818326],
     [53.3556895, -6.2811434],
     [53.3562098, -6.2809986],
-    [53.3562290, -6.2811381],
+    [53.356229, -6.2811381],
     [53.3562626, -6.2811327],
     [53.3562514, -6.2809879],
     [53.3563794, -6.2809581],
     [53.3564018, -6.2811297],
-    [53.3566452, -6.2810600],
+    [53.3566452, -6.28106],
     [53.3567958, -6.2824093],
   ];
 
@@ -120,60 +121,69 @@ const SignIn = () => {
   };
 
   return loading ? (
-    <Layout>Loading...</Layout>
+    <div className="container">
+      <h1>Loading...</h1>
+    </div>
   ) : (
-    <Layout>
-      <h1 className="text-center">Sign Into {session}</h1>
-      <div id="map-div">
-        <MapContainer center={center} zoom={17} ref={setMap}>
-          <TileLayer
-            url="https://tile.openstreetmap.org/{z}/{x}/{y}.png"
-            attribution='&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
-          />
-          <Polygon pathOptions={redOptions} positions={tudPolygon} />
-        </MapContainer>
+    <div className="container">
+      <h1 className="text-center mt-5 mb-5">Anseo!</h1>
+      <div className="card w-100 mt-5 m-auto">
+        <div className="card-body">
+          <h2 className="text-center mt-4 mb-3">Sign Into {session}</h2>
+          <div id="map-div">
+            <MapContainer center={center} zoom={17} ref={setMap}>
+              <TileLayer
+                url="https://tile.openstreetmap.org/{z}/{x}/{y}.png"
+                attribution='&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
+              />
+              <Polygon pathOptions={redOptions} positions={tudPolygon} />
+            </MapContainer>
+          </div>
+          <div className="w-50 m-auto">
+            <form onSubmit={(e) => onSubmit(e)} className="container mt-4">
+              <div className="mb-3">
+                <label htmlFor="number" className="form-label">
+                  Student Number
+                </label>
+                <input
+                  onChange={(e) => onChange(e)}
+                  type="text"
+                  className="form-control"
+                  id="number"
+                  name="number"
+                  value={values.number.toUpperCase()}
+                  placeholder="C12345678"
+                  required
+                />
+              </div>
+
+              <div className="mb-3">
+                <label htmlFor="name" className="form-label">
+                  First Name
+                </label>
+                <input
+                  onChange={(e) => onChange(e)}
+                  type="text"
+                  value={values.name}
+                  className="form-control"
+                  id="name"
+                  name="name"
+                  placeholder="name"
+                  required
+                />
+              </div>
+
+              <div style={{ color: "red", margin: "10px 0" }}>{error}</div>
+              <div style={{ color: "green", margin: "10px 0" }}>{success}</div>
+
+              <button type="submit" className="btn btn-primary" id="signin-btn">
+                Submit
+              </button>
+            </form>
+          </div>
+        </div>
       </div>
-      <form onSubmit={(e) => onSubmit(e)} className="container mt-3">
-        <div className="mb-3">
-          <label htmlFor="number" className="form-label">
-            Student Number
-          </label>
-          <input
-            onChange={(e) => onChange(e)}
-            type="text"
-            className="form-control"
-            id="number"
-            name="number"
-            value={values.number.toUpperCase()}
-            placeholder="C12345678"
-            required
-          />
-        </div>
-
-        <div className="mb-3">
-          <label htmlFor="name" className="form-label">
-            First Name
-          </label>
-          <input
-            onChange={(e) => onChange(e)}
-            type="text"
-            value={values.name}
-            className="form-control"
-            id="name"
-            name="name"
-            placeholder="name"
-            required
-          />
-        </div>
-
-        <div style={{ color: "red", margin: "10px 0" }}>{error}</div>
-        <div style={{ color: "green", margin: "10px 0" }}>{success}</div>
-
-        <button type="submit" className="btn btn-primary">
-          Submit
-        </button>
-      </form>
-    </Layout>
+    </div>
   );
 };
 
