@@ -48,6 +48,7 @@ router.post(
   "/get-students-in-session",
   userAuth,
   sessionValidator,
+  validationMiddleware,
   getStudentsBySessionId
 );
 
@@ -55,10 +56,17 @@ router.post(
   "/set-session-status",
   userAuth,
   sessionValidator,
+  validationMiddleware,
   setSessionStatus
 );
 
-router.post("/get-session-info", userAuth, sessionValidator, getSessionInfo);
+router.post(
+  "/get-session-info",
+  userAuth,
+  sessionValidator,
+  validationMiddleware,
+  getSessionInfo
+);
 
 router.post(
   "/search",
@@ -90,6 +98,7 @@ router.post(
   "/get-student-signins-for-module",
   userAuth,
   studentModuleValidator,
+  validationMiddleware,
   getSignInsForStudentByModuleID
 );
 
@@ -97,6 +106,7 @@ router.post(
   "/get-sessions-in-module",
   userAuth,
   moduleValidator,
+  validationMiddleware,
   getSessionsInModule
 );
 
@@ -104,6 +114,7 @@ router.post(
   "/get-student-module-pie-data",
   userAuth,
   studentModuleValidator,
+  validationMiddleware,
   getStudentModuleReportPieData
 );
 
@@ -111,6 +122,7 @@ router.post(
   "/get-student-module-line-data",
   userAuth,
   studentModuleValidator,
+  validationMiddleware,
   getStudentModulesReportLineData
 );
 
@@ -118,6 +130,7 @@ router.post(
   "/get-module-line-data",
   userAuth,
   moduleValidator,
+  validationMiddleware,
   getModuleReportLineData
 );
 
@@ -125,6 +138,7 @@ router.post(
   "/get-module-bar-data",
   userAuth,
   moduleValidator,
+  validationMiddleware,
   getModuleReportBarData
 );
 
@@ -132,15 +146,23 @@ router.post(
   "/get-session-charts-data",
   userAuth,
   sessionValidator,
+  validationMiddleware,
   getSessionReportData
 );
 
-router.post("/get-module-info", userAuth, moduleValidator, getModuleInfo);
+router.post(
+  "/get-module-info",
+  userAuth,
+  moduleValidator,
+  validationMiddleware,
+  getModuleInfo
+);
 
 router.delete(
   "/delete-signin/:signin_id",
   userAuth,
   signinValidator,
+  validationMiddleware,
   deleteSignIn
 );
 
