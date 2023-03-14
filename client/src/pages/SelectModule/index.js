@@ -21,10 +21,10 @@ const SelectModule = () => {
     </Layout>
   ) : (
     <Layout>
-      <h2 className="text-center mt-5 mb-4">Your Modules</h2>
-      <div class="list-group">
+      <h1 className="text-center mt-5 mb-4">Select a Module</h1>
+      <div class="list-group mt-3">
         {modules.map((module) => (
-          <NavLink to={`/module-report/${module.module_id}`}>
+          <NavLink to={`/module-report/${module.module_id}`} className="remove-decoration">
             <button
               key={module.module_id}
               type="button"
