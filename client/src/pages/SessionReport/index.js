@@ -89,15 +89,6 @@ const SessionReport = () => {
         </thead>
         <tbody>
           {
-            /*
-           <tr>
-             <td>C19472842</td>
-             <td>Jonathan</td>
-             <td>02/02/23</td>
-             <td>13:00</td>
-           </tr>
-           */
-
             signins.map((signin) => (
               <tr key={signin.signin_id}>
                 <td>{signin.signin_number}</td>

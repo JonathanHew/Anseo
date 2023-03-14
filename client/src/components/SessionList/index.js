@@ -2,7 +2,7 @@ import React, { Fragment, useEffect } from "react";
 import { NavLink } from "react-router-dom";
 import { format, parseISO } from "date-fns";
 import "../../App.css"
-const SessionList = ({ sessions }) => {
+const SessionList = ({ sessions, url }) => {
   return (
     <Fragment>
       <div className="table-responsive">
@@ -20,7 +20,7 @@ const SessionList = ({ sessions }) => {
             {sessions.map((session) => (
               <tr key={session.session_id}>
                 <td>
-                  <NavLink to={`/session/${session.session_id}`} className="remove-decoration">
+                  <NavLink to={`/${url}/${session.session_id}`} className="remove-decoration">
                     <span className="color-black">{session.session_name}</span>
                   </NavLink>
                 </td>

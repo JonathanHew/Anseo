@@ -4,15 +4,13 @@ import { NavLink } from "react-router-dom";
 const ModuleList = ({ modules, studentNumber }) => {
   return (
     <Fragment>
-      <h4 className="text-center mt-5">Modules</h4>
-      
-      <div class="list-group">
+      <div className="list-group mt-1">
         {modules.map((module) => (
-          <NavLink to={`/student-report/${studentNumber}/${module.module_id}`}>
+          <NavLink to={`/student-report/${studentNumber}/${module.module_id}`} className="remove-decoration">
             <button
               key={module.module_id}
               type="button"
-              class="list-group-item list-group-item-action"
+              className="list-group-item list-group-item-action"
             >
               {module.module_name}
             </button>

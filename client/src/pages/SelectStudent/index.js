@@ -55,11 +55,20 @@ const SelectStudent = ({ id }) => {
         <button className="btn btn-success">Search</button>
       </form>
       <div style={{ color: "red", margin: "10px 0" }}>{error}</div>
-      <ModuleList modules={modules} studentNumber={studentNumber}/>
-      <p className="text-center mt-1">{message2}</p>
-      <h4 className="text-center mt-5">Student Sessions</h4>
-      <SessionList sessions={sessions} />
-      <p className="text-center mt-1">{message}</p>
+      <div className="card w-75 m-auto mt-5">
+        <div className="card-body">
+          <h4 className="text-center mt-1">Modules</h4>
+          <ModuleList modules={modules} studentNumber={studentNumber} />
+          <p className="text-center mt-1">{message2}</p>
+        </div>
+      </div>
+      <div className="card mt-5">
+        <div className="card-body">
+          <h4 className="text-center mt-1">Student Sessions</h4>
+          <SessionList sessions={sessions} />
+          <p className="text-center mt-1">{message}</p>
+        </div>
+      </div>
     </Layout>
   );
 };

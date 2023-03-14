@@ -7,7 +7,7 @@ const QRcode = ({ id, pin, students, sessionToggle }) => {
   return (
     <Fragment>
       <div class="container text-center">
-        <h1>Sign in by scanning the QR code!</h1>
+        <h1 className="mt-4">Sign in by scanning the QR code!</h1>
         <button
           type="button"
           className="btn btn-danger"

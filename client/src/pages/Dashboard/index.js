@@ -141,7 +141,7 @@ const Dashboard = () => {
               </div>
             </div>
 
-            <SessionList sessions={sessions} />
+            <SessionList sessions={sessions} url="session"/>
           </div>
         </div>
       </Layout>
