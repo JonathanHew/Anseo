@@ -7,7 +7,7 @@ import {
   onSetSessionStatus,
 } from "../../api/lecturer.api";
 import QRcode from "../../components/QRcode";
-import StudentList from "../../components/SigninList";
+import SigninList from "../../components/SigninList";
 
 const Session = () => {
   const { id } = useParams();
@@ -17,7 +17,7 @@ const Session = () => {
   const [pin, setPin] = useState("");
   const [name, setName] = useState("");
 
-  const sessionToggle = async(e) => {
+  const sessionToggle = async (e) => {
     e.preventDefault();
     try {
       const content = await onSetSessionStatus(id);
@@ -25,19 +25,23 @@ const Session = () => {
     } catch (err) {
       console.error(err.message);
     }
-  }
+  };
 
   useEffect(() => {
     (async () => {
       const content = await fetchStudentsInSession(id);
+      console.log("students fetched!");
       setStudents(content.data.students);
       const content2 = await fetchSessionInfo(id);
+      console.log("session info fetched");
       setActive(content2.data.result[0].session_is_active);
       setPin(content2.data.result[0].session_pin);
       setName(content2.data.result[0].session_name);
       setLoading(false);
     })();
+  }, []);
 
+  useEffect(() => {
     if (active) {
       let interval = setInterval(async () => {
         const content = await fetchStudentsInSession(id);
@@ -56,11 +60,20 @@ const Session = () => {
     </Layout>
   ) : active ? (
     <Layout>
-      <QRcode id={id} pin={pin} students={students} sessionToggle={sessionToggle}/>
+      <QRcode
+        id={id}
+        pin={pin}
+        students={students}
+        sessionToggle={sessionToggle}
+      />
     </Layout>
   ) : (
     <Layout>
-      <StudentList name={name} students={students} sessionToggle={sessionToggle}/>
+      <SigninList
+        name={name}
+        students={students}
+        sessionToggle={sessionToggle}
+      />
     </Layout>
   );
 };
