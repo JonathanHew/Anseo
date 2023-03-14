@@ -1,46 +1,46 @@
 #block {
-    display: block;
+  display: block;
 }
 
 #login-form {
-    width: 450px;
-    position: absolute;
-    left: 50%;
-    top: 50%;
-    -webkit-transform: translate(-50%, -50%);
-    transform: translate(-50%, -50%);
-  }
-  
-  #login-btn {
-    display: block;
-    width: 100%;
-    padding: 10px 28px;
-    font-size: 16px;
-    cursor: pointer;
-    text-align: center;
-  }
+  width: 450px;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  -webkit-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+}
 
-  #register-form {
-    width: 450px;
-    position: absolute;
-    left: 50%;
-    top: 50%;
-    -webkit-transform: translate(-50%, -50%);
-    transform: translate(-50%, -50%);
-  }
-  
-  #register-btn {
-    display: block;
-    width: 100%;
-    padding: 10px 28px;
-    font-size: 16px;
-    cursor: pointer;
-    text-align: center;
-  }
+#login-btn {
+  display: block;
+  width: 100%;
+  padding: 10px 28px;
+  font-size: 16px;
+  cursor: pointer;
+  text-align: center;
+}
 
-  #module-item  {
-    width: 50%;
-    margin: auto;
+#register-form {
+  width: 450px;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  -webkit-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+}
+
+#register-btn {
+  display: block;
+  width: 100%;
+  padding: 10px 28px;
+  font-size: 16px;
+  cursor: pointer;
+  text-align: center;
+}
+
+#module-item {
+  width: 50%;
+  margin: auto;
 }
 
 .report-card-body {
@@ -72,4 +72,14 @@ thead {
   position: sticky;
   top: -1px;
   background-color: white;
+}
+
+.leaflet-container {
+  width: 100%;
+  height: 250px;
+}
+
+#map-div {
+  width: 100%;
+  margin: auto;
 }
