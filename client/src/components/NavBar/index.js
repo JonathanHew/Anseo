@@ -21,26 +21,26 @@ const NavBar = () => {
 
   // if isAuth (logged in), render dashboard, if not render login and register options
   return (
-    <nav className="navbar navbar-light bg-light">
+    <nav className="navbar background-purple">
       <div className="container">
         <div>
-          <NavLink to="/">
-            <span className="navbar-brand mb-0 h1">Attendify!</span>
+          <NavLink to="/" className="remove-decoration">
+            <span className="navbar-brand mb-0 h1 text-white">Anseo!</span>
           </NavLink>
         </div>
         {isAuth ? (
           <div>
             <NavLink to="/dashboard">
-              <button className="btn btn-outline-primary me-2">
+              <button className="btn btn-info me-2 text-white">
                 Dashboard
               </button>
             </NavLink>
             <NavLink to="/select-report">
-              <button className="btn btn-outline-info me-5">Reports</button>
+              <button className="btn btn-info me-5 text-white">Reports</button>
             </NavLink>
             <NavLink>
               <button
-                className="btn btn-outline-secondary btn-sm ms-3"
+                className="btn btn-outline-light btn-sm ms-3"
                 onClick={() => logout()}
               >
                 Logout

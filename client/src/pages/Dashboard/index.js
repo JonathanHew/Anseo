@@ -51,9 +51,9 @@ const Dashboard = () => {
   ) : (
     <div>
       <Layout>
-        <h1 className="text-center">Dashboard</h1>
+        <h1 className="text-center mt-3">Dashboard</h1>
         <div className="w-75 m-auto">
-          <div class="row text-center mt-5">
+          <div class="row text-center mt-3">
             <div class="col-sm-6">
               <div class="card">
                 <div class="card-body">

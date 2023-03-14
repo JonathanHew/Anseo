@@ -1,5 +1,7 @@
 import React, { Fragment } from "react";
 import { deleteSignIn } from "../../api/lecturer.api";
+import { faTrashCan } from "@fortawesome/free-regular-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 const DeleteSignin = ({ signin_id }) => {
   const deleteSignin = async (e) => {
@@ -13,13 +15,11 @@ const DeleteSignin = ({ signin_id }) => {
   };
   return (
     <Fragment>
-      <button
-        type="button"
-        className="btn btn-danger btn-sm"
-        onClick={(e) => deleteSignin(e)}
-      >
-        x
-      </button>
+      <FontAwesomeIcon
+        icon={faTrashCan}
+        onClick={deleteSignIn()}
+        className="hover-cursor"
+      ></FontAwesomeIcon>
     </Fragment>
   );
 };

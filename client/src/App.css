@@ -92,3 +92,61 @@ thead {
   cursor: pointer;
   text-align: center;
 }
+
+#home-div {
+  width: 320px;
+  margin: auto;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  -webkit-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+}
+
+#bottom-card-text {
+  font-size: 13px;
+}
+
+.background-red {
+  background-color: red;
+}
+
+.background-blue {
+  background-color: blue;
+}
+
+.background-light-grey {
+  background-color: #fafafa;
+}
+
+.background-purple {
+  background-color: #aa77ff;
+}
+
+.remove-decoration {
+  text-decoration: none;
+}
+
+.color-purple {
+  color: #aa77ff;
+}
+
+.color-dark-blue {
+  color: #62cdff;
+}
+
+.color-black {
+  color: black;
+}
+
+.background-light-blue {
+  color: #c9eeff;
+}
+
+.page-height {
+  min-height: 100vh;
+}
+
+.hover-cursor:hover {
+  cursor: pointer;
+}

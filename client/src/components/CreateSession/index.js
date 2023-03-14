@@ -93,7 +93,7 @@ const CreateSession = ({ modules }) => {
               </button>
               <button
                 type="button"
-                className="btn btn-primary"
+                className="btn btn-success"
                 onClick={(e) => create(e)}
               >
                 Create
