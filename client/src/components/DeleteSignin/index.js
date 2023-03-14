@@ -4,7 +4,6 @@ import { faTrashCan } from "@fortawesome/free-regular-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 const DeleteSignin = ({ signin_id }) => {
-  
   const deleteSignin = async (e) => {
     e.preventDefault();
     try {

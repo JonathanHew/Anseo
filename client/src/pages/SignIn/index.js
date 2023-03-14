@@ -24,6 +24,7 @@ const SignIn = () => {
   const [loading, setLoading] = useState(true);
   const [center] = useState({ lat: 53.356427, lng: -6.2817008 });
   const [map, setMap] = useState(null);
+  const [submitted, setSubmitted] = useState(false);
 
   let myLatLon;
   let locationMarker;
@@ -110,6 +111,7 @@ const SignIn = () => {
       {
         const { data } = await onSignIn(values);
         setError("");
+        setSubmitted(true);
         setSuccess(data.message);
         setValues({ name: "", number: "" });
       }
@@ -140,46 +142,52 @@ const SignIn = () => {
             </MapContainer>
           </div>
           <div className="w-50 m-auto">
-            <form onSubmit={(e) => onSubmit(e)} className="container mt-4">
-              <div className="mb-3">
-                <label htmlFor="number" className="form-label">
-                  Student Number
-                </label>
-                <input
-                  onChange={(e) => onChange(e)}
-                  type="text"
-                  className="form-control"
-                  id="number"
-                  name="number"
-                  value={values.number.toUpperCase()}
-                  placeholder="C12345678"
-                  required
-                />
-              </div>
+            {submitted ? (
+              <h4 className="text-center text-success mt-5" >You have signed in successfully, Thank you!</h4>
+            ) : (
+              <form onSubmit={(e) => onSubmit(e)} className="container mt-4">
+                <div className="mb-3">
+                  <label htmlFor="number" className="form-label">
+                    Student Number
+                  </label>
+                  <input
+                    onChange={(e) => onChange(e)}
+                    type="text"
+                    className="form-control"
+                    id="number"
+                    name="number"
+                    value={values.number.toUpperCase()}
+                    placeholder="C12345678"
+                    required
+                  />
+                </div>
 
-              <div className="mb-3">
-                <label htmlFor="name" className="form-label">
-                  First Name
-                </label>
-                <input
-                  onChange={(e) => onChange(e)}
-                  type="text"
-                  value={values.name}
-                  className="form-control"
-                  id="name"
-                  name="name"
-                  placeholder="name"
-                  required
-                />
-              </div>
+                <div className="mb-3">
+                  <label htmlFor="name" className="form-label">
+                    First Name
+                  </label>
+                  <input
+                    onChange={(e) => onChange(e)}
+                    type="text"
+                    value={values.name}
+                    className="form-control"
+                    id="name"
+                    name="name"
+                    placeholder="name"
+                    required
+                  />
+                </div>
 
-              <div style={{ color: "red", margin: "10px 0" }}>{error}</div>
-              <div style={{ color: "green", margin: "10px 0" }}>{success}</div>
-
-              <button type="submit" className="btn btn-primary" id="signin-btn">
-                Submit
-              </button>
-            </form>
+                <div style={{ color: "red", margin: "10px 0" }}>{error}</div>
+                <button
+                  type="submit"
+                  className="btn btn-primary"
+                  id="signin-btn"
+                >
+                  Submit
+                </button>
+              </form>
+            )}
           </div>
         </div>
       </div>
