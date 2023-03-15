@@ -3,7 +3,8 @@ import { onLogin } from "../../api/auth";
 import Layout from "../../components/Layout";
 import { useDispatch } from "react-redux";
 import { authenticateUser } from "../../redux/slices/authSlice";
-import "../../App.css"
+import "../../App.css";
+import { NavLink } from "react-router-dom";
 
 const Login = () => {
   const [values, setValues] = useState({
@@ -34,10 +35,10 @@ const Login = () => {
   };
 
   return (
-    <Layout>
+    <div className="container">
       <div id="login-form">
-        <h1 className="card-title text-center">Login</h1>
-        <p className="card-text text-center">
+        <h1 className="text-center anseo-page-title">Anseo!</h1>
+        <p className="card-text text-center text-white">
           Login to enjoy all our cool features ✌️
         </p>
         <div className="card">
@@ -90,16 +91,23 @@ const Login = () => {
 
               <button
                 type="submit"
-                className="btn btn-primary mt-1 mb-3"
+                className="btn btn-secondary mt-1 mb-3"
                 id="login-btn"
               >
                 Login
               </button>
+              <p className="text-muted text-center">
+                Dont have an account? Register{" "}
+                <NavLink to={"/register"}>
+                  <span className="text-muted">here</span>
+                </NavLink>{" "}
+                !
+              </p>
             </form>
           </div>
         </div>
       </div>
-    </Layout>
+    </div>
   );
 };
 
