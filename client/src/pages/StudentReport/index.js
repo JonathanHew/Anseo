@@ -174,7 +174,7 @@ const StudentReport = () => {
         <div className="card-body">
           <h3 className="text-center mt-1">Sign Ins</h3>
           <div className="table-responsive">
-            <table className="table text-center">
+            <table className="table text-center table-hover">
               <thead>
                 <tr>
                   <th>Session</th>
@@ -187,8 +187,8 @@ const StudentReport = () => {
                 {signins.map((signin) => (
                   <tr key={signin.signin_id}>
                     <td>
-                      <NavLink to={`/session/${signin.session_id}`}>
-                        <span>{signin.session_name}</span>
+                      <NavLink to={`/session/${signin.session_id}`} className="remove-decoration">
+                        <span className="color-black">{signin.session_name}</span>
                       </NavLink>
                     </td>
                     <td>
