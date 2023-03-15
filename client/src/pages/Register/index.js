@@ -1,7 +1,8 @@
 import { useState } from "react";
 import { onRegistration } from "../../api/auth";
 import Layout from "../../components/Layout";
-import "../../App.css"
+import "../../App.css";
+import { NavLink } from "react-router-dom";
 const Register = () => {
   const [values, setValues] = useState({
     email: "",
@@ -35,10 +36,10 @@ const Register = () => {
   };
 
   return (
-    <Layout>
+    <div className="container">
       <div id="register-form">
-        <h1 className="card-title text-center">Register</h1>
-        <p className="card-text text-center">
+        <h1 className="text-center anseo-page-title">Anseo!</h1>
+        <p className="card-text text-center text-white">
           Register to use all our cool features ✌️
         </p>
         <div className="card">
@@ -81,17 +82,23 @@ const Register = () => {
 
               <button
                 type="submit"
-                className="btn btn-primary mt-3 mb-3"
+                className="btn btn-secondary mt-3 mb-3"
                 id="register-btn"
               >
                 Register
               </button>
-              <p className="text-muted text-center">Already a user? Login</p>
+              <p className="text-muted text-center">
+                Already a user? Login{" "}
+                <NavLink to={"/login"}>
+                  <span className="text-muted">here</span>
+                </NavLink>{" "}
+                !
+              </p>
             </form>
           </div>
         </div>
       </div>
-    </Layout>
+    </div>
   );
 };
 
