@@ -37,7 +37,9 @@ const Login = () => {
   return (
     <div className="container">
       <div id="login-form">
-        <h1 className="text-center anseo-page-title">Anseo!</h1>
+        <NavLink to={"/"} className="remove-decoration">
+          <h1 className="text-center anseo-page-title">Anseo!</h1>
+        </NavLink>
         <p className="card-text text-center text-white">
           Login to enjoy all our cool features ✌️
         </p>

@@ -38,7 +38,9 @@ const Register = () => {
   return (
     <div className="container">
       <div id="register-form">
-        <h1 className="text-center anseo-page-title">Anseo!</h1>
+        <NavLink to={"/"} className="remove-decoration">
+          <h1 className="text-center anseo-page-title">Anseo!</h1>
+        </NavLink>
         <p className="card-text text-center text-white">
           Register to use all our cool features ✌️
         </p>
