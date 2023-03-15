@@ -24,7 +24,7 @@ const NavBar = () => {
     <nav className="navbar background-purple">
       <div className="container">
         <div>
-          <NavLink to="/" className="remove-decoration">
+          <NavLink to="/dashboard" className="remove-decoration">
             <span className="navbar-brand mb-0 h1 text-white">Anseo!</span>
           </NavLink>
         </div>

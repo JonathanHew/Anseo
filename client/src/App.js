@@ -6,7 +6,7 @@ import {
   Outlet,
 } from "react-router-dom";
 
-import Home from "./pages/Home"
+import Home from "./pages/Home";
 import Dashboard from "./pages/Dashboard";
 import Register from "./pages/Register";
 import Login from "./pages/Login";
@@ -56,22 +56,34 @@ const App = () => {
   return (
     <BrowserRouter>
       <Routes>
-        <Route path="/" element={<Home />}></Route>
         <Route path="/sign-in/:session_id" element={<SignIn />}></Route>
 
         <Route element={<PrivateRoutes />}>
           <Route path="/dashboard" element={<Dashboard />}></Route>
           <Route path="/session/:id" element={<Session />}></Route>
-          <Route path="/select-student" element={<SelectStudent id={id} />}></Route>
-          <Route path="/student-report/:student_number/:module_id" element={<StudentReport/>}></Route>
-          <Route path="/select-module" element={<SelectModule/>}></Route>
-          <Route path="/module-report/:module_id" element={<ModuleReport/>}></Route>
-          <Route path="/select-session" element={<SelectSession/>}></Route>
-          <Route path="/session-report/:session_id" element={<SessionReport/>}></Route>
-          <Route path="/select-report" element={<SelectReport/>}></Route>
+          <Route
+            path="/select-student"
+            element={<SelectStudent id={id} />}
+          ></Route>
+          <Route
+            path="/student-report/:student_number/:module_id"
+            element={<StudentReport />}
+          ></Route>
+          <Route path="/select-module" element={<SelectModule />}></Route>
+          <Route
+            path="/module-report/:module_id"
+            element={<ModuleReport />}
+          ></Route>
+          <Route path="/select-session" element={<SelectSession />}></Route>
+          <Route
+            path="/session-report/:session_id"
+            element={<SessionReport />}
+          ></Route>
+          <Route path="/select-report" element={<SelectReport />}></Route>
         </Route>
 
         <Route element={<RestrictedRoutes />}>
+          <Route path="/" element={<Home />}></Route>
           <Route path="/register" element={<Register />}></Route>
           <Route path="/login" element={<Login />}></Route>
         </Route>
