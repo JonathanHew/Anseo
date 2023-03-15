@@ -2,6 +2,7 @@ import { useState } from "react";
 import { onPinSubmit } from "../../api/signIn.api";
 import Layout from "../../components/Layout";
 import "../../App.css";
+import { NavLink } from "react-router-dom";
 
 const Home = () => {
   const [pin, setPin] = useState("");
@@ -24,8 +25,10 @@ const Home = () => {
   return (
     <div className="container">
       <div id="home-div">
-        <h1 className="text-center mb-3 ">Anseo!</h1>
-        <div className="card" id="home-card">
+        <h1 className="text-center mb-3" id="home-page-title">
+          Anseo!
+        </h1>
+        <div className="card " id="home-card">
           <div className="card-body">
             <div className="container text-center">
               <form onSubmit={onSubmitForm}>
@@ -49,8 +52,16 @@ const Home = () => {
             </div>
           </div>
         </div>
-        <p className="mt-1 text-center text-muted" id="bottom-card-text">
-          Are you a lecturer? Login or Register here!
+        <p className="mt-1 text-center text-white" id="bottom-card-text">
+          Are you a lecturer?{" "}
+          <NavLink to={"/login"}>
+            <span className="text-white">Login</span>
+          </NavLink>{" "}
+          or{" "}
+          <NavLink to={"/register"}>
+            <span className="text-white">Register</span>
+          </NavLink>{" "}
+          here!
         </p>
       </div>
     </div>

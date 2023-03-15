@@ -158,3 +158,16 @@ thead {
 .color-red {
   color: red;
 }
+
+html {
+  background-color: #aa77ff;
+}
+
+.color-white {
+  color: white;
+}
+
+#home-page-title {
+  color: white;
+  font-size: 80px;
+}
