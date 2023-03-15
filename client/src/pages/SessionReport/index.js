@@ -66,7 +66,7 @@ const SessionReport = () => {
             <div class="col-md-5">
               <div className="card">
                 <div className="card-body">
-                  <h4>Attendance Pie Chart</h4>
+                  <h4>Attendance Record</h4>
                   <DoughnutChart chartData={piedata}></DoughnutChart>
                 </div>
               </div>
