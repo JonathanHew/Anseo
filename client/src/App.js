@@ -56,8 +56,6 @@ const App = () => {
   return (
     <BrowserRouter>
       <Routes>
-        <Route path="/sign-in/:session_id" element={<SignIn />}></Route>
-
         <Route element={<PrivateRoutes />}>
           <Route path="/dashboard" element={<Dashboard />}></Route>
           <Route path="/session/:id" element={<Session />}></Route>
@@ -86,6 +84,7 @@ const App = () => {
           <Route path="/" element={<Home />}></Route>
           <Route path="/register" element={<Register />}></Route>
           <Route path="/login" element={<Login />}></Route>
+          <Route path="/sign-in/:session_id" element={<SignIn />}></Route>
         </Route>
       </Routes>
     </BrowserRouter>

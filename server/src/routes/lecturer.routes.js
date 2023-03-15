@@ -62,7 +62,6 @@ router.post(
 
 router.post(
   "/get-session-info",
-  userAuth,
   sessionValidator,
   validationMiddleware,
   getSessionInfo

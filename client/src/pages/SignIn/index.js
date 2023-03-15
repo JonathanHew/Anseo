@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useParams, NavLink } from "react-router-dom";
 import { fetchSessionInfo } from "../../api/lecturer.api";
 import { onSignIn } from "../../api/signIn.api";
 import Layout from "../../components/Layout";
@@ -113,7 +113,6 @@ const SignIn = () => {
         setError("");
         setSubmitted(true);
         setSuccess(data.message);
-        setValues({ name: "", number: "" });
       }
     } catch (err) {
       console.error(err.response.data.errors[0].msg);
@@ -128,66 +127,79 @@ const SignIn = () => {
     </div>
   ) : (
     <div className="container">
-      <h1 className="text-center mt-5 mb-5">Anseo!</h1>
-      <div className="card w-100 mt-5 m-auto">
-        <div className="card-body">
-          <h2 className="text-center mt-4 mb-3">Sign Into {session}</h2>
-          <div id="map-div">
-            <MapContainer center={center} zoom={17} ref={setMap}>
-              <TileLayer
-                url="https://tile.openstreetmap.org/{z}/{x}/{y}.png"
-                attribution='&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
-              />
-              <Polygon pathOptions={redOptions} positions={tudPolygon} />
-            </MapContainer>
-          </div>
-          <div className="w-50 m-auto">
-            {submitted ? (
-              <h4 className="text-center text-success mt-5" >You have signed in successfully, Thank you!</h4>
-            ) : (
-              <form onSubmit={(e) => onSubmit(e)} className="container mt-4">
-                <div className="mb-3">
-                  <label htmlFor="number" className="form-label">
-                    Student Number
-                  </label>
-                  <input
-                    onChange={(e) => onChange(e)}
-                    type="text"
-                    className="form-control"
-                    id="number"
-                    name="number"
-                    value={values.number.toUpperCase()}
-                    placeholder="C12345678"
-                    required
-                  />
-                </div>
+      <NavLink to={"/"} className="remove-decoration">
+        <h1 className="text-center anseo-page-title mt-1">Anseo!</h1>
+      </NavLink>
+      <div className="card">
+        <div className="card-body background-light-grey">
+          <MapContainer center={center} zoom={17} ref={setMap}>
+            <TileLayer
+              url="https://tile.openstreetmap.org/{z}/{x}/{y}.png"
+              attribution='&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
+            />
+            <Polygon pathOptions={redOptions} positions={tudPolygon} />
+          </MapContainer>
+        </div>
+      </div>
+      <div
+        className="card mb-3 m-auto mt-3 background-light-grey"
+        style={{ maxWidth: "540px" }}
+      >
+        <div class="row g-0">
+          <div class="col-md-12">
+            <div className="card-body background-light-grey">
+              <h2 className="card-title text-center text-secondary mt-1 mb-3">
+                Sign Into: {session}
+              </h2>
+              {submitted ? (
+                <h4 className="text-center text-success mt-2">
+                  Thanks {values.name}! You have signed in successfully.
+                </h4>
+              ) : (
+                <form onSubmit={(e) => onSubmit(e)} className="container">
+                  <div className="mb-3">
+                    <label htmlFor="number" className="form-label">
+                      Student Number
+                    </label>
+                    <input
+                      onChange={(e) => onChange(e)}
+                      type="text"
+                      className="form-control"
+                      id="number"
+                      name="number"
+                      value={values.number.toUpperCase()}
+                      placeholder="C12345678"
+                      required
+                    />
+                  </div>
 
-                <div className="mb-3">
-                  <label htmlFor="name" className="form-label">
-                    First Name
-                  </label>
-                  <input
-                    onChange={(e) => onChange(e)}
-                    type="text"
-                    value={values.name}
-                    className="form-control"
-                    id="name"
-                    name="name"
-                    placeholder="name"
-                    required
-                  />
-                </div>
+                  <div className="mb-3">
+                    <label htmlFor="name" className="form-label">
+                      First Name
+                    </label>
+                    <input
+                      onChange={(e) => onChange(e)}
+                      type="text"
+                      value={values.name}
+                      className="form-control"
+                      id="name"
+                      name="name"
+                      placeholder="name"
+                      required
+                    />
+                  </div>
 
-                <div style={{ color: "red", margin: "10px 0" }}>{error}</div>
-                <button
-                  type="submit"
-                  className="btn btn-primary"
-                  id="signin-btn"
-                >
-                  Submit
-                </button>
-              </form>
-            )}
+                  <div style={{ color: "red", margin: "10px 0" }}>{error}</div>
+                  <button
+                    type="submit"
+                    className="btn btn-secondary"
+                    id="signin-btn"
+                  >
+                    Sign In
+                  </button>
+                </form>
+              )}
+            </div>
           </div>
         </div>
       </div>

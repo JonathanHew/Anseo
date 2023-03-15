@@ -159,7 +159,7 @@ thead {
   color: red;
 }
 
-html {
+html body{
   background-color: #aa77ff;
 }
 
@@ -170,4 +170,8 @@ html {
 .anseo-page-title {
   color: white;
   font-size: 80px;
+}
+
+#signin-form {
+  width: 320px;
 }
