@@ -272,16 +272,26 @@ exports.getStudentModulesReportLineData = async (req, res) => {
 
 exports.getModuleReportLineData = async (req, res) => {
   const { module_id } = req.body;
+  let total = 0;
+  let count = 0;
 
   try {
     const { rows } = await db.query(
-      `SELECT sessions.session_id, session_name, session_date, count(signin_number) FROM sessions LEFT JOIN signins ON sessions.session_id = signins.session_id JOIN modules ON sessions.module_id = modules.module_id WHERE sessions.module_id = $1 GROUP BY session_name, session_date, sessions.session_id ORDER BY sessions.session_date ASC`,
+      `SELECT sessions.session_id, session_name, session_date, count(signin_number), session_time FROM sessions LEFT JOIN signins ON sessions.session_id = signins.session_id JOIN modules ON sessions.module_id = modules.module_id WHERE sessions.module_id = $1 GROUP BY session_name, session_date, sessions.session_id ORDER BY sessions.session_date ASC`,
       [module_id]
     );
 
+    rows.forEach((session) => {
+      if (parseInt(session.count) > 0) {
+        total = total + parseInt(session.count);
+        count++;      }
+    });
+
+    
     return res.status(200).json({
       success: true,
       sessions: rows,
+      average: Math.round(total / count),
     });
   } catch (err) {
     console.error(err.message);

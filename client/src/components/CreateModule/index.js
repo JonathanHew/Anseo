@@ -9,7 +9,7 @@ const CreateModule = () => {
     e.preventDefault();
     try {
       await onCreateModule(name);
-      window.location = "/sessions";
+      window.location = "/dashboard";
     } catch (err) {
       console.error(err.response.data.errors[0].msg);
       setError(err.response.data.errors[0].msg);

@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { NavLink } from "react-router-dom";
 import { fetchUserModules } from "../../api/lecturer.api";
 import Layout from "../../components/Layout";
-import "../../App.css"
+import "../../App.css";
 
 const SelectModule = () => {
   const [modules, setModules] = useState([]);
@@ -22,9 +22,13 @@ const SelectModule = () => {
   ) : (
     <Layout>
       <h1 className="text-center mt-5 mb-4">Select a Module</h1>
-      <div class="list-group mt-3">
+
+      <div className="list-group mt-3">
         {modules.map((module) => (
-          <NavLink to={`/module-report/${module.module_id}`} className="remove-decoration">
+          <NavLink
+            to={`/module-report/${module.module_id}`}
+            className="remove-decoration"
+          >
             <button
               key={module.module_id}
               type="button"

@@ -1,7 +1,7 @@
 import React, { Fragment, useEffect } from "react";
 import { NavLink } from "react-router-dom";
 import { format, parseISO } from "date-fns";
-import "../../App.css"
+import "../../App.css";
 const SessionList = ({ sessions, url }) => {
   return (
     <Fragment>
@@ -16,11 +16,14 @@ const SessionList = ({ sessions, url }) => {
               <th>Module</th>
             </tr>
           </thead>
-          <tbody className="table table-group-divider">
+          <tbody className=" table-group-divider">
             {sessions.map((session) => (
               <tr key={session.session_id}>
                 <td>
-                  <NavLink to={`/${url}/${session.session_id}`} className="remove-decoration">
+                  <NavLink
+                    to={`/${url}/${session.session_id}`}
+                    className="remove-decoration"
+                  >
                     <span className="color-black">{session.session_name}</span>
                   </NavLink>
                 </td>
@@ -30,7 +33,9 @@ const SessionList = ({ sessions, url }) => {
                       Active
                     </span>
                   ) : (
-                    <span class="badge rounded-pill text-bg-light">Inactive</span>
+                    <span class="badge rounded-pill text-bg-light">
+                      Inactive
+                    </span>
                   )}
                 </td>
                 <td>{format(parseISO(session.session_date), "dd/MM/yyyy")}</td>
