@@ -171,7 +171,7 @@ const ModuleReport = () => {
                   <tr key={session.session_id}>
                     <td>
                       <NavLink
-                        to={`/join/${session.session_id}`}
+                        to={`/session/${session.session_id}`}
                         className="remove-decoration color-black"
                       >
                         <span>{session.session_name}</span>

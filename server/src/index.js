@@ -36,3 +36,5 @@ const appStart = () => {
 };
 
 appStart();
+
+module.exports = app;
