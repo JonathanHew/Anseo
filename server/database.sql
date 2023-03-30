@@ -18,7 +18,8 @@ create function GEN_RANDOM_BYTES(int) returns bytea as
 
 create function RANDOM_STRING(len int) returns text as $$
 declare
-  chars text[] = '{0,1,2,3,4,5,6,7,8,9,A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P,Q,R,S,T,U,V,W,X,Y,Z,a,b,c,d,e,f,g,h,i,j,k,l,m,n,o,p,q,r,s,t,u,v,w,x,y,z}';
+  chars text[] = '{0,1,2,3,4,5,6,7,8,9,A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P,Q,R,S,T,U,V,W,X,Y,Z,
+  a,b,c,d,e,f,g,h,i,j,k,l,m,n,o,p,q,r,s,t,u,v,w,x,y,z}';
   result text = '';
   i int = 0;
   rand bytea;
@@ -105,7 +106,7 @@ CREATE TABLE signIns(
                 ON DELETE CASCADE
 );
 
---table to store coordinates for campuses
+--table to store information for campuses
 CREATE TABLE locations (
     location_id SERIAL PRIMARY KEY,
     location_name VARCHAR(255) NOT NULL,

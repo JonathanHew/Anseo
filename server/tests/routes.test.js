@@ -80,7 +80,7 @@ describe("\n\nPOST /api/login", () => {
 });
 
 describe("\n\nPOST /api/register", () => {
-  /*
+  
   describe("When a new email and valid password is registered", () => {
     test("Should respond with a 201 status code", async () => {
       const bodyData = [{ email: "jest@gmail.com", password: "password" }];
@@ -100,7 +100,7 @@ describe("\n\nPOST /api/register", () => {
       );
     });
   });
-  */
+
 
   describe("When a empty email OR empty password or both is registered", () => {
     test("Should respond with a 400 status code", async () => {
@@ -126,7 +126,7 @@ describe("\n\nPOST /api/register", () => {
 
   describe("When a used email is registered", () => {
     test("Should respond with a 400 status code", async () => {
-      const bodyData = [{ email: "jest@gmail.com", password: "password" }];
+      const bodyData = [{ email: "jonathan@gmail.com", password: "password" }];
 
       for (const body of bodyData) {
         const response = await request(app).post("/api/register").send(body);
@@ -137,7 +137,7 @@ describe("\n\nPOST /api/register", () => {
     test("400 status code should specify JSON in content type header", async () => {
       const response = await request(app)
         .post("/api/register")
-        .send([{ email: "jest@gmail.com", password: "password" }]);
+        .send([{ email: "jonathan@gmail.com", password: "password" }]);
       expect(response.headers["content-type"]).toEqual(
         expect.stringContaining("json")
       );
@@ -209,7 +209,7 @@ describe("\n\nGET /api/get-sessions", () => {
 });
 
 describe("\n\nPOST /api/create-session", () => {
-  /*
+
   describe("When user is authenticated, session name valid and module exists", () => {
     test("Should respond with a 201 status code", async () => {
       const bodyData = { email: "jonathan@gmail.com", password: "password" };
@@ -237,7 +237,6 @@ describe("\n\nPOST /api/create-session", () => {
       );
     });
   });
-  */
 
   describe("When user is unauthoried", () => {
     test("Should respond with a 401 status code", async () => {
@@ -428,11 +427,11 @@ describe("\n\nPOST /api/search", () => {
 
 //student routes
 describe("\n\nPOST /api/sign-in", () => {
-  /*
+
   describe("When the student number, name, session_id are all valid", () => {
     test("Should respond with a 201 status code", async () => {
       const bodyData = {
-        number: "C00000004",
+        number: "C00000000",
         name: "Jest",
         session_id: "31ebd334-8d03-4e4d-a817-a991a53a3b4f",
         longitude: -6.2817008,
@@ -441,6 +440,18 @@ describe("\n\nPOST /api/sign-in", () => {
 
       const response = await request(app).post("/api/sign-in").send(bodyData);
       expect(response.statusCode).toBe(201);
+    });
+
+    test("201 status code should come with successful sign in message", async () => {
+      const bodyData = {
+        number: "C00000003",
+        name: "Jest",
+        session_id: "31ebd334-8d03-4e4d-a817-a991a53a3b4f",
+        longitude: -6.2817008,
+        latitude: 53.356427,
+      };
+      const response = await request(app).post("/api/sign-in").send(bodyData);
+      expect(response.body.message).toEqual("The sign was successful!");
     });
 
     test("201 status code should specify JSON in content type header", async () => {
@@ -457,20 +468,8 @@ describe("\n\nPOST /api/sign-in", () => {
         expect.stringContaining("json")
       );
     });
-
-    test("201 status code should come with successful sign in message", async () => {
-      const bodyData = {
-        number: "C00000003",
-        name: "Jest",
-        session_id: "31ebd334-8d03-4e4d-a817-a991a53a3b4f",
-        longitude: -6.2817008,
-        latitude: 53.356427,
-      };
-      const response = await request(app).post("/api/sign-in").send(bodyData);
-      expect(response.body.message).toEqual("The sign was successful!");
-    });
   });
-  */
+
 
   describe("When the student number OR name OR session_id OR combo are empty", () => {
     test("Should respond with a 400 status code", async () => {
@@ -520,7 +519,7 @@ describe("\n\nPOST /api/sign-in", () => {
   describe("When the student number has already signed into the session", () => {
     test("Should respond with a 400 status code", async () => {
       const bodyData = {
-        number: "C00000002",
+        number: "C19472843",
         name: "Jest",
         session_id: "31ebd334-8d03-4e4d-a817-a991a53a3b4f",
         longitude: -6.2817008,
@@ -533,7 +532,7 @@ describe("\n\nPOST /api/sign-in", () => {
 
     test("400 status code should specify JSON in content type header", async () => {
       const bodyData = {
-        number: "C00000002",
+        number: "C19472843",
         name: "Jest",
         session_id: "31ebd334-8d03-4e4d-a817-a991a53a3b4f",
         longitude: -6.2817008,
@@ -548,7 +547,7 @@ describe("\n\nPOST /api/sign-in", () => {
 
     test("400 status code should come with error message saying student has already signed in", async () => {
       const bodyData = {
-        number: "C00000002",
+        number: "C19472843",
         name: "Jest",
         session_id: "31ebd334-8d03-4e4d-a817-a991a53a3b4f",
         longitude: -6.2817008,
@@ -576,7 +575,7 @@ describe("\n\nPOST /api/sign-in", () => {
 
     test("400 status code should specify JSON in content type header", async () => {
       const bodyData = {
-        number: "C00000002",
+        number: "C00000005",
         name: "Jest",
         session_id: "957aa29b-dc0f-48b6-be92-2d6eeebd884b",
         longitude: -6.2817008,
@@ -591,7 +590,7 @@ describe("\n\nPOST /api/sign-in", () => {
 
     test("400 status code should come with error message saying session is no longer active", async () => {
       const bodyData = {
-        number: "C00000002",
+        number: "C00000005",
         name: "Jest",
         session_id: "957aa29b-dc0f-48b6-be92-2d6eeebd884b",
         longitude: -6.2817008,
@@ -608,9 +607,9 @@ describe("\n\nPOST /api/sign-in", () => {
   describe("When the student name is not alphabetic", () => {
     test("Should respond with a 400 status code", async () => {
       const bodyData = {
-        number: "C00000004",
+        number: "C00000006",
         name: "J0n@|h@n",
-        session_id: "957aa29b-dc0f-48b6-be92-2d6eeebd884b",
+        session_id: "31ebd334-8d03-4e4d-a817-a991a53a3b4f",
         longitude: -6.2817008,
         latitude: 53.356427,
       };
@@ -621,9 +620,9 @@ describe("\n\nPOST /api/sign-in", () => {
 
     test("400 status code should specify JSON in content type header", async () => {
       const bodyData = {
-        number: "C00000004",
+        number: "C00000006",
         name: "J0n@|h@n",
-        session_id: "957aa29b-dc0f-48b6-be92-2d6eeebd884b",
+        session_id: "31ebd334-8d03-4e4d-a817-a991a53a3b4f",
         longitude: -6.2817008,
         latitude: 53.356427,
       };
@@ -636,7 +635,7 @@ describe("\n\nPOST /api/sign-in", () => {
 
     test("400 status code should come with error message saying name must be aplhabetic", async () => {
       const bodyData = {
-        number: "C00000005",
+        number: "C00000006",
         name: "J0n@|h@n",
         session_id: "31ebd334-8d03-4e4d-a817-a991a53a3b4f",
         longitude: -6.2817008,

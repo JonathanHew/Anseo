@@ -4,7 +4,7 @@ import { Chart as ChartJS } from "chart.js/auto";
 
 const BarChart = ({ chartData, options }) => {
   return (
-    <div style={{ }}>
+    <div>
       <Bar data={chartData} options={options}/>
     </div>
   );

@@ -166,7 +166,9 @@ exports.getSignInsForStudentByModuleID = async (req, res) => {
 
   try {
     const { rows } = await db.query(
-      `SELECT signin_id, signin_date, signin_time, signin_on_campus, session_name, signIns.session_id FROM signIns JOIN sessions ON signIns.session_id = sessions.session_id WHERE signin_number = $1 AND sessions.module_id = $2 ORDER BY signin_date DESC`,
+      `SELECT signin_id, signin_date, signin_time, signin_on_campus, session_name, signIns.session_id FROM signIns 
+      JOIN sessions ON signIns.session_id = sessions.session_id WHERE signin_number = $1 AND sessions.module_id = $2 
+      ORDER BY signin_date DESC`,
       [student_number, module_id]
     );
 
@@ -186,7 +188,7 @@ exports.getSignInsForStudentByModuleID = async (req, res) => {
   } catch (err) {
     console.error(err.message);
   }
-};
+}; 
 
 exports.getSessionsInModule = async (req, res) => {
   const { module_id } = req.body;
@@ -216,7 +218,8 @@ exports.getStudentModuleReportPieData = async (req, res) => {
     );
 
     const signinData = await db.query(
-      `SELECT COUNT(*) AS signin_count FROM signIns JOIN sessions ON signIns.session_id = sessions.session_id WHERE signin_number = $1 AND sessions.module_id = $2`,
+      `SELECT COUNT(*) AS signin_count FROM signIns JOIN sessions ON signIns.session_id = sessions.session_id 
+      WHERE signin_number = $1 AND sessions.module_id = $2`,
       [student_number, module_id]
     );
 
@@ -243,7 +246,8 @@ exports.getStudentModulesReportLineData = async (req, res) => {
     let sessions = sessionData.rows;
 
     const signinData = await db.query(
-      `SELECT signins.session_id, session_name, session_date FROM signIns JOIN sessions ON signIns.session_id = sessions.session_id WHERE signin_number = $1 AND sessions.module_id = $2 ORDER BY session_date ASC`,
+      `SELECT signins.session_id, session_name, session_date FROM signIns JOIN sessions 
+      ON signIns.session_id = sessions.session_id WHERE signin_number = $1 AND sessions.module_id = $2 ORDER BY session_date ASC`,
       [student_number, module_id]
     );
 

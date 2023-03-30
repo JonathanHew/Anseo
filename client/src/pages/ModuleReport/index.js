@@ -44,12 +44,9 @@ const ModuleReport = () => {
   useEffect(() => {
     (async () => {
       await fetchModuleReportLineData(module_id).then((res) => {
-        setSessions(res.data.sessions);
-        setCount(res.data.sessions.length);
-        setAverage(res.data.average);
         setLinedata({
           labels: res.data.sessions.map((session) =>
-            format(parseISO(session.session_date), "dd/MM/yyyy")
+            format(parseISO(session.session_date), "dd/MM/yy")
           ),
           datasets: [
             {
@@ -59,6 +56,9 @@ const ModuleReport = () => {
             },
           ],
         });
+        setSessions(res.data.sessions);
+        setCount(res.data.sessions.length);
+        setAverage(res.data.average);
       });
 
       await fetchModuleInfo(module_id).then((res) => {

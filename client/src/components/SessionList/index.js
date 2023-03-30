@@ -1,4 +1,4 @@
-import React, { Fragment, useEffect } from "react";
+import React, { Fragment } from "react";
 import { NavLink } from "react-router-dom";
 import { format, parseISO } from "date-fns";
 import "../../App.css";
@@ -22,9 +22,9 @@ const SessionList = ({ sessions, url }) => {
                 <td>
                   <NavLink
                     to={`/${url}/${session.session_id}`}
-                    className="remove-decoration"
+                    className="remove-decoration color-black"
                   >
-                    <span className="color-black">{session.session_name}</span>
+                    <span>{session.session_name}</span>
                   </NavLink>
                 </td>
                 <td>

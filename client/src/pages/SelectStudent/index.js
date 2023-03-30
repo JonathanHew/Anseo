@@ -65,7 +65,7 @@ const SelectStudent = ({ id }) => {
       <div className="card mt-5">
         <div className="card-body">
           <h4 className="text-center mt-1">Student Sessions</h4>
-          <SessionList sessions={sessions} />
+          <SessionList sessions={sessions} url="session" />
           <p className="text-center mt-1">{message}</p>
         </div>
       </div>

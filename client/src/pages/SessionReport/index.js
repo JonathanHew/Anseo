@@ -101,7 +101,7 @@ const SessionReport = () => {
                         className="card-text ms-1"
                         style={{ fontSize: "50px" }}
                       >
-                        {percent}
+                        {percent}%
                       </span>
                     </div>
                   </div>

@@ -4,7 +4,7 @@ import { Chart as ChartJS } from "chart.js/auto";
 
 const LineChart = ({ chartData, options }) => {
   return (
-    <div style={{ }}>
+    <div>
       <Line data={chartData} options={options}/>
     </div>
   );

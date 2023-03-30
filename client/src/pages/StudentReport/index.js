@@ -7,7 +7,6 @@ import {
   fetchStudentModuleReportPieData,
 } from "../../api/lecturer.api";
 import Layout from "../../components/Layout";
-import PieChart from "../../components/PieChart";
 import { format, parseISO } from "date-fns";
 import LineChart from "../../components/LineChart";
 import DoughnutChart from "../../components/DoughnutChart";
@@ -86,14 +85,14 @@ const StudentReport = () => {
         (res) => {
           setLinedata({
             labels: res.data.sessions.map((session) =>
-              format(parseISO(session.session_date), "dd/MM/yyyy")
+              format(parseISO(session.session_date), "dd/MM/yy")
             ),
             datasets: [
               {
                 label: "Attendance",
                 data: res.data.sessions.map((session) => session.attended),
-                backgroundColor: ["#87bc45"],
-                borderColor: "#ea5545",
+                backgroundColor: ["white"],
+                borderColor: "#87bc45",
                 borderWidth: 2,
               },
             ],

@@ -2,7 +2,6 @@ import { useEffect, useState } from "react";
 import { useParams, NavLink } from "react-router-dom";
 import { fetchSessionInfo } from "../../api/lecturer.api";
 import { onSignIn } from "../../api/signIn.api";
-import Layout from "../../components/Layout";
 import { TileLayer, MapContainer, Polygon } from "react-leaflet";
 import L from "leaflet";
 import "../../App.css";
@@ -20,7 +19,6 @@ const SignIn = () => {
 
   const [session, setSession] = useState("");
   const [error, setError] = useState(false);
-  const [success, setSuccess] = useState(false);
   const [loading, setLoading] = useState(true);
   const [center] = useState({ lat: 53.356427, lng: -6.2817008 });
   const [map, setMap] = useState(null);
@@ -98,7 +96,7 @@ const SignIn = () => {
       () => {
         console.log("Unable to fetch location!");
         setError(
-          "Could not fetch location. Please refresh the page and make sure you click allow on the location services popup. If this proceeds please notify your lecturer!"
+          "Could not fetch user location. Please allow location permissions. If this proceeds please notify your lecturer!"
         );
       }
     );
@@ -112,12 +110,10 @@ const SignIn = () => {
         const { data } = await onSignIn(values);
         setError("");
         setSubmitted(true);
-        setSuccess(data.message);
       }
     } catch (err) {
       console.error(err.response.data.errors[0].msg);
       setError(err.response.data.errors[0].msg);
-      setSuccess("");
     }
   };
 

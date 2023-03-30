@@ -4,7 +4,7 @@ import { Chart as ChartJS } from "chart.js/auto";
 
 const DoughnutChart = ({ chartData }) => {
   return (
-    <div style={{}}>
+    <div>
       <Doughnut data={chartData} />
     </div>
   );
