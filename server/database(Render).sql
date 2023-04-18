@@ -1,19 +1,24 @@
-CREATE DATABASE anseo_v2;
+/*
+    While trying to host a database with Render, I ran into an error with the GEN_RANDOM_BYTES function
+    Render does not allow the use of C programming language
+    To solve this issue, the pgcrypto extension was used which actually a gen_random_bytes function
+*/
+
+
+CREATE DATABASE anseo_db;
+
 CREATE EXTENSION IF NOT EXISTS "uuid-ossp";
 CREATE EXTENSION IF NOT EXISTS "postgis";
+CREATE EXTENSION IF NOT EXISTS "pgcrypto";
 
-DROP FUNCTION IF EXISTS GEN_RANDOM_BYTES;
-DROP FUNCTION IF EXISTS RANDOM_STRING;
-DROP FUNCTION IF EXISTS UNIQUE_RANDOM;
+DROP FUNCTION IF EXISTS RANDOM_STRING CASCADE;
+DROP FUNCTION IF EXISTS UNIQUE_RANDOM CASCADE;
 
 DROP TABLE IF EXISTS signIns CASCADE;
 DROP TABLE IF EXISTS sessions CASCADE;
 DROP TABLE IF EXISTS modules CASCADE;
 DROP TABLE IF EXISTS users;
 DROP TABLE IF EXISTS locations;
-
-create function GEN_RANDOM_BYTES(int) returns bytea as
-'$libdir/pgcrypto', 'pg_random_bytes' language c strict;
 
 create function RANDOM_STRING(len int) returns text as $$
 declare
@@ -24,7 +29,7 @@ declare
   rand bytea;
 begin
   -- generate secure random bytes and convert them to a string of chars.
-  rand = GEN_RANDOM_BYTES($1);
+  rand = gen_random_bytes($1);
   for i in 0..len-1 loop
     -- rand indexing is zero-based, chars is 1-based.
     result = result || chars[1 + (get_byte(rand, i) % array_length(chars, 1))];
@@ -114,7 +119,7 @@ CREATE TABLE locations (
 
 INSERT INTO users (user_email, user_password) VALUES ('jonathan@gmail.com', 'password');
 INSERT INTO modules (module_name, user_id) VALUES ('1st Year Maths', 1);
-INSERT INTO sessions (session_name, user_id, module_id) VALUES ('Monday Morning 20/02/23', 1, 1);
+INSERT INTO sessions (session_name, user_id, module_id) VALUES ('Tuesday 19th April', 1, 1);
 INSERT INTO signIns (signIn_id, signIn_name, signIn_number, signIn_on_campus, session_id) VALUES (1, 'Jonathan', 'C19472842', false,'2deae280-1311-4c3a-a5ee-708f905c0d8a');
 INSERT INTO locations (location_name, location_polygon) VALUES (
   'library',
