@@ -186,8 +186,8 @@ const StudentReport = () => {
                 {signins.map((signin) => (
                   <tr key={signin.signin_id}>
                     <td>
-                      <NavLink to={`/session/${signin.session_id}`} className="remove-decoration">
-                        <span className="color-black">{signin.session_name}</span>
+                      <NavLink to={`/session/${signin.session_id}`} className="remove-decoration color-black">
+                        <span>{signin.session_name}</span>
                       </NavLink>
                     </td>
                     <td>
