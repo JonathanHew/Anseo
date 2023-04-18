@@ -1,8 +1,9 @@
 import React, { Fragment } from "react";
+import { clientURL } from "../../constants";
 import QRCode from "react-qr-code";
 
 const QRcode = ({ id }) => {
-  const url = "http://localhost:3000/sign-in/" + id;
+  const url = `${clientURL}/sign-in/` + id;
   return (
     <Fragment>
       <QRCode

@@ -1,53 +1,54 @@
+import { serverURL } from "../constants";
 import axios from "axios";
 axios.defaults.withCredentials = true;
 
 export async function fetchUserSessions() {
-  return await axios.get("http://localhost:8000/api/get-sessions", {});
+  return await axios.get(`${serverURL}/api/get-sessions`, {});
 }
 
 export async function onCreateSession(name, module) {
-  return await axios.post("http://localhost:8000/api/create-session", {
+  return await axios.post(`${serverURL}/api/create-session`, {
     session_name: name,
     module_id: module,
   });
 }
 
 export async function fetchStudentsInSession(id) {
-  return await axios.post("http://localhost:8000/api/get-students-in-session", {
+  return await axios.post(`${serverURL}/api/get-students-in-session`, {
     session_id: id,
   });
 }
 
 export async function fetchSessionInfo(session_id) {
-  return await axios.post("http://localhost:8000/api/get-session-info", {
+  return await axios.post(`${serverURL}/api/get-session-info`, {
     session_id: session_id,
   });
 }
 
 export async function onSetSessionStatus(id) {
-  return await axios.post("http://localhost:8000/api/set-session-status", {
+  return await axios.post(`${serverURL}/api/set-session-status`, {
     session_id: id,
   });
 }
 
 export async function fetchSessionsForStudent(id) {
-  return await axios.post("http://localhost:8000/api/search", {
+  return await axios.post(`${serverURL}/api/search`, {
     student_number: id,
   });
 }
 
 export async function onCreateModule(name) {
-  return await axios.post("http://localhost:8000/api/create-module", {
+  return await axios.post(`${serverURL}/api/create-module`, {
     module_name: name,
   });
 }
 
 export async function fetchUserModules() {
-  return await axios.get("http://localhost:8000/api/get-modules", {});
+  return await axios.get(`${serverURL}/api/get-modules`, {});
 }
 
 export async function fetchModulesForStudent(number) {
-  return await axios.post("http://localhost:8000/api/get-student-modules", {
+  return await axios.post(`${serverURL}/api/get-student-modules`, {
     student_number: number,
   });
 }
@@ -57,7 +58,7 @@ export async function fetchSignInsForStudentInModule(
   module_id
 ) {
   return await axios.post(
-    "http://localhost:8000/api/get-student-signins-for-module",
+    `${serverURL}/api/get-student-signins-for-module`,
     {
       student_number: student_number,
       module_id: module_id,
@@ -66,7 +67,7 @@ export async function fetchSignInsForStudentInModule(
 }
 
 export async function fetchSessionsForModule(module_id) {
-  return await axios.post("http://localhost:8000/api/get-sessions-in-module", {
+  return await axios.post(`${serverURL}/api/get-sessions-in-module`, {
     module_id: module_id,
   });
 }
@@ -76,7 +77,7 @@ export async function fetchStudentModuleReportPieData(
   module_id
 ) {
   return await axios.post(
-    "http://localhost:8000/api/get-student-module-pie-data",
+    `${serverURL}/api/get-student-module-pie-data`,
     {
       student_number: student_number,
       module_id: module_id,
@@ -89,7 +90,7 @@ export async function fetchStudentModuleReportLineData(
   module_id
 ) {
   return await axios.post(
-    "http://localhost:8000/api/get-student-module-line-data",
+    `${serverURL}/api/get-student-module-line-data`,
     {
       student_number: student_number,
       module_id: module_id,
@@ -98,37 +99,37 @@ export async function fetchStudentModuleReportLineData(
 }
 
 export async function fetchModuleReportLineData(module_id) {
-  return await axios.post("http://localhost:8000/api/get-module-line-data", {
+  return await axios.post(`${serverURL}/api/get-module-line-data`, {
     module_id: module_id,
   });
 }
 
 export async function fetchModuleReportBarData(module_id) {
-  return await axios.post("http://localhost:8000/api/get-module-bar-data", {
+  return await axios.post(`${serverURL}/api/get-module-bar-data`, {
     module_id: module_id,
   });
 }
 
 export async function fetchSessionReportChartData(session_id) {
-  return await axios.post("http://localhost:8000/api/get-session-charts-data", {
+  return await axios.post(`${serverURL}/api/get-session-charts-data`, {
     session_id: session_id,
   });
 }
 
 export async function fetchModuleInfo(module_id) {
-  return await axios.post("http://localhost:8000/api/get-module-info", {
+  return await axios.post(`${serverURL}/api/get-module-info`, {
     module_id: module_id,
   });
 }
 
 export async function deleteSignIn(signin_id) {
   return await axios.delete(
-    `http://localhost:8000/api/delete-signin/${signin_id}`
+    `${serverURL}/api/delete-signin/${signin_id}`
   );
 }
 
 export async function fetchDashboardData() {
   return await axios.get(
-    `http://localhost:8000/api/get-dashboard-data/`
+    `${serverURL}/api/get-dashboard-data/`
   );
 }
