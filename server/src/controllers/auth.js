@@ -47,6 +47,7 @@ exports.login = async (req, res) => {
 
   try {
     const token = await sign(payload, SECRET);
+    const isSecure = req.protocol === 'https' || req.get('X-Forwarded-Proto') === 'https';
 
     return res
       .status(200)
