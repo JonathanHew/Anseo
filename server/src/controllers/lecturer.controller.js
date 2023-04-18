@@ -281,7 +281,9 @@ exports.getModuleReportLineData = async (req, res) => {
 
   try {
     const { rows } = await db.query(
-      `SELECT sessions.session_id, session_name, session_date, count(signin_number), session_time FROM sessions LEFT JOIN signins ON sessions.session_id = signins.session_id JOIN modules ON sessions.module_id = modules.module_id WHERE sessions.module_id = $1 GROUP BY session_name, session_date, sessions.session_id ORDER BY sessions.session_date ASC`,
+      `SELECT sessions.session_id, session_name, session_date, count(signin_number), session_time FROM sessions 
+      LEFT JOIN signins ON sessions.session_id = signins.session_id JOIN modules ON sessions.module_id = modules.module_id 
+      WHERE sessions.module_id = $1 GROUP BY session_name, session_date, sessions.session_id ORDER BY sessions.session_date ASC`,
       [module_id]
     );
 
@@ -308,7 +310,9 @@ exports.getModuleReportBarData = async (req, res) => {
 
   try {
     const { rows } = await db.query(
-      `SELECT count(signin_number) FROM sessions LEFT JOIN signins ON sessions.session_id = signins.session_id JOIN modules ON sessions.module_id = modules.module_id WHERE sessions.module_id = $1 GROUP BY session_name, session_date, sessions.session_id ORDER BY sessions.session_date ASC`,
+      `SELECT count(signin_number) FROM sessions LEFT JOIN signins ON sessions.session_id = signins.session_id 
+      JOIN modules ON sessions.module_id = modules.module_id WHERE sessions.module_id = $1 
+      GROUP BY session_name, session_date, sessions.session_id ORDER BY sessions.session_date ASC`,
       [module_id]
     );
 

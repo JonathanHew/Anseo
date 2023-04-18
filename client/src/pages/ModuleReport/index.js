@@ -138,16 +138,16 @@ const ModuleReport = () => {
           <div class="col-md-6">
             <div className="card">
               <div className="card-body">
-                <h4>Students in Sessions</h4>
-                <BarChart chartData={bardata} options={baroptions}></BarChart>
+                <h4>Session History</h4>
+                <LineChart chartData={linedata}></LineChart>
               </div>
             </div>
           </div>
           <div className="col-md-6">
             <div className="card">
               <div className="card-body">
-                <h4>Session History</h4>
-                <LineChart chartData={linedata}></LineChart>
+                <h4>Students in Sessions</h4>
+                <BarChart chartData={bardata} options={baroptions}></BarChart>
               </div>
             </div>
           </div>
