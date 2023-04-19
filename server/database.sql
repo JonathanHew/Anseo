@@ -278,3 +278,10 @@ INSERT INTO signIns (signIn_id, signIn_name, signIn_number, signIn_on_campus, si
 INSERT INTO signIns (signIn_id, signIn_name, signIn_number, signIn_on_campus, signin_date, signin_time, session_id) VALUES (71, 'Osman', 'C19000004', true, '2023-04-20', '12:04:00', '011493b1-eac0-4ad6-94a0-c401df00b46a');
 INSERT INTO signIns (signIn_id, signIn_name, signIn_number, signIn_on_campus, signin_date, signin_time, session_id) VALUES (72, 'Barbra', 'C19000005', true, '2023-04-20', '12:05:00', '011493b1-eac0-4ad6-94a0-c401df00b46a');
 INSERT INTO signIns (signIn_id, signIn_name, signIn_number, signIn_on_campus, signin_date, signin_time, session_id) VALUES (73, 'Isobella', 'C19000006', true, '2023-04-20', '12:06:00', '011493b1-eac0-4ad6-94a0-c401df00b46a');
+
+-- Set next value for all SERIAL PK fields
+SELECT setval('signIns_signIn_id_seq', 73, true);
+SELECT setval('locations_location_id_seq', 2, true);
+SELECT setval('users_user_id_seq', 1, true);
+SELECT setval('modules_module_id_seq', 5, true);
+
