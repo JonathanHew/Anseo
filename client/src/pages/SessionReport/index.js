@@ -56,7 +56,7 @@ const SessionReport = () => {
     })();
   }, []);
   return loading ? (
-    <Layout>Loading ...</Layout>
+    <Layout><h1>Loading ...</h1></Layout>
   ) : (
     <Layout>
       <div className="mb-5">
